@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Django框架细节纪实 | AndreKuu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="C:\Users\user\Desktop\前端\venv\Scripts非常优秀的第三方库   可以让网站开发非常快，而且代码非常简洁    Django是个Web框架 是一个产品级的框架 MTV模型框架 model template view   框架就是半成品    云端系统有三个业务需求，数据组织 web展示 控制逻辑  用户可以通过浏览器来访问web后台，python支持WSGI的web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django框架细节纪实">
+<meta property="og:url" content="https://andrekuu.github.io/2021/04/22/Django%E6%A1%86%E6%9E%B6%E7%BB%86%E8%8A%82%E7%BA%AA%E5%AE%9E/index.html">
+<meta property="og:site_name" content="AndreKuu">
+<meta property="og:description" content="C:\Users\user\Desktop\前端\venv\Scripts非常优秀的第三方库   可以让网站开发非常快，而且代码非常简洁    Django是个Web框架 是一个产品级的框架 MTV模型框架 model template view   框架就是半成品    云端系统有三个业务需求，数据组织 web展示 控制逻辑  用户可以通过浏览器来访问web后台，python支持WSGI的web">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://andrekuu.github.io/2021/04/22/Django%E6%A1%86%E6%9E%B6%E7%BB%86%E8%8A%82%E7%BA%AA%E5%AE%9E/1.png">
+<meta property="og:image" content="https://andrekuu.github.io/2021/04/22/Django%E6%A1%86%E6%9E%B6%E7%BB%86%E8%8A%82%E7%BA%AA%E5%AE%9E/2.png">
+<meta property="article:published_time" content="2021-04-21T19:32:04.000Z">
+<meta property="article:modified_time" content="2021-04-21T19:36:27.773Z">
+<meta property="article:author" content="AndreKuu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://andrekuu.github.io/2021/04/22/Django%E6%A1%86%E6%9E%B6%E7%BB%86%E8%8A%82%E7%BA%AA%E5%AE%9E/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="AndreKuu" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">AndreKuu</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://AndreKuu.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Django框架细节纪实" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/22/Django%E6%A1%86%E6%9E%B6%E7%BB%86%E8%8A%82%E7%BA%AA%E5%AE%9E/" class="article-date">
+  <time class="dt-published" datetime="2021-04-21T19:32:04.000Z" itemprop="datePublished">2021-04-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Django框架细节纪实
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>C:\Users\user\Desktop\前端\venv\Scripts<br>非常优秀的第三方库  </p>
+<p>可以让网站开发非常快，而且代码非常简洁   </p>
+<p>Django是个Web框架 是一个产品级的框架 MTV模型框架 model template view  </p>
+<p>框架就是半成品   </p>
+<p>云端系统有三个业务需求，数据组织 web展示 控制逻辑 </p>
+<p>用户可以通过浏览器来访问web后台，python支持WSGI的web服务器接口，这是个python语言对外部浏览器的接口，用户对云端的请求，经过WSGI转为URLS进入到web框架中。<br><img src="1.png"></p>
+<p>定制路由、定制HTML/CSS/JS的展示文件 /设计我们的数据库格式，并将他们关联   </p>
+<h2 id="全流程"><a href="#全流程" class="headerlink" title="全流程"></a>全流程</h2><ol>
+<li><p>创建一个web框架工程<br>命令行</p>
+<p> django-admin startproject mysite</p>
+</li>
+<li><p>修改工程创建一个具体应用的app python manage.py startapp xxxxxapp</p>
+</li>
+<li><p>修改工程 修改应用的views.py 对URL的具体响应功能   </p>
+</li>
+<li><p>修改工程修改URL路由 指定URL与响应之间的关系  </p>
+</li>
+<li><p>python manage.py runserver </p>
+</li>
+</ol>
+<p>django-admin是对django框架全局管理的工具   修改和配置整个框架配置的工具  几十个子命令，包括建立并管理django工程，建立并管理django工程使用的数据库  控制调试或日志信息，运行并维护Django工程</p>
+<pre><code>django-admin &lt;command&gt; [options]
+</code></pre>
+<p>在开发环境中下载好PyMySQL 安装完成后，在项目同名包下的__init__.py里面添加 </p>
+<pre><code>import pymysql
+pymysql.install_as_MySQLdb()
+</code></pre>
+<p>在settings.py里吧DATABASES里的内容换掉</p>
+<pre><code>DATABASES = &#123;
+    &#39;default&#39;: &#123;
+        &#39;ENGINE&#39;: &#39;django.db.backends.mysql&#39;,   # 数据库引擎 这是django里自带的一个包
+        &#39;NAME&#39;: &#39;&#39;,     # 所使用的的数据库名字
+        &#39;USER&#39;: &#39;root&#39;,     # 数据库服务器的用户
+        &#39;PASSWORD&#39;: &#39;&#39;,     # 密码
+        &#39;HOST&#39;: &#39;127.0.0.1&#39;,    # 主机
+        &#39;PORT&#39;: &#39;3306&#39;,     # 端口
+    &#125;
+&#125;
+</code></pre>
+<ol start="6">
+<li><p>在mysql里创建一个数据库用来装我们要塞进去的东西  </p>
+</li>
+<li><p>输入迁移指令  </p>
+<p> python manage.py migrate<br>这个是吧原来django自带的一些表在mysql里创建   可以通过刚才的创建的数据库查看这些表  </p>
+</li>
+<li><p>Django里创建一个超级管理员   </p>
+<p> python manage.py createsuperuser</p>
+</li>
+<li><p>进入服务器。/admin/ 输入刚才创建的用户名和密码  就进入了一个django的后台</p>
+</li>
+<li><p>创建一个应用</p>
+<p>python manage.py startapp appname</p>
+</li>
+<li><p>配置路由  在主路由下面添加到这个app的路由 include实现</p>
+<p>path(‘polls/‘, include(‘polls.urls’))</p>
+</li>
+</ol>
+<p>同时添加子路由：在app文件夹下创建urls.py，然后对应views创建函数<br>12. 在app下建立模板文件夹  templates 存放htmls等页面文件  并在主文件里的settings修改</p>
+<pre><code>&#39;DIRS&#39;: [os.path.join(BASE_DIR, &#39;templates&#39;)],
+</code></pre>
+<ol start="13">
+<li>在templates里创建一个html文件 完成页面设计  </li>
+<li>在setting里的installed_apps 添加app名字</li>
+<li> 用户名和密码一般不会用GET英文这样会暴露在浏览器地址栏里，改成post请求 </li>
+<li> 如果用到post 得在html里加上</li>
+</ol>
+<pre><code>&#123;% csrf_token %&#125;
+</code></pre>
+<p>这样才能通过安全保证，因为django自带有个csrf中间件来确保安全性  </p>
+<ol start="17">
+<li>接数据库做一个登陆操作:</li>
+</ol>
+<ul>
+<li><p>在model.py中添加数据模型  在django里是一个模型，在数据库里就是一张表  </p>
+<p>  class StudentInfo(models.Model):</p>
+<h1 id="创建表的字段"><a href="#创建表的字段" class="headerlink" title="创建表的字段"></a>创建表的字段</h1><p>  stu_id = models.CharField(primary_key=True,max_length=20)<br>  stu_name = models.CharField(max_length=20)<br>  stu_psw = models.CharField(max_length=20)</p>
+</li>
+<li><p>将数据模型迁移到数据库 </p>
+<p>  python manage.py makemigrations stu  (stu是应用名)</p>
+</li>
+<li><p>创建完成后就会在migrations里创建一个0001_initial.py 然后运行迁移</p>
+<p>  python manage.py migrate<br>数据库里就会出现这张表  </p>
+</li>
+<li><p>在这张表里插入一条数据 或几条作为测试  </p>
+</li>
+<li><p>在views里先把models文件import进来 然后重定义这里的u p 判断语句 这里使用filter函数来实现</p>
+<p>  def Login_view(request):</p>
+<pre><code>  u = request.POST.get(&quot;user&quot;, &#39;&#39;)
+  p = request.POST.get(&quot;pwd&quot;, &#39;&#39;)
+
+  if u and p:
+      c = StudentInfo.objects.filter(stu_name=u, stu_psw=p).count()  # 这里通过filter函数去数据库里找匹配情况
+      if c &gt;= 1:
+          return HttpResponse(&quot;登陆成功！&quot;)
+      else:
+          return HttpResponse(&quot;账号密码错误！&quot;)
+  return HttpResponse(&quot;登录失败！请输入正确的账号密码！&quot;)
+</code></pre>
+</li>
+</ul>
+<p>将数据库里的数据映射回django 项目 需要执行指令 ：</p>
+<pre><code>python manage.py inspectdb&gt;lo/models.py     // lo是项目的名称 app名
+</code></pre>
+<h2 id="注册功能"><a href="#注册功能" class="headerlink" title="注册功能"></a>注册功能</h2><ol>
+<li>templates模板里添加一个html页面  </li>
+<li></li>
+</ol>
+<p>manage 也是个管理工具，但是只针对我们生成的这个工程   </p>
+<h2 id="退出服务器连接是CTRL-break或者ctrl-c"><a href="#退出服务器连接是CTRL-break或者ctrl-c" class="headerlink" title="退出服务器连接是CTRL+break或者ctrl+c"></a>退出服务器连接是CTRL+break或者ctrl+c</h2><h2 id="工程和app"><a href="#工程和app" class="headerlink" title="工程和app"></a>工程和app</h2><p>工程对于一个网站是配置和应用的集合，引用对应于特定功能，是具体功能的载体，配置和功能分离是高度模块化的提现 </p>
+<h2 id="修改引用的views-py"><a href="#修改引用的views-py" class="headerlink" title="修改引用的views.py"></a>修改引用的views.py</h2><p>views.py中包含对某个HTTP请求url的响应  </p>
+<h2 id="修改URL路由"><a href="#修改URL路由" class="headerlink" title="修改URL路由"></a>修改URL路由</h2><p>在urls.py中指定URL与处理函数之间的路径关系<br>path是讲某个处理函数和某个URL进行关联 路由就是 URL与处理函数的关联的</p>
+<p><strong>init</strong>_.py 意味着这是一个第三方包也是一个库，如果要生成一个库，就必须得有这个文件   </p>
+<p>settings.py部署和整个工程的配置文件   </p>
+<p>urls.py url路由器的声明文件(路由文件)</p>
+<p>wsgi.pu WSGI的web服务器的配置文件  </p>
+<p>manage.py 是一个与Django工程交互的命令工具  </p>
+<h2 id="MVC设计模式"><a href="#MVC设计模式" class="headerlink" title="MVC设计模式"></a>MVC设计模式</h2><p>MVC 设计模式是 Web 设计模式的经典之作，MTV 模式也是在它的基础上衍生而来。</p>
+<p>MVC 是 Model-View-Controller 的缩写，其中每个单词都有其不同的含义：<br>Modle 代表数据存储层，是对数据表的定义和数据的增删改查；<br>View 代表视图层，是系统前端显示部分，它负责显示什么和如何进行显示；<br>Controller 代表控制层，负责根据从 View 层输入的指令来检索 Model 层的数据，并在该层编写代码产生结果并输出。<br><img src="2.png"><br>MVC 设计模式的请求与响应过程描述如下：<br>用户通过浏览器向服务器发起 request 请求，Controller 层接受请求后，同时向 Model 层和 View 发送指令；<br>Model 层根据指令与数据库交互并选择相应业务数据，然后将数据发送给 Controller 层；<br>View 层接收到 Controller 的指令后，加载用户请求的页面，并将此页面发送给 Controller 层；<br>Controller 层接收到 Model 层和 View 层的数据后，将它们组织成响应格式发送给浏览器，浏览器通过解析后把页面展示出来。</p>
+<p>MVC 的 3 层之间紧密相连，但又相互独立，每一层的修改都不会影响其它层，每一层都提供了各自独立的接口供其它层调用，MVC 的设计模式降低了代码之间的耦合性（即关联性），增加了模块的可重用性，这就是 MVC 的设计模式。    </p>
+<h2 id="MTV模式"><a href="#MTV模式" class="headerlink" title="MTV模式"></a>MTV模式</h2><p>Django 借鉴了经典的 MVC 模式，它也将交互的过程分为了 3 个层次，也就是 MTV 设计模式；<br>Model：数据存储层，处理所有数据相关的业务，和数据库进行交互，并提供数据的增删改查；<br>Template：模板层（也叫表现层）具体来处理页面的显示；<br>View：业务逻辑层，处理具体的业务逻辑，它的作用是连通Model 层和 Template 。  </p>
+<p>MTV 设计模式中，用 View 层取代了 Controller 层的位置，用 Template 层取代了原来 View 层的位置。</p>
+<p>初次接触 Django 的设计模式的人，可能会对 Template 层产生疑问，其实 Template 英文的含义就是“模板”的意思，你可以简单理解成，它是一个 HTML 页面 ，HTML 页面的渲染在视图层完成。</p>
+<p>用户通过浏览器对服务器发起 request 请求，服务器接收请求后，通过 View 的业务逻辑层进行分析，同时向 Model 层和 Template 层发送指令；<br>Model 层与数据库进行交互，将数据返回给 View 层；<br>Template 层接收到指令后，调用相应的模板，并返回给 View 层；<br>View 层接收到模板与数据后，首先对模板进行渲染（即将相应的数据赋值给模板），然后组织成响应格式返回给浏览器，浏览器进行解析后并最终呈现给用户。   </p>
+<p>通过以上两种设计模式的比较， 我们可以得出 MTV 是 MVC 的一种细化，将原来 MVC 中的 V 层拿出来进行分离，视图的显示与如何显示交给 Template 层，而 View 层更专注于实现业务逻辑。其实在 Django 是有 Controller 层的，只不过它由框架本身来实现，所以我们不用关心它。Django 更关注于M、T 和 V。 </p>
+<h2 id="ORM"><a href="#ORM" class="headerlink" title="ORM"></a>ORM</h2><p>ORM （Object Realtional Mapping）即对象关系映射，它是一种基于关系型数据库的程序技术。ORM 允许你使用类和对象对数据库进行操作，这大大提高了对数据库的控制，避免了直接使用 SQL 语句对数据库进行操作。 这种程序技术的底层主要是通过映射机制实现的   </p>
+<p>Web 开发中对数据库的操作是必不可少的，然而每种数据库的操作方式以及用法不尽相同。由于 Django 中 ORM 的存在，为我们操作不同种类的数据库提供了统一的方法，ORM 适配了多种常用的关系型数据库，例如 PostgreSQL、MySQL、Oracle、Sqlite3 等。   </p>
+<p>Django 把表模型定义为 Model，他需要继承自django.db.models中的 Model 类，只要是与数据表相关的操作，都需要继承这个类。同时ORM 对于数据库的的增删改查，也提供了一些简单的 API，例如 F 查询、Q 查询。  </p>
+<p>ORM 模块确实有诸多的优势，比如：<br>使用该模块只需要面向对象编程，不需要面向数据库编写代码，对数据库的操作转换为对类属性和方法的操作，不用我们编写各种数据库的 SQL 语句。<br>实现数据模型与数据库的解耦，屏蔽了不同数据库操作上的差异化，不在关注不同数据库内部的操作细节，通过简单更改配置就可以实现数据库的更换而无需更改代码。</p>
+<p>与此同时 ORM 也存在一点不足之处：<br>相比直接用 SQL 语句操作数据库会有性能损失，因为在映射的过程中 ORM 需要与 SQL 之间进行转换，根据对象的操作转换成 SQL 语句，根据查询结果转换成对象，所以在映射的过程存在性能损失。</p>
+<h2 id="创建一个页面"><a href="#创建一个页面" class="headerlink" title="创建一个页面"></a>创建一个页面</h2><p>建立摸板（T）对应特定请求 返回模板页面    </p>
+<p>render 打包函数 第一个参数是request默认要求，第二个参数是反馈的页面的名字<br>在app文件里创建本地路由：新建一个urls.py    urlpatterns是个固定的变量名 表达路由信息<br>有了局部路由 则需要将工程全局路由增加对这个app本地路由的引用   include函数用来引入其他路由文件的    </p>
+<p>设置摸板路径  settings文件 让django框架找到摸板所在目录  在TEMPLATES下的DIRS里这里是摸板存放的位置  </p>
+<p>[os.path.join(BASE_DIR, ‘hello2app/templates’)]  这个是合并路径，在主路径下加入找templates的路径    </p>
+<h2 id="Django的输入输出"><a href="#Django的输入输出" class="headerlink" title="Django的输入输出"></a>Django的输入输出</h2><p>Django的输入是用户请求的http协议  包括url 和对 url的动作<br>输出就是每次views对响应的输出</p>
+<h2 id="URL路由配置"><a href="#URL路由配置" class="headerlink" title="URL路由配置"></a>URL路由配置</h2><p>settings.py文件里ROOT_URLCONF变量指定全局路由文件名称<br>这个通常指向&lt;工程名称&gt;.urls 这个路由文件，是默认对应工程目录下的urls.py文件，这个是这个项目的路由入口文件<br>Django使用urlpatterns变量表示路由（urls.py）该变量是列表类型  由path（）或re_path()作为元素组成  表示路由中的每个路由的定义关系 。其中path处理字符串类型的路由， re_path处理正则表达式路由  </p>
+<pre><code>path(route, view, kwargs=None,name=None)   
+</code></pre>
+<p>Django有三种方式表达路径route ：</p>
+<ol>
+<li>精确字符串  article/2003/ </li>
+<li>Django的转换格式   &lt;类型：变量名&gt; article/<a href="int:year">int:year</a>/</li>
+<li>正则表达式的格式: article/(?P<year>[0-9]{4})  我们用正则表达式来表达一类的URLs</li>
+</ol>
+<p>精确字符串类型：  一个精确的URL匹配一个操作函数  最简单的形势，适合对静态URL的响应，URL字符串不以/开头，但要以 /结尾   </p>
+<p>转换格式类型： 一个URL摸板，匹配URL同时在其中获得一批变量作为参数<br>目的是通过URL进行参数获取和传递  采用</p>
+<pre><code>&lt;类型：变量名&gt; 格式获取参数  
+</code></pre>
+<p>五种Django的转换格式类型：</p>
+<ol>
+<li>s</li>
+<li> 匹配除了分隔符以外/外  的非空字符串， 默认类型<year> 等价于<a href="str:year">str:year</a></li>
+<li>int 匹配0和正整数 </li>
+<li>slug 匹配字母、数字、横杠、下划线组成的字符串 是str的子集 </li>
+<li>uuid 匹配格式化的uuid 如 075194d3-6840-417e-a8a8-6c93102e272f00   </li>
+<li>path匹配任何非空字符串 包括路径分隔符 是全集</li>
+</ol>
+<p>Django查找全局urlpatterns变量(urls.py) 按照先后书序 对URL逐一匹配 urlpatterns的元素  当找到第一个匹配时，就停止查找 把其中的处理函数匹配出来，并执行，如果没有找到匹配或者出现异常，Django则负责错误处理<br>Django的路由不考虑HTTP请求方式，仅根据URL进行路由，只要URL相同，无论POST、GET等那种请求方式都指向同一个操作函数    </p>
+<p>re_path()两种具体形式：简单形式pattern 不提取参数： article/（[0-9]{4}）<br>命名形式 (?P<name>pattern)提取参数 统一为str类型  articles/（？P<year>[0-9]{4}） python只能提取字符串类型   </p>
+<p>空路径对应的就是根目录的处理函数  re_path里的正则表达式’^$’ 也表示空</p>
+<h2 id="view的使用"><a href="#view的使用" class="headerlink" title="view的使用"></a>view的使用</h2><p>两种类型  一种就是处理函数 一种是include()函数<br>处理函数就是指定处理url的函数 URL处理的最终归宿<br>include()函数  包含其他路由信息的函数 分段路径组合形成总路径<br>include 可以实现路径去重  就是把相同部分的代码给提取出来，然后include指向更细化的路由，可以方便以后的业务整合和降低代码出错概率    </p>
+<h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><p>视图函数接受HTTP请求 并返回响应，可以放在任何地方，可以是任何功能<br>视图函数可以返回web文本、页面、重定向、错误、图片等任何内容   </p>
+<p>视图函数通过HttpResponse 、 JsonResponse等类表达 并返回响应   </p>
+<p>按约定  视图函数放在对应app中的views.py文件里  </p>
+<p>Django相应类型：</p>
+<ol>
+<li>HttpResponse类 以及其子类（共十个）主要反馈类型 父类  HTTP状态码默认为200</li>
+<li>JsonResponse类  </li>
+<li>StreamingHttpResponse类</li>
+<li>FileResponce类</li>
+</ol>
+<p>HttpResponse(content, content_type=None,status=200, charset=None)  返回字符串<br>content_type MIME格式的返回内容类型<br>status  响应状态码<br>charset 响应字符  </p>
+<p>JsonResponse类<br>返回Json格式的数据 返回一个data 是字典类型的数据，返回JSON类型数据     </p>
+<p>云端和手机端很多都是采用的JSON的格式  尤其是交换的数据量比较小，尤其是交换一些信息量比较小，且具有一定参数属性的信息   </p>
+<p>StreamingHttpResponse类<br>内容以迭代器形势一内容流的方式响应    </p>
+<p>FileResponce类<br>反馈一个文件   stream以流形式打开的文件</p>
+<p>Django请求类型的判断：<br>django.views.decorators.http<br>路由不能判断HTTP请求的类型，Django通过decorators在视图函数前进行基本判断，格式如下：</p>
+<pre><code>from django.views.decorators.http import require_http_methods
+
+@require_http_methods([&quot;GET&quot;,&quot;POST&quot;])
+def my_view(request):
+    
+</code></pre>
+<h2 id="Django的相应类型"><a href="#Django的相应类型" class="headerlink" title="Django的相应类型"></a>Django的相应类型</h2><p>HttpResponse类和子类  和JsonResponse类是一次性响应<br>StreamingHttpResponse类和FileResponse类是流式响应类型   适合大文本文件传输和大二进制文件传输    </p>
+<p>文件较大则如果用一次性响应来实现则用户响应时间过长，用户体验差    </p>
+<p>以文件下载为例，将文件分段，每次传输一部分，分段大小可调整   </p>
+<p>python实现上是通过迭代器来产生分段，可以是文件，也可以是任何大规模的数据响应   </p>
+<pre><code>from django.http import StreamingHttpResponse
+def big_file_download(request):
+    def file_iterator(file_name, chunk_size=512):
+        with open(file_name) as f:
+            while True:
+                c = f.read(chunk_size)
+                if c:
+                    yield c
+                else:
+                    break
+    
+    fname = &quot;data.txt&quot;
+    response = StreamingHttpResponse(file_iterator(fname))
+    return response
+</code></pre>
+<p>FileResponce类是StreamingHttpResonse下的子类，能够很好地应用于文件的分段处理和下载 自动的将一个文章分段，自动实现一个迭代器 ，并且进行自动的文件传输   </p>
+<pre><code>response[&#39;Content-Type&#39;] = &#39;application/octet-stream&#39;
+response[&#39;Content-Disposition&#39;] = &#39;attatchment;filenae=&quot;pylogo.png&quot;&#39;
+</code></pre>
+<p>Content-Type用于指定文件的类型   Content-Disposition 用于指定下载文件的默认名称<br>MIME类型的标准定义  这是反馈给用户时候需要标记的  里面有这两个信息 则在用户端会体现为文件下载的格式</p>
+<pre><code>def homeproc(request):
+    cwd = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    response = FileResponse(open(cwd + &quot;/1.png&quot;, &quot;rb&quot;))
+    response[&#39;Content-Type&#39;] = &#39;application/octet-stream&#39;
+    response[&#39;Content-Disposition&#39;] = &#39;attachment;filename=&quot;pylogo.png&quot;&#39;
+    return response   
+</code></pre>
+<h2 id="模板引擎-模板使用"><a href="#模板引擎-模板使用" class="headerlink" title="模板引擎 模板使用"></a>模板引擎 模板使用</h2><p>模板引擎是模板响应的后端，模板就是HTML5 CSS  JS的一些文件，模板引擎就是将这些表示层的文件和数据相整合的过程    </p>
+<p>Django支撑两种引擎，一种是django引擎 一种是Jinja2引擎   </p>
+<p>settings里的 templates里的backend  引擎配置  DIRS是目录  </p>
+<pre><code>TEMPLATES = [
+    &#123;
+        &#39;BACKEND&#39;: &#39;django.template.backends.django.DjangoTemplates&#39;,
+         &#39;DIRS&#39;: [os.path.join(BASE_DIR, &quot;msgapp/templates&quot;)],
+</code></pre>
+<p>摸板查找<br>get_template(template_name) -&gt; Template类   </p>
+<p>template_name ：带查找模板的名称  在模板目录列表中，依次查找某个模板 直到找到并返回Template类<br>如果未找到模板，则抛出TemplateDoesNotExist异常  </p>
+<p>select_template(template_name_list) -&gt; Template类<br>template_name_list 待查找模板的名称列表， 找到其中一个就返回然后结束   </p>
+<p>template类用render渲染 然后生成HTML相关的字符串   </p>
+<pre><code>Template.render(context, request)-&gt;HTML字符串
+</code></pre>
+<p>context：字典类型 用于加载到模板中的内容<br>request：HTTP请求   </p>
+<p>渲染的过程就是将template类和contex用render来加工生成HTML的过程  </p>
+<h2 id="模板语言"><a href="#模板语言" class="headerlink" title="模板语言"></a>模板语言</h2><p>指导模板加载数据方式的工具<br>DTL：Django Template Language </p>
+<p>注释 comment<br>单行注释大括号加#号  </p>
+<pre><code>    &#123;# 这是单行注释 #&#125;
+</code></pre>
+<p>多行注释： </p>
+<pre><code>  &#123; %comment% &#125;
+    这是多行注释第一行
+  &#123; %endcomment% &#125;
+</code></pre>
+<p>变量 variable   一对大括号表示变量  如果变量本身是字典类型、列表类型或者对象，用.获取元素   </p>
+<pre><code>&#123; &#123;name&#125; &#125;
+&#123; &#123;adict.key&#125; &#125;
+&#123; &#123;alist.0&#125; &#125; //列表这里用.来取值   
+</code></pre>
+<p>标签 tags   表达了一定的程序逻辑  采用一对大括号百分号来表示  { % 关键字引导的程序逻辑 % } 标签中的关键字包括 for，endfor, block, if等等循环判断</p>
+<p>过滤器 filter<br>对变量值的修饰 增加竖线来过滤标签 ,过滤器对变量的值进行修饰</p>
+<pre><code> &#123; % name|过滤标签 % &#125; &#123; % name|f1|f1 % &#125;
+</code></pre>
+<p>lower，可以小写变量里的所有字母，date可以修改date型的表达格式   </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://andrekuu.github.io/2021/04/22/Django%E6%A1%86%E6%9E%B6%E7%BB%86%E8%8A%82%E7%BA%AA%E5%AE%9E/" data-id="cknrvilqu0001dgvegsblftdm" data-title="Django框架细节纪实" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/04/22/HTML%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          HTML学习笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/04/22/Python%E8%AF%AD%E8%A8%80%E5%BA%95%E5%B1%82%E7%BB%86%E8%8A%82/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python语言底层细节</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/22/Mysql%E5%9F%BA%E7%A1%80/">Mysql基础</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%BB%86%E8%8A%82/">计算机网络细节</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/22/LeetCode-%E5%91%A8%E8%B5%9B%E6%80%BB%E7%BB%93/">LeetCode 周赛总结</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/22/%E7%AE%97%E6%B3%95%E7%BB%8F%E9%AA%8C/">算法经验</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 AndreKuu<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

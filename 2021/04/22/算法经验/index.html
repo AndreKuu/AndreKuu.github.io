@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>算法经验 | AndreKuu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="抽象和实现算法 + 数据结构 &#x3D; 程序程序执行三步骤：  compile 编译到机器码 link 到各种库 Execute 执行目标程序  Python解释型的脚本语言 注意维护算法本身特性和代码可读性 鲁棒性算法的复杂度当随着输入的增大，算法时间、空间复杂度是个什么规模的增加，就可以大概看得出来算法的复杂度是个什么级别。n，10n，100n赋值语句是衡量算法的一个很好的选择，因为赋值语句包含了表">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法经验">
+<meta property="og:url" content="https://andrekuu.github.io/2021/04/22/%E7%AE%97%E6%B3%95%E7%BB%8F%E9%AA%8C/index.html">
+<meta property="og:site_name" content="AndreKuu">
+<meta property="og:description" content="抽象和实现算法 + 数据结构 &#x3D; 程序程序执行三步骤：  compile 编译到机器码 link 到各种库 Execute 执行目标程序  Python解释型的脚本语言 注意维护算法本身特性和代码可读性 鲁棒性算法的复杂度当随着输入的增大，算法时间、空间复杂度是个什么规模的增加，就可以大概看得出来算法的复杂度是个什么级别。n，10n，100n赋值语句是衡量算法的一个很好的选择，因为赋值语句包含了表">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://andrekuu.github.io/2021/04/22/%E7%AE%97%E6%B3%95%E7%BB%8F%E9%AA%8C/1.png">
+<meta property="og:image" content="https://andrekuu.github.io/2021/04/22/%E7%AE%97%E6%B3%95%E7%BB%8F%E9%AA%8C/2.png">
+<meta property="og:image" content="https://andrekuu.github.io/2021/04/22/%E7%AE%97%E6%B3%95%E7%BB%8F%E9%AA%8C/3.png">
+<meta property="og:image" content="https://andrekuu.github.io/2021/04/22/%E7%AE%97%E6%B3%95%E7%BB%8F%E9%AA%8C/4.png">
+<meta property="article:published_time" content="2021-04-21T19:37:32.000Z">
+<meta property="article:modified_time" content="2021-04-21T19:38:10.895Z">
+<meta property="article:author" content="AndreKuu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://andrekuu.github.io/2021/04/22/%E7%AE%97%E6%B3%95%E7%BB%8F%E9%AA%8C/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="AndreKuu" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">AndreKuu</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://AndreKuu.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-算法经验" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/22/%E7%AE%97%E6%B3%95%E7%BB%8F%E9%AA%8C/" class="article-date">
+  <time class="dt-published" datetime="2021-04-21T19:37:32.000Z" itemprop="datePublished">2021-04-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      算法经验
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="抽象和实现"><a href="#抽象和实现" class="headerlink" title="抽象和实现"></a>抽象和实现</h2><p>算法 + 数据结构 = 程序<br>程序执行三步骤：</p>
+<ol>
+<li>compile 编译到机器码</li>
+<li>link 到各种库</li>
+<li>Execute 执行目标程序</li>
+</ol>
+<h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><p>解释型的脚本语言</p>
+<h3 id="注意维护算法本身特性和代码可读性-鲁棒性"><a href="#注意维护算法本身特性和代码可读性-鲁棒性" class="headerlink" title="注意维护算法本身特性和代码可读性 鲁棒性"></a>注意维护算法本身特性和代码可读性 鲁棒性</h3><h2 id="算法的复杂度"><a href="#算法的复杂度" class="headerlink" title="算法的复杂度"></a>算法的复杂度</h2><p>当随着输入的增大，算法时间、空间复杂度是个什么规模的增加，就可以大概看得出来算法的复杂度是个什么级别。n，10<em>n，100</em>n<br>赋值语句是衡量算法的一个很好的选择，因为赋值语句包含了表达式的计算和变量的存储两个基本的资源利用。<br>某些具体的数据也会影响算法运行时间，分为最好，最差和平均的情况。平均性能提现了算法的主流功能。<br>大O表示法表示所有上限中最小的那个上限。<br>大Ω表示法所有下限中最大的那个下限。<br>算法设计中时间空间的权衡非常常见。<br>算法设计应该符合80-20准则，让80%最常用的操作性能最好，不用牺牲太多操作。<br>特别注意：python的 “+”和append复杂度，再 alst += blst 复杂度是O(na+nb)和for 循环B 来alst.append(i)是差距极大的！！！！后者只有O(nb) 因为前者本质是新生成了一个。<br>自创列表首选 list(range(number))  其次列表推导时[xxxx for i in range(number)]  不行在用append 最差最差才是 “+” 性能差太多了  </p>
+<h2 id="使用timeit模块对函数计时"><a href="#使用timeit模块对函数计时" class="headerlink" title="使用timeit模块对函数计时"></a>使用timeit模块对函数计时</h2><p>该模块定义了三个实用函数和一个公共类。</p>
+<pre><code>timeit.timeit(stmt=&#39;pass&#39;, setup=&#39;pass&#39;, timer=&lt;default timer&gt;, number=1000000)
+</code></pre>
+<p>可以先创建一个Timer对象（输入两个字符串，一个是函数，一个是函数调用来源如果是引用函数就是函数从哪里来，如果是表达式，就是变量数据从哪里初始化数据） 然后调用这个对象的timeit函数来实现求时：</p>
+<pre><code>    # 方法1：Timer内都要以字符串形式输入
+    from timeit import Timer
+    t1 = Timer(&quot;test1()&quot;, &quot;from __main__ import test1&quot;)
+    print(&quot;comprehension: %f seconds\n&quot;% t1.timeit(number=1000)) 
+    
+    # 方法2：变量设置 适用于简单规模
+    import timeit
+    t1 = timeit.Timer(&quot;a = a + b&quot;, &quot;a = 100;b=100&quot;)
+    print(t1.timeit(1000))
+    
+    # 方法3： timeit函数直接调用timeit.timeit(stmt= , setup= , timer= , number= ,globals=)
+    import timeit
+    print(timeit.timeit(stmt=&quot;test1()&quot;,setup=&quot;from __main__ import test1&quot;,number=10000))
+</code></pre>
+<p>同样发现set的in要比dict的in性能要好一点点 10%吧。   </p>
+<h2 id="前缀表达式-中缀表达式-后缀表达式"><a href="#前缀表达式-中缀表达式-后缀表达式" class="headerlink" title="前缀表达式 中缀表达式 后缀表达式"></a>前缀表达式 中缀表达式 后缀表达式</h2><p>无论表达式有多复杂，需要转换成前缀或后缀，只需要两个步骤：将中缀表达式改成全括号的模式，然后前缀表达式就是把那一层的符号放到那一层的左括号位置，后缀表达式就是把那一层的符号放到那一层的右括号位置。计算机内部通常用后缀表达式来计算，因为这样可以先把两个数扫描进来，扫到操作符就可以直接计算了。    </p>
+<p>中缀表达式是最常用的算术表达式,运算符在运算数中间,运算需要考虑运算符优先级.<br>后缀表达式是计算机容易运算的表达式,运算符在运算数后面,从左到右进行运算,无需考虑优先级,运算呈线性结构。</p>
+<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><p>FIFO，有次序的线性数据集合，可以用两个栈实现队列  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CQueue</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.stack_in = []</span><br><span class="line">        self.stack_out = []</span><br><span class="line"></span><br><span class="line">	<span class="comment"># enquene</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">appendTail</span>(<span class="params">self, value</span>):</span></span><br><span class="line">        self.stack_in.append(value)</span><br><span class="line"></span><br><span class="line">	<span class="comment"># dequeue</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">deleteHead</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.stack_out:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> self.stack_in:</span><br><span class="line">                <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(self.stack_in)):</span><br><span class="line">                self.stack_out.append(self.stack_in.pop())</span><br><span class="line">        <span class="keyword">return</span> self.stack_out.pop()</span><br></pre></td></tr></table></figure>
+<p>在操作系统中核心就采用了多个队列来对系统中同时运行的进程进行调度<br>进程数远多于CPU核心数   </p>
+<h2 id="链表："><a href="#链表：" class="headerlink" title="链表："></a>链表：</h2><p>节点Node<br>链表实现的最基本元素是节点Node<br>每个节点至少要包含两个信息，数据项本身，以及指向下一个节点的信息<br>指向节点为None则是没有下一个节点<br>链表中第一个和最后一个节点最重要<br>可以初始化一个节点永远指向第一个节点<br>随着数据项的加入，无序表list其实本身不包含任何数据项，数据项在节点中<br>链表中size代价为O（n）<br><img src="1.png"><br>链表的操作问题，一般而言面试（机试）的时候不允许我们修改节点的值，而只能修改节点的指向操作。      </p>
+<p>思路通常都不难，写对链表问题的技巧是：一定要先想清楚思路，并且必要的时候在草稿纸上画图，理清「穿针引线」的先后步骤，然后再编码。       </p>
+<p>!另外在反转列表等等列表操作可能涉及head变动的时候，设置一个不变的dummyNode 指向头结点 是常用做法  </p>
+<pre><code>    dummy_node = ListNode(-1)
+    dummy_node.next = head
+</code></pre>
+<h3 id="基础的翻转链表"><a href="#基础的翻转链表" class="headerlink" title="基础的翻转链表"></a>基础的翻转链表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def reverseList(self, head: ListNode) -&gt; ListNode:</span><br><span class="line">        if head &#x3D;&#x3D; None: </span><br><span class="line">            return None</span><br><span class="line">        dummynode &#x3D; ListNode(-1)</span><br><span class="line">        dummynode.next &#x3D; head</span><br><span class="line">        while head.next:</span><br><span class="line">            temp &#x3D; head.next</span><br><span class="line">            head.next &#x3D; temp.next</span><br><span class="line">            temp.next &#x3D; dummynode.next</span><br><span class="line">            dummynode.next &#x3D; temp</span><br><span class="line">            </span><br><span class="line">        return dummynode.next</span><br></pre></td></tr></table></figure>
+<p>当然这种比较好理解但是其实复杂了，更优质的做法是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def reverseList(self, head: ListNode) -&gt; ListNode:</span><br><span class="line">        cur, pre &#x3D; head, None</span><br><span class="line">        while cur:</span><br><span class="line">            tmp &#x3D; cur.next # 暂存后继节点 cur.next</span><br><span class="line">            cur.next &#x3D; pre # 修改 next 引用指向</span><br><span class="line">            pre &#x3D; cur      # pre 暂存 cur</span><br><span class="line">            cur &#x3D; tmp      # cur 访问下一节点</span><br><span class="line">        return pre</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 练习一下递归</span><br><span class="line"></span><br><span class="line">class Solution:</span><br><span class="line">    def reverseList(self, head: ListNode) -&gt; ListNode:</span><br><span class="line">        if not head or not head.next:</span><br><span class="line">            return head</span><br><span class="line">        node &#x3D; self.reverseList(head.next)</span><br><span class="line">        head.next.next &#x3D; head</span><br><span class="line">        head.next &#x3D; None</span><br><span class="line">        return node</span><br></pre></td></tr></table></figure>
+
+<h2 id="递归三要素："><a href="#递归三要素：" class="headerlink" title="递归三要素："></a>递归三要素：</h2><ol>
+<li>递归终止条件（最小规模问题的直接解决）  </li>
+<li>利用递归不断缩小或扩大问题规模至终止条件（将小问题规模）</li>
+<li>递归算法必须调用自身</li>
+</ol>
+<p>当一个函数被调用的时候，系统会把调用的现场数据压入系统调用栈，每次调用，压入栈的现场数据被称为栈帧；当系统返回的时候，要从调用栈的栈顶取得返回地址，恢复现场，弹出栈帧，按地址返回。</p>
+<p>RecursionError:递归层数有限，爆了，要么是无线递归，要么就是往基准条件演化太慢了，就会溢出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line">sys.getrecursionlimit()</span><br><span class="line">sys.setrecursionlimit(3000)</span><br></pre></td></tr></table></figure>
+<p>递归算法最致命的问题就是可能会出现大量的重复调用递归的情况，这个时候就需要记忆化递归来消除重复计算。</p>
+<h2 id="探索迷宫-东南西北方向递归-并记录走过的位置"><a href="#探索迷宫-东南西北方向递归-并记录走过的位置" class="headerlink" title="探索迷宫 东南西北方向递归  并记录走过的位置"></a>探索迷宫 东南西北方向递归  并记录走过的位置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">def searchFrom(maze, startrow, startcol):</span><br><span class="line">    maze.updatePosition(startrow, startcol)</span><br><span class="line">    # 碰到墙壁，面包（走过），越界 返回失败</span><br><span class="line">    if maze[startrow][startcol] in (OBSTRACLE, TRIED, DEAD_END):</span><br><span class="line">        return False</span><br><span class="line"></span><br><span class="line">    # 碰到了出口就返回成功</span><br><span class="line">    if maze.isExit(startrow, startcol):</span><br><span class="line">        maze.updatePosition(startrow, startcol, part_of_path)</span><br><span class="line">        return True</span><br><span class="line"></span><br><span class="line">    # 撒下面包 继续探索</span><br><span class="line">    maze.updatePosition(startrow, startcol, TRIED)</span><br><span class="line"></span><br><span class="line">    # 向东南西北四个方向依次探索 or有短路的效应</span><br><span class="line">    found &#x3D; searchFrom(maze, startrow-1, startcol) or searchFrom(maze, startrow, startcol-1)\</span><br><span class="line">            searchFrom(maze, startrow+1, startcol) or searchFrom(maze, startrow, startcol+1)</span><br><span class="line"></span><br><span class="line">    # 如果探索成功，标记当前点，失败则标记为死胡同</span><br><span class="line">    if found:</span><br><span class="line">        maze.updatePosition(startrow, startcol, part_of_path)</span><br><span class="line">    else:</span><br><span class="line">        maze.updatePosition(startrow, startcol, DEAD_end)</span><br><span class="line">    return found</span><br><span class="line"></span><br><span class="line">    # 啥的发送</span><br></pre></td></tr></table></figure>
+
+<h2 id="分治策略"><a href="#分治策略" class="headerlink" title="分治策略"></a>分治策略</h2><p>将问题分成若干个更小规模的部分，通过解决每一个小规模部分问题，并将结果汇总得到原问题的解。     </p>
+<h2 id="贪心策略Greedy-Method"><a href="#贪心策略Greedy-Method" class="headerlink" title="贪心策略Greedy Method"></a>贪心策略Greedy Method</h2><p>我们每次都试图解决问题的尽量大的一部分。   </p>
+<h2 id="找零问题的最优解法"><a href="#找零问题的最优解法" class="headerlink" title="找零问题的最优解法"></a>找零问题的最优解法</h2><p>当然贪心策略在当前100/50/20/10/5/1得到的是最优解，但是如果币值变换呢，比如有个币值21，怎么处理呢？其实本质还是要去使用递归来实现。或者动态规划。  </p>
+<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><p>记忆化递归和函数值缓存递归不是动态规划。问题的最优解包含更小规模的最优解，这是一个使用动态规划的必要条件。<br>动态规划从最贱的情况开始倒带所需找零的循环<br>每一步都依靠以前的最优解来得到本步骤的最优解，直到得到答案。  </p>
+<h3 id="动态规划经典题：硬币找零问题和博物馆大盗问题"><a href="#动态规划经典题：硬币找零问题和博物馆大盗问题" class="headerlink" title="动态规划经典题：硬币找零问题和博物馆大盗问题"></a>动态规划经典题：硬币找零问题和博物馆大盗问题</h3><p>博物馆大盗问题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">def theif_of_museum(items, maxWeight):</span><br><span class="line">    dp &#x3D; [[0] * (maxWeight + 1) for _ in range(len(items))]</span><br><span class="line">    for i in range(items[0][0], maxWeight + 1):</span><br><span class="line">        dp[0][i] &#x3D; items[0][1]</span><br><span class="line">    for row in range(1, len(dp)):</span><br><span class="line">        for col in range(1, maxWeight + 1):</span><br><span class="line">            if col - items[row][0] &lt; 0:</span><br><span class="line">                dp[row][col] &#x3D; dp[row - 1][col]</span><br><span class="line">            else:</span><br><span class="line">                dp[row][col] &#x3D; max(dp[row - 1][col], dp[row-1][col - items[row][0]] + items[row][1])</span><br><span class="line">    return dp[-1][-1]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">items &#x3D; [(2, 3), (3, 4), (4, 8), (5, 8), (9, 10)]</span><br><span class="line">print(theif_of_museum(items, 20))</span><br></pre></td></tr></table></figure>
+<p>如果要跟踪解法，可以这样实现。就是新设一个和dp一样大的，如果发生改变则维护变动的那一个值，然后遍历得到全部取的宝物序号。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">def theif_of_museum(items, maxWeight):</span><br><span class="line">    dp &#x3D; [[0] * (maxWeight + 1) for _ in range(len(items))]</span><br><span class="line">    newitem &#x3D; [[-1] * (maxWeight + 1) for _ in range(len(items))]</span><br><span class="line">    for i in range(items[0][0], maxWeight + 1):</span><br><span class="line">        dp[0][i] &#x3D; items[0][1]</span><br><span class="line">        newitem[0][i] &#x3D; 0</span><br><span class="line">    for row in range(1, len(dp)):</span><br><span class="line">        for col in range(1, maxWeight + 1):</span><br><span class="line">            if col - items[row][0] &lt; 0:</span><br><span class="line">                dp[row][col] &#x3D; dp[row - 1][col]</span><br><span class="line">            else:</span><br><span class="line">                if dp[row - 1][col] &lt; dp[row-1][col - items[row][0]] + items[row][1]:</span><br><span class="line">                    dp[row][col] &#x3D; dp[row-1][col - items[row][0]] + items[row][1]</span><br><span class="line">                    newitem[row][col] &#x3D; row</span><br><span class="line">    res &#x3D; []</span><br><span class="line">    row, col &#x3D; len(items) - 1, maxWeight</span><br><span class="line">    while row &gt;&#x3D; 0 and col &gt;&#x3D; 0:</span><br><span class="line">        if newitem[row][col] !&#x3D; -1:</span><br><span class="line">            res.append(newitem[row][col])</span><br><span class="line">            col -&#x3D; items[row][0]</span><br><span class="line">            row -&#x3D; 1</span><br><span class="line">        else:</span><br><span class="line">            row -&#x3D; 1</span><br><span class="line">    return dp[-1][-1], res</span><br></pre></td></tr></table></figure>
+
+<h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><p>二分查找容易陷入死循环，但千万记住，核心是：<strong>left 必须 mid + 1</strong> 否则 容易死循环，因为，最后就剩两个元素， //整除会得到那个左坐标的数，必然死循环。还有一定要注意，需要把mid = (left + right)//2 写在while left &lt; right里面 。<br>此外记住，如果二封插入需要插在右边，记住一定要right =len()不能-1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># 求左坐标就要用 &gt;&#x3D;  右坐标用 &lt;&#x3D;  因为我们相当于是吧 &#x3D;&#x3D; 的情况是挪动左坐标还是右坐标</span><br><span class="line">def bisect_left(s, t):</span><br><span class="line">    left, right &#x3D; 0, len(s)</span><br><span class="line">    while left &lt; right:</span><br><span class="line">        mid &#x3D; (right + left) &#x2F;&#x2F; 2</span><br><span class="line">        if s[mid] &gt;&#x3D; t:</span><br><span class="line">            right &#x3D; mid - 1</span><br><span class="line">        else:</span><br><span class="line">            left &#x3D; mid + 1</span><br><span class="line">    return left</span><br><span class="line"></span><br><span class="line">def bisect_right(s, t):</span><br><span class="line">    left, right &#x3D; 0, len(s)</span><br><span class="line">    while left &lt; right:</span><br><span class="line">        mid &#x3D; (right + left) &#x2F;&#x2F; 2</span><br><span class="line">        if s[mid] &lt;&#x3D; t:</span><br><span class="line">            left &#x3D; mid + 1</span><br><span class="line">        else:</span><br><span class="line">            right &#x3D; mid - 1</span><br><span class="line">    return right</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="冒泡排序Bubble-sort"><a href="#冒泡排序Bubble-sort" class="headerlink" title="冒泡排序Bubble sort"></a>冒泡排序Bubble sort</h2><p>两个两个相邻比较，如果逆序，就交换位置，这样每一轮就吧最大值挪到最后了。比对是n-1+…+1所以是o(n^2)。冒泡排序直观，而且没有额外的空间开销，其次很多数据结构都能实现，比如链表。因为只要两两相邻对比。<br>此外冒泡排序如果一轮循环下来，没有发生任意交换，意味着两个相邻之间都是后者大于前者，列表已经排好序了所以这个时候就可以提前终止循环。一种优化。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">def bubbleSort(alist):</span><br><span class="line">    exchanges &#x3D; True</span><br><span class="line">    passnum &#x3D; len(alist) - 1</span><br><span class="line">    while passnum &gt; 0 and exchanges:</span><br><span class="line">        exchanges &#x3D; False</span><br><span class="line">        for i in range(passnum):</span><br><span class="line">            if alist[i]&gt;alist[i+1]:</span><br><span class="line">                exchanges &#x3D; True</span><br><span class="line">                temp &#x3D; alist[i]</span><br><span class="line">                alist[i] &#x3D; alist[i+1]</span><br><span class="line">                alist[i+1] &#x3D; temp</span><br><span class="line">        passnum &#x3D; passnum -1</span><br><span class="line">    return alist</span><br></pre></td></tr></table></figure>
+<p>改进并没有减少复杂度。  </p>
+<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p>选择排序是在冒泡排序的基础上，把O(N^2)的交换的复杂度降为了o(n)因为他只交换一次，但是比对还是o(n^2)级别 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def selectionSort(alist):</span><br><span class="line">    for fillslot in range(len(alist) - 1, 0, -1):</span><br><span class="line">        positionOfMax &#x3D; 0</span><br><span class="line">        for location in range(1, fillslot + 1):</span><br><span class="line">            if alist[location] &gt; alist[positionOfMax]:</span><br><span class="line">                positionOfMax &#x3D; location</span><br><span class="line"></span><br><span class="line">        alist[fillslot], alist[positionOfMax] &#x3D; alist[positionOfMax], alist[fillslot]</span><br><span class="line">    return alist</span><br></pre></td></tr></table></figure>
+
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>维护一个排好序的前缀单调序列，每一项和前一项比，如果比前一项小，就前一项向后挪一位，直到比到比前一项目大的时候，就插入在这个位置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">def insertionSort(alist):</span><br><span class="line">    for index in range(1,len(alist)):</span><br><span class="line">        </span><br><span class="line">        currentvalue &#x3D;alist[index]</span><br><span class="line">        position &#x3D; index</span><br><span class="line">        </span><br><span class="line">        while position&gt;0 and alist[position-1]&gt;currentvalue:</span><br><span class="line">            alist[position] &#x3D; alist[position-1]</span><br><span class="line">            position &#x3D; position -1</span><br><span class="line">            </span><br><span class="line">        alist[position] &#x3D; currentvalue</span><br><span class="line"># 其实也可以不用赋值position 因为for循环不受循环内部影响变量i</span><br><span class="line">def insertSort(lst):</span><br><span class="line">    for i in range(1,len(lst)):</span><br><span class="line">        temp &#x3D; lst[i]</span><br><span class="line">        while i &gt; 0 and temp &lt; lst[i - 1]:</span><br><span class="line">            lst[i] &#x3D; lst[i - 1]</span><br><span class="line">            i -&#x3D; 1</span><br><span class="line">        lst[i] &#x3D; temp</span><br><span class="line">    return lst</span><br></pre></td></tr></table></figure>
+<p>当然插入排序还是O（n^2）次比较，但是利用了已经维护好的一个单调区间，所以这样比对次数可以提前停止比对，从而降低比对次数。<br>对于这个本身也可以利用二分插入，实现更低的比较次数。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 自己想法。。。没有教材支持</span><br><span class="line">def insertSort(lst):</span><br><span class="line">    sortlist &#x3D; [lst[0]]</span><br><span class="line">    for i in range(1, len(lst)):</span><br><span class="line">        temp &#x3D; lst[i]</span><br><span class="line">        left, right &#x3D; 0, i </span><br><span class="line">        while left &lt; right:</span><br><span class="line">            mid &#x3D; (left + right) &#x2F;&#x2F; 2</span><br><span class="line">            if sortlist[mid] &lt;&#x3D; temp:</span><br><span class="line">                left &#x3D; mid + 1</span><br><span class="line">            else:</span><br><span class="line">                right &#x3D; mid</span><br><span class="line">        sortlist.insert(left, temp)</span><br><span class="line">    return sortlist</span><br></pre></td></tr></table></figure>
+<p>性能比较：时间复杂度降低，空间复杂度拉高。多了一个额外的数组方便插入。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import random, time</span><br><span class="line">lst &#x3D; [random.randint(1, 10000) for _ in range(10000)]</span><br><span class="line">t1 &#x3D; time.time()</span><br><span class="line">s1 &#x3D; insertSort1(lst)</span><br><span class="line">t2 &#x3D; time.time()</span><br><span class="line">s2 &#x3D;insertSort2(lst)</span><br><span class="line">t3 &#x3D; time.time()</span><br><span class="line">print(&quot;NormalInsertSort takes %.5f seconds\nBinaryInsertSort takes %.5f seconds&quot; % (t3 - t2, t2 - t1))</span><br><span class="line"># NormalInsertSort takes 3.93286 seconds</span><br><span class="line"># BinaryInsertSort takes 0.03095 seconds</span><br></pre></td></tr></table></figure>
+
+<h2 id="谢尔排序（希尔排序-shell-sort）O-n-1-5-不稳定算法"><a href="#谢尔排序（希尔排序-shell-sort）O-n-1-5-不稳定算法" class="headerlink" title="谢尔排序（希尔排序 shell sort）O(n^1.5) 不稳定算法"></a>谢尔排序（希尔排序 shell sort）O(n^1.5) 不稳定算法</h2><p>在插入排序基础上，设置间隔去排，也就是<strong>分组</strong>。先分组组内实现排序，逐步降低分组间隔，让整个序列越来越接近有序，最后一轮就是插入排序，这样降低很多无效比对。介于o(n)、o(n^2)之间 可以看成o(n^1.5)  shellsort实在插入排序基础上实现的，是先分组，再插入。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">def shellsort(lst):</span><br><span class="line">    n &#x3D; len(lst)</span><br><span class="line">    gap &#x3D; n &#x2F;&#x2F; 2</span><br><span class="line">    while gap &gt; 0:</span><br><span class="line">        for start in range(gap):  # 记住循环体循环的是什么，是多少组，所以一定是gap个啊  不是n - gap</span><br><span class="line">            for i in range(start + gap, n, gap):</span><br><span class="line">                temp &#x3D; lst[i]</span><br><span class="line">                while i &gt; start and temp &lt; lst[i - gap]:  # 这里容易错 这里得是temp比 容易写成lst[i]记住我们要插入到正确位置的是temp</span><br><span class="line">                    lst[i] &#x3D; lst[i - gap]</span><br><span class="line">                    i -&#x3D; gap</span><br><span class="line">                lst[i] &#x3D; temp</span><br><span class="line">        gap &#x3D; gap &#x2F;&#x2F; 2</span><br><span class="line">    return lst</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="归并排序-merge-sort-O-nlogn-稳定算法-但是O-n-的空间复杂度"><a href="#归并排序-merge-sort-O-nlogn-稳定算法-但是O-n-的空间复杂度" class="headerlink" title="归并排序 merge sort O(nlogn) 稳定算法 但是O(n)的空间复杂度"></a>归并排序 merge sort O(nlogn) 稳定算法 但是O(n)的空间复杂度</h2><p>递归来实现排序，持续将数据表分裂成两半，对两半分别排序。排序完合并起来，合并起来的时候拉链式比较后回填。核心是递归和合并。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"># 简化写法</span><br><span class="line">def mergesort(lst):</span><br><span class="line">    if len(lst) &lt;&#x3D; 1:  # 递归方法 先写递归结束条件</span><br><span class="line">        return lst</span><br><span class="line">    mid &#x3D; len(lst) &#x2F;&#x2F; 2</span><br><span class="line">    left &#x3D; mergesort(lst[:mid])</span><br><span class="line">    right &#x3D; mergesort(lst[mid:])</span><br><span class="line">    merge &#x3D; []</span><br><span class="line">    while left and right:</span><br><span class="line">        if left[0] &lt;&#x3D; right[0]:</span><br><span class="line">            merge.append(left.pop(0))</span><br><span class="line">        else:</span><br><span class="line">            merge.append(right.pop(0))</span><br><span class="line">    merge.extend(left)</span><br><span class="line">    merge.extend(right)</span><br><span class="line">    return merge</span><br><span class="line"></span><br><span class="line"># 当然pop(0)复杂度太高，而且新增空间 其实这里切片操作也是提高复杂度了，可以通过直接传输起始点和终止点 而不是整个切片数据</span><br><span class="line"></span><br><span class="line">def mergeSort(alist):</span><br><span class="line">    if len(alist) &gt; 1:   #技术条件</span><br><span class="line">        mid &#x3D; len(alist)&#x2F;&#x2F;2</span><br><span class="line">        lefthalf &#x3D; alist[:mid]</span><br><span class="line">        righthalf &#x3D; alist[mid:]</span><br><span class="line">        mergeSort(lefthalf)</span><br><span class="line">        mergeSort(righthalf)   #递归调用 左半边右半边分别排序</span><br><span class="line">        </span><br><span class="line">        i &#x3D; j &#x3D; k &#x3D; 0</span><br><span class="line">        while i &lt; len(lefthalf) and j &lt; len(righthalf):</span><br><span class="line">            if lefthalf[i] &lt; righthalf[j]:</span><br><span class="line">                alist[k] &#x3D; lefthalf[i]    #拉链式交错吧左右半部从小到大归并到结果列表中</span><br><span class="line">                i &#x3D; i + 1</span><br><span class="line">            else:</span><br><span class="line">                alist[k] &#x3D; righthalf[j]</span><br><span class="line">                j &#x3D; j + 1</span><br><span class="line">            k &#x3D; k + 1</span><br><span class="line">        while i &lt; len(lefthalf):</span><br><span class="line">            alist[k] &#x3D; lefthalf[i]       #归并左半部剩余项</span><br><span class="line">            i &#x3D; i + 1</span><br><span class="line">            k &#x3D; k + 1</span><br><span class="line">        </span><br><span class="line">        while j &lt; len(righthalf):</span><br><span class="line">            alist[k] &#x3D; righthalf[j]      #归并右半部剩余项</span><br><span class="line">            j &#x3D; j + 1</span><br><span class="line">            k &#x3D; k + 1</span><br><span class="line">    return alist</span><br></pre></td></tr></table></figure>
+
+<h2 id="快速排序-Quick-Sort-O-nlogn"><a href="#快速排序-Quick-Sort-O-nlogn" class="headerlink" title="快速排序 Quick Sort O(nlogn)"></a>快速排序 Quick Sort O(nlogn)</h2><p>快速排序的思路是一句一个中值，把数据表分成两半，小于中值的一般和大于中值的一半，然后每部分分别进行快速排序（递归）<br>快速排序是不稳定的排序方法，中值点取得不好就容易出现n^2的复杂度，不需要额外的存储空间。中值如何选取很重要，所以对数据的了解，能很大程度上改进算法。当不确定数据的情况，可以选择三点取样，头尾中间取一个然后选择一个中值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 完全图省事的算法 复杂度增加了很多 也增加了额外的存储空间</span><br><span class="line">def quicksort(alist):</span><br><span class="line">    if len(alist) &lt; 2:</span><br><span class="line">        return alist</span><br><span class="line">    idx &#x3D; 0</span><br><span class="line">    less_part &#x3D; [i for i in alist[1:] if i &lt;&#x3D; alist[idx]]</span><br><span class="line">    more_part &#x3D; [i for i in alist[1:] if i &gt; alist[idx]]</span><br><span class="line">    return quicksort(less_part) + [alist[idx]] + quicksort(more_part)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># 完整实现</span><br><span class="line">def quick_sort(array):</span><br><span class="line">    return quick_sort_inplace(array, 0, len(array) - 1)</span><br><span class="line"></span><br><span class="line">def quick_sort_inplace(array, beg, end):</span><br><span class="line">    if beg &lt; end:</span><br><span class="line">        pivot &#x3D; partition(array, beg, end)</span><br><span class="line">        quick_sort_inplace(array, beg, pivot - 1)</span><br><span class="line">        quick_sort_inplace(array, pivot + 1, end)</span><br><span class="line">    return array</span><br><span class="line"></span><br><span class="line">def partition(array, beg, end):</span><br><span class="line">    pivot &#x3D; array[beg]</span><br><span class="line">    left, right &#x3D; beg + 1, end</span><br><span class="line">    while True:</span><br><span class="line">        while left &lt;&#x3D; right and array[left] &lt;&#x3D; pivot:</span><br><span class="line">            left +&#x3D; 1</span><br><span class="line">        while left &lt;&#x3D; right and array[right] &gt;&#x3D; pivot:</span><br><span class="line">            right -&#x3D; 1</span><br><span class="line">        if left &gt; right:</span><br><span class="line">            break</span><br><span class="line">        else:</span><br><span class="line">            array[left], array[right] &#x3D; array[right], array[left]</span><br><span class="line">            left, right &#x3D; left + 1, right - 1</span><br><span class="line">    array[right], array[beg] &#x3D; pivot, array[right]</span><br><span class="line">    return right</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="C-、JAVA、-python-里的sort怎么实现的用什么算法"><a href="#C-、JAVA、-python-里的sort怎么实现的用什么算法" class="headerlink" title="C++、JAVA、 python 里的sort怎么实现的用什么算法"></a>C++、JAVA、 python 里的sort怎么实现的用什么算法</h2><p>C++毫无疑问用到了快速排序，但不仅仅使用了快速排序，还结合了插入排序和堆排序。STL的sort算法数据量大的时候使用QuickSort快速排序，分段归并排序。一旦分段后的数据量小于某个门槛比如16个，为了避免快排的递归调用深度过深，就改用heapsort 堆排序，如果递归调用带来过大负荷就改用insertion sort插入排序。流程是：原始数据快速排序分段，如果数据量小，就插入排序，递归深，就堆排序。里面有个__lg函数用来计算递归深度，如果深度达到该值，就改为堆排序。因为堆排序时间复杂度很定O(nlogn).而负载过大的时候使用插入排序，因为在已经接近有序的情况下，插入排序的比对次数很少，性能很不错。核心原因都在于快速排序是需要选择一个中间值的，如果中间值选择的不好，没有将数据化分开，则很有可能将自己的快速排序的时间复杂度变成了 n^2。这种混合式排序能稳定在nlog(n)又比一上来就堆排序要好。总结：当数据量比较大的时候先用的快排，当数据量小的时候用直接插入，因为当数据量变小时，快排中的每个部分基本有序，接近直接插入的最好情况的时间复杂度O(n)，就比快排要好一点了。如果是数据量过大，递归深度过深超过阙值，就改为堆排序。      </p>
+<p>java内部用的都是归并排序， 因为C++模板有很强的inline优化机制，比较操作相对于赋值（移动）操作要快的多（尤其是元素较大时），而java中的情况正好相反，移动（赋值）一般比比较快；另一方面，一般情况下，归并排序的比较次数小于快速排序的比较次数，而移动次数一般多于快速排序的移动次数，二者大约都是2~3倍的差距。因为这样，java标准库中的一般排序使用的归并排序的一种变种。     </p>
+<p>python内部的sort采用的是混合（hybrid）排序，规模小的时候采用binary insertion，规模大的时候采用samplesort。首先检查数据是否已经排序(或reverse sorted)了，O(N)，如果有，那么就直接返回了如果已经基本排序了，就使用binary insertion sort算法如果数据集很小（小于100个），那么就使用binary insertion sort算法；如果数据集很大，就会使用samplesort。<br><img src="2.png" alt="排序算法"></p>
+<h2 id="散列"><a href="#散列" class="headerlink" title="散列"></a>散列</h2><p>如果一个数据结构数据项之间是已经大小排好序的，就可以利用二分查找来降低算法复杂度。而散列Hashing则可以将查找复杂度降为O（1）。就需要用到散列函数，散列函数是实现数据项到存储槽名称之间转换的。一种常用的设计散列函数的方式就是求余数，将数据项除以散列表的大小，作为存储槽的槽号。<br>负载因子： 存储空间/总槽位<br>冲突：不同值求散列函数得到相同槽位<br>散列函数： 1. 冲突越少 2. 计算难度越低（额外开销小） 3. 充分分散数据项（节约空间） 就越完美</p>
+<p>近似完美散列函数MD5和SHA。 MD5将任何长度的数据变换为固定长为128位（16字节）的摘要</p>
+<p>python自带MD5和SHA系列的散列函数库，hashlib<br>除了对单个字符串进行散列计算外，还可以用update方法对任意长度的数据分部分计算。完美散列函数可以用于数据一致性校验，为每个文件计算其散列值，如果相等则两个文件内容相同。用于网络文件下载完整性校验；用于文件分享系统，网盘中相同的文件可以无需存储多次；加密形式保存密码，客户端只发送输入密码的散列值，服务器端也存储的是散列值，相比较；防文件篡改。  </p>
+<h2 id="区块链"><a href="#区块链" class="headerlink" title="区块链"></a>区块链</h2><p>区块链是一种分布式数据库，通过网络连接各个节点，每个节点都存储这整个数据库的所有数据，任何地点存的输入，都会完成同步。最本质就是“去中心化”，所有节点都是平等的。<br>区块链由一个个区块block组成，区块分为头head 和 躯体body。区块头记录了一些元数据和连接前一个区块的信息。（生成时间、和前一个区块的散列值）<br>工作量证明 pow  因为区块链是大规模的分布式数据库，同步比较慢，新区块添加速度需要得到控制。   </p>
+<h2 id="散列函数设计：折叠法"><a href="#散列函数设计：折叠法" class="headerlink" title="散列函数设计：折叠法"></a>散列函数设计：折叠法</h2><p>将数据项按照位数分成若干段，相加对散列表大小求余。   </p>
+<h2 id="散列函数设计：平方取中法"><a href="#散列函数设计：平方取中法" class="headerlink" title="散列函数设计：平方取中法"></a>散列函数设计：平方取中法</h2><p>将数据项平方运算，然后去平方数的中间两位，在对散列表大小求余数。</p>
+<h2 id="散列函数设计：非数据项"><a href="#散列函数设计：非数据项" class="headerlink" title="散列函数设计：非数据项"></a>散列函数设计：非数据项</h2><p>对非数字的数据项进行散列 把字符串中的每个字符看成ASCII码即可。同时为了方式变位词比如（has，sah）这样的影响，我们对每个字符所在的位置赋予权重因子，再加起来。<br>散列函数设计一定要设计的相对简单，否则无论是存储还是查找的时候都需要计算散列函数，那么就会浪费大量的计算，可能效率最终还不如顺序存取遍历查找。    </p>
+<h2 id="散列函数冲突解决方案"><a href="#散列函数冲突解决方案" class="headerlink" title="散列函数冲突解决方案"></a>散列函数冲突解决方案</h2><p>为冲突数据项再找一个开放空槽来存放，这种技术被称为开放定址，向后逐个槽寻找的方法则是开放定址技术中的线性探测。+1的线性探测容易出现聚集的现象，我们可以跳跃式线性探测，比如 +3。在设计跳跃式线性存储方式下，注意skip的取值不能被散列表大小整除，否则会产生周期，造成很多槽永远填不到。一个技巧是把散列表的大小设计为素数。    </p>
+<p>另一种解决冲突的办法时数据项链。就是把槽从容纳单个数据项变成容纳数据项的集合。</p>
+<h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><p>非线性数据结构<br>树由节点和边组成  每个节点都具有名称或“键值”<br>边Edge是组成树的另一个基本部分，每个边恰好连接两个节点，表示两个节点关联，边具有出入性，每个节点除了根节点都有入边，有0条或者多条出边<br>根节点是没有入边的节点，叶节点是没有出边的节点<br>子节点就是入边均来自一个节点的若干节点，称为这个节点的子节点<br>父节点Parent 一个节点是其所有出边的父节点<br>兄弟节点 Sibling 具有相同一个父节点的节点称为兄弟节点<br>子树 Subtree 一个节点和气所有子孙节点以及边的集合<br>路径Path指的是由边一次连接一起的节点有序列表<br>一个节点的子节点和另一个节点的子节点是相互隔离、独立的<br>每个叶节点都具有唯一性<br>层级 Level  从根节点到大一个节点路径中所包含边的数量 就是层级 根节点层级为0<br>高度：树中所有节点最大层级称为数的高度<br>每个节点最多有两个节点的称为 二叉树<br>树是空集，或者由根节点以及0或多个子树构成的<br>一个完全二叉树一共是 2^k - 1个节点，而且叶节点比非叶节点多1个。</p>
+<pre><code># 利用链表实现二叉树 
+class BinaryTree:
+
+    def __init__(self,rootObj):
+        self.key = rootObj
+        self.leftChild = None
+        self.rightChild = None
+    
+    def insertLeft(self,newNode):
+        if self.leftChild == None:
+            self.leftChild = BinaryTree(newNode)
+        else:
+            t = BinaryTree(newNode)
+            t.leftChild = self.leftChild   #把新的二叉树的左链接指向原左链接指向的地址，再把根指向新生成的二叉树
+            self.leftChild = t
+    
+    def insertRight(self,newNode):
+        if self.rightChild == None:
+            self.rightChild = BinaryTree(newNode)
+        else:
+            t = BinaryTree(newNode)
+            t.rightChild = self.rightChild
+            self.rightChild = t
+    
+    def getRightChild(self):
+        return self.rightChild
+    
+    def getLeftChild(self):
+        return self.leftChild
+    
+    def setRootVal(self,obj):
+        self.key = obj
+        
+    def getRootVal(self):
+        return self.key
+    
+    def preorder(self):
+        print(self.key)
+        if self.leftChild:
+            self.leftChild.preorder()
+        if self.rightChild:
+            self.rightChild.preorder()
+
+
+
+# 嵌套列表实现二叉树 
+def BinaryTree(r):
+    return [r,[],[]]
+
+def insertLeft(root,newBranch):
+    t = root.pop(1)
+    if len(t) &gt;1:
+        root.insert(1,[newBranch,t,[]])  #以newBranch作为新左子树的根 原来的左子树作为新左子树的左子树
+    else:
+        root.insert(1,[newBranch,[],[]])  
+    return root
+
+def insertRight(root,newBranch):
+    t = root.pop(2)
+    if len(t) &gt;1:
+        root.insert(2,[newBranch,t,[]])
+    else:
+        root.insert(2,[newBranch,[],[]])
+    return root
+
+def getRootVal(root):
+    return root[0]
+
+def setRootVal(root,newVal):
+    root[0] = newVal
+
+def getLeftChild(root):
+    return root[1]
+
+def getRightChild(root):
+    return root[2]
+</code></pre>
+<h2 id="树的遍历"><a href="#树的遍历" class="headerlink" title="树的遍历"></a>树的遍历</h2><p>树是一种非线性的数据结构，所以遍历的时候利用递归调用来实现。<br>前序遍历 preorder 先访问根节点，在递归谦虚访问左子树，最后访问右子树 就好比看书，看书就是前序遍历，目录然后第一章，第一章的第一节，第一章的第二节，第一章的第二节的第一话。。。。。<br>中序遍历 inorder 先递归中序访问左子树，再访问根节点，最后中序访问右子树<br>后序遍历 postorder 先递归后续访问左子树，在后续访问右子树 最后访问根节点  </p>
+<pre><code>def preorder(tree):  #前序遍历 根 左右
+    if tree:
+        print(tree.getRootVal())
+        preorder(tree.getLeftChild())
+        preorder(tree.getRightChild())
+
+def postorder(tree):#后序遍历 左右根
+    if tree != None:
+        postorder(tree.getLeftChild())
+        postorder(tree.getRightChild())
+        print(tree.getRootVal())
+
+def inorder(tree):#中序遍历  左根 右
+    if tree != None:
+        inorder(tree.getLeftChild())
+        print(tree.getRootVal())
+        inorder(tree.getRightChild())
+</code></pre>
+<h2 id="建立表达式解析树的过程（链表-栈）"><a href="#建立表达式解析树的过程（链表-栈）" class="headerlink" title="建立表达式解析树的过程（链表+栈）"></a>建立表达式解析树的过程（链表+栈）</h2><p>遇到左括号就生成并下降到左子节点，遇到操作数就写入当前节点的值然后返回父节点，遇到操作符就写入节点的值然后生成并下降到右子节点，遇到右括号，就上升到父节点。（上升父节点需要栈，下降的时候之前把当前节点push进入栈）<br>此外涉及表达式问题，各种if “+”,”/“这种影响整个代码可阅读性，可以考虑用operator模块，直接用个字典形式定义，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import operator</span><br><span class="line">oper &#x3D; &#123;&#39;+&#39;: operator.add, &#39;&#x2F;&#x2F;&#39;: operator.floordiv, &#39;&#x2F;&#39;: operator.truediv&#125;</span><br><span class="line">oper[&quot;+&quot;](a, b)</span><br></pre></td></tr></table></figure>
+
+<h2 id="优先队列Priority-Queue-二叉堆（大根堆、小根堆）Binary-Heap"><a href="#优先队列Priority-Queue-二叉堆（大根堆、小根堆）Binary-Heap" class="headerlink" title="优先队列Priority Queue 二叉堆（大根堆、小根堆）Binary Heap"></a>优先队列Priority Queue 二叉堆（大根堆、小根堆）Binary Heap</h2><p>二叉堆有趣之处在于，其逻辑结构上象二叉堆，却是在用非嵌套的列表来实现的。最小的key排在队首，叫最小堆。反之最大堆。<br>为了使堆操作能保持在对数水平，就必须采用二叉树结构。如果要使操作始终保持在对数数量级上，就必须始终保持二叉树的平衡。<br>堆： 一种特殊的完全二叉树结构  </p>
+<h3 id="完全二叉树"><a href="#完全二叉树" class="headerlink" title="完全二叉树"></a>完全二叉树</h3><p>叶节点只出现在最底层或者次底层，而且叶节点优先出现在最左边。每个内部节点都有两个子节点，最多一个内部节点例外。<br>完全二叉树的特殊性质，可以用非嵌套列表实现，因为一个节点的下标如果是P,则其左子节点一定是2P，右子节点是2P+1，父节点是P//2  （前提是根节点的索引是1而不是0开始的）<br>堆次序Heap order<br>为了维护堆次序，保证每个路径上的堆次序不受破坏，当新节点插入的时候，我们让他从列表的最后不断和父节点比较然后上浮。<br>当某个节点被移除时，我们选择从最后一个节点来填这个窟窿，然后，下沉这个节点，当然如果比左右子节点都大的时候，我们选择较小的子节点交换下沉。（因为如果选择较大的交换，那么较大这个节点比这个子节点大，还是交换）</p>
+<p>一个无序表生成二叉堆，不需要一个个插入，直接用下沉法，就能吧总代价控制在o(n)。对每个叶节点的父节点，下沉。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">class BinHeap:</span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.heaplist &#x3D; [0]</span><br><span class="line">        self.currentsize &#x3D; 0</span><br><span class="line"></span><br><span class="line">    def insert(self, val):</span><br><span class="line">        self.heaplist.append(val)</span><br><span class="line">        self.currentsize +&#x3D; 1</span><br><span class="line">        temp &#x3D; self.currentsize</span><br><span class="line">        while temp &#x2F;&#x2F; 2 &gt; 0:</span><br><span class="line">            if self.heaplist[temp &#x2F;&#x2F; 2] &lt; self.heaplist[temp]:</span><br><span class="line">                self.heaplist[temp &#x2F;&#x2F; 2], self.heaplist[temp] &#x3D; self.heaplist[temp], self.heaplist[temp &#x2F;&#x2F; 2]</span><br><span class="line">                temp &#x3D; temp &#x2F;&#x2F; 2</span><br><span class="line">            else:</span><br><span class="line">                break</span><br><span class="line"></span><br><span class="line">    def delMin(self):</span><br><span class="line">        self.heaplist[1], self.heaplist[-1] &#x3D; self.heaplist[-1], self.heaplist[1]</span><br><span class="line">        self.currentsize -&#x3D; 1</span><br><span class="line">        i &#x3D; 1</span><br><span class="line">        while i * 2 &lt;&#x3D; self.currentsize:</span><br><span class="line">            mc &#x3D; self.minChild(i)</span><br><span class="line">            if self.heaplist[i] &gt; self.heaplist[mc]:</span><br><span class="line">                self.heaplist[i], self.heaplist[mc] &#x3D; self.heaplist[mc], self.heaplist[i]</span><br><span class="line">            i &#x3D; mc</span><br><span class="line">        return self.heaplist.pop()</span><br><span class="line"></span><br><span class="line">    def minChild(self, i):</span><br><span class="line">        if i * 2 + 1 &gt; self.currentsize:</span><br><span class="line">            return i * 2</span><br><span class="line">        else:</span><br><span class="line">            if self.heaplist[i * 2] &lt; self.heaplist[i * 2 + 1]:</span><br><span class="line">                return i * 2</span><br><span class="line">            else:</span><br><span class="line">                return i * 2 + 1</span><br><span class="line"></span><br><span class="line">    def percdown(self, i):</span><br><span class="line">        while i * 2 &lt;&#x3D; self.currentsize:</span><br><span class="line">            mc &#x3D; self.minChild(i)</span><br><span class="line">            if self.heaplist[i] &gt; self.heaplist[mc]:</span><br><span class="line">                self.heaplist[i], self.heaplist[mc] &#x3D; self.heaplist[mc], self.heaplist[i]</span><br><span class="line">            i &#x3D; mc</span><br><span class="line"></span><br><span class="line">    def buildHeap(self, alist):</span><br><span class="line">        i &#x3D; len(alist) &#x2F;&#x2F; 2  # 叶节点不需要下沉</span><br><span class="line">        self.currentsize &#x3D; len(alist)</span><br><span class="line">        self.heaplist &#x3D; [0] + alist</span><br><span class="line">        while i &gt; 0:</span><br><span class="line">            self.percdown(i)</span><br><span class="line">            i &#x3D; i - 1</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="堆排序-稳定算法-o（nlogn）内置模块heapq"><a href="#堆排序-稳定算法-o（nlogn）内置模块heapq" class="headerlink" title="堆排序  稳定算法 o（nlogn）内置模块heapq"></a>堆排序  稳定算法 o（nlogn）内置模块heapq</h2><p>写堆排序 核心是写出下沉算法</p>
+<ol>
+<li>建立一个堆  </li>
+<li>得到堆顶元素，为最大元素   </li>
+<li>去掉堆顶，将堆最后一个元素放到堆顶，此时可以通过一次调整重新使堆有序   </li>
+<li>堆顶元素为最第二大元素   </li>
+<li>重复循环直至堆空    </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">def percdown(lst, lo, hi):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    :param lst: 排序的数组</span><br><span class="line">    :param lo: 下沉的节点位置</span><br><span class="line">    :param hi: 堆的最后一个节点的下标</span><br><span class="line">    :return: None  数组下沉inplace</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    i &#x3D; lo</span><br><span class="line">    j &#x3D; i * 2 + 1</span><br><span class="line">    temp &#x3D; lst[lo]</span><br><span class="line">    while j &lt;&#x3D; hi:  # 下沉的过程不就是个插入排序么</span><br><span class="line">        if j + 1 &lt;&#x3D; hi and lst[j + 1] &gt; lst[j]:</span><br><span class="line">            j +&#x3D; 1</span><br><span class="line">        if lst[j] &gt; temp:  # 注意这里是temp插入排序 所以不要一直搁这里两两交换 冒泡</span><br><span class="line">            lst[i] &#x3D; lst[j]</span><br><span class="line">            i &#x3D; j</span><br><span class="line">            j &#x3D; 2 * i + 1</span><br><span class="line">        else:</span><br><span class="line">            break</span><br><span class="line">    lst[i] &#x3D; temp</span><br><span class="line"></span><br><span class="line">def Heapsort(lst):</span><br><span class="line">    n &#x3D; len(lst)</span><br><span class="line">    for i in range((n - 2)&#x2F;&#x2F;2, -1, -1):</span><br><span class="line">        percdown(lst, i, n - 1)  # 对所有父节点 下沉 就可以得到堆 这个和所有父节点上浮 一个意义 完成堆建立 </span><br><span class="line">    for i in range(n - 1, -1, -1):</span><br><span class="line">        lst[i], lst[0] &#x3D; lst[0], lst[i]</span><br><span class="line">        percdown(lst, 0, i - 1)  # 注意这里要 -1 因为最后一个已经赋值最大值了</span><br></pre></td></tr></table></figure>
+
+<h2 id="heapq模块-小根堆"><a href="#heapq模块-小根堆" class="headerlink" title="heapq模块 小根堆"></a>heapq模块 小根堆</h2><p>heapq # q -&gt; queue 优先队列<br>heapify(list) 建立一个小根堆 不返回值 inplace<br>heappop(heap) 堆结构弹出最小值<br>merge(lst1, lst2) 将<strong>已经排序好的list1和list2</strong>合并成一个排序好的值的<strong>生成器</strong><br>heapqreplace(heap, num) 将最小数弹出 并在堆中插入num<br>heapqheappushpop(heap, num)将最小数弹出 并在堆中插入num<br>heapq.nlargest(num, list)  获得最大的n个值降序排列的数组<br>heapq.nsmallest(num, list) 获得最小的n个值升序排序的数组<br>heappush(heap, item) 将item插入堆中</p>
+<h2 id="Queue和deque"><a href="#Queue和deque" class="headerlink" title="Queue和deque"></a>Queue和deque</h2><p>队列python有两个模块，一个是queue模块的Queue() 单链表实现的pop(0)复杂度O（1），一个是collections里的deque用双链表实现的，pop()和pop(0)都是o(1)复杂度。<br>简单介绍一下Queue的方法<br>常用就是put， get 和empty，这里注意，直接判断 if q不能判断出是否为空，必须得q.empty()  put(item)就是队尾加入item节点，get就是弹出队首节点。qsize 是返回长度。  Queue（）括号呢是size指定长度，越界会block可以设定block后的操作不知道怎么解决。也不报错也不弹出。<br>collections里的deque实现方法多样基本和list类似，但是毕竟式双链表，建立连接开销肯定大一点。<br>deque(lst)可以直接把lst变成一个链表。list支持的这里基本功能和实现结果都类似，pop()也是弹出列表尾部，如果弹出队首是popleft(),append()、appendleft(),extend()insert()都支持  如果只是想用一个简单的队列，可能从名字上看上去“Queue”更合适。当然用是可以用的，不过，Queue相比deque有个坏处：慢不少。<br>在Python里，queue.Queue主要是为了线程间通信，作为“队列”只是附带的功能。而collections.deque就是个容器，和dict，list类似。   </p>
+<h2 id="ADT-Map的实现方案"><a href="#ADT-Map的实现方案" class="headerlink" title="ADT Map的实现方案"></a>ADT Map的实现方案</h2><ol>
+<li>有序表数据结构 + 二分搜索算法</li>
+<li>散列表数据结构 + 散列以及冲突解决算法</li>
+<li>二叉查找树 保存key</li>
+</ol>
+<h2 id="二叉查找树-BST"><a href="#二叉查找树-BST" class="headerlink" title="二叉查找树 BST"></a>二叉查找树 BST</h2><p>比父节点小的key都出现在左子树， 比父节点大的都出现在右子树<br>BST插入顺序 不同生成的BST也不不同<br>BST是一个递归的结构   </p>
+<pre><code>    # __setitem__(self, k, v)实现索引赋值 :
+
+    mytree = BinarySearchTree()
+    mytree[3] = &quot;red&quot;
+    mytree[4] = &quot;blue&quot;
+
+    # __getitem__(self, key)实现索引取值
+    # __contains__(self, key) 实现归属判断预算福 in 
+    def __contains__(self, key):
+        if self._get(key, self.root):
+            return True
+        else:
+            return False
+    # __iter__ 实现for循环迭代  也是递归实现 
+    def __iter__(self):
+        &quot;&quot;&quot;The standard inorder traversal of a binary tree.&quot;&quot;&quot;
+        if self:
+            if self.hasLeftChild():
+                for elem in self.leftChild:
+                    yield elem
+            yield self.key
+            if self.hasRightChild():
+                for elem in self.rightChild:
+                    yield elem
+</code></pre>
+<p>二叉查找树插入实现 插入项和根节点比KEY大小，决定插入在左子树还是右子树 再跟下一级父节点比决定往下一级左右哪个子树走。<br>二叉查找树remove方法最为复杂，有很多种情况要分类讨论。最复杂的是被删除的节点有左子树 也有右子树，这个时候我们就要找到这个删除节点的后继来替换这个节点。这个后继的选择是被删除节点的右子树的最小的那个节点。很好理解，右子树就是比被删除节点大的节点们，那肯定hold住左子树，同时又是右子树的最小的节点，所以所有其他右节点也都任然保持原样。所以其实他的后继只有两种情况，因为是右子树的最小的节点，所以必然是叶节点或者是只有右子树的父节点。   </p>
+<p>二叉查找树的性能决定因素在于二叉搜索树的高度 最大层次，而且高度又收到数据项key插入顺序的影响。<br>极端情况可以退化成单列表，理想情况就是平衡二叉树 logn   </p>
+<h2 id="AVL树"><a href="#AVL树" class="headerlink" title="AVL树"></a>AVL树</h2><p>搜索时间复杂度为logn AVL这样的平衡树就是在二叉查找树的基础上防止退化。<br>AVL树的实现过程中，需要对每个节点跟踪 平衡因子balance factor 。平衡因子是根据节点左右子树的高度差来定义的。   </p>
+<pre><code>balanceFactor = height(leftsubtree) - height(rightsubtree)
+</code></pre>
+<p>如果平衡因子大于0，我们就称为  左重，反之右重，平衡因子等于0称为平衡。<br>如果平衡因子的每个节点的平衡因子都是[-1,1]之间则称为平衡树。<br>当子树插入一个节点时，会影响其父节点的平衡因子，这种影响会一直向上传递到根节点，除非路径中有父节点的平衡因子从非0变成0，因为平衡因子非0变成0，一定是这个树变成了平衡二叉树，那么这个树的父节点的这个子树高度没有变化，那么它的平衡因子也不会受到影响。<br>AVL树立实现不平衡子树的平衡是旋转，视“左重”还是“右重”进行不同方向的旋转，同时更新相关父节点引用，更新旋转后被影响节点的平衡因子。    </p>
+<h2 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h2><p>如果右重就左旋，把这个父节点作为其右子节点的左子节点，其右子节点作为新的父节点。而原来的这个右子节点如果原来就有左子树，那么就把这个左子树挂在原来父节点的右边，做右子树。<br>如果左重就右旋，原父节点的左子节点作为新根节点，父节点挂到新根节点的右边，做右子树，并将新根节点的右子树挂到旧跟节点的左边，做左子树。<br>旋转解决不了所有平衡因子不符合平衡树的情况，单纯的左旋和右旋无法解决和实现的平衡。<br>实现方法是：在旋转之前 先检查新根节点的旋转因子<br>左旋之前：检查右子节点的因子，如果右子节点左重的话，先对他进行右旋转，再实施原来的右旋转。<br>AVL数的插入put的时间复杂度是log(n),需要插入新节点是叶节点，则更新所有其父节点的和祖先节点的代价最多是logn ，旋转最多两次，所以o（1）,总体logn。</p>
+<p><img src="3.png"><br><img src="4.png"></p>
+<h3 id="二叉搜索树BST的中序遍历就是升序排序的列表"><a href="#二叉搜索树BST的中序遍历就是升序排序的列表" class="headerlink" title="二叉搜索树BST的中序遍历就是升序排序的列表"></a>二叉搜索树BST的中序遍历就是升序排序的列表</h3><h2 id="海象表达式"><a href="#海象表达式" class="headerlink" title="海象表达式"></a>海象表达式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if (n :&#x3D; len(a)) &gt; 10:</span><br><span class="line">    print(f&quot;List is too long (&#123;n&#125; elements, expected &lt;&#x3D; 10)&quot;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="图Graph"><a href="#图Graph" class="headerlink" title="图Graph"></a>图Graph</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line">class  Graph:</span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.vertices &#x3D; &#123;&#125;</span><br><span class="line">        self.numVertices &#x3D; 0</span><br><span class="line">        </span><br><span class="line">    def addVertex(self,key):</span><br><span class="line">        self.numVertices &#x3D; self.numVertices + 1</span><br><span class="line">        newVertex &#x3D; Vertex(key)</span><br><span class="line">        self.vertices[key] &#x3D; newVertex</span><br><span class="line">        return newVertex</span><br><span class="line">    </span><br><span class="line">    def getVertex(self,n):</span><br><span class="line">        if n in self.vertices:</span><br><span class="line">            return self.vertices[n]</span><br><span class="line">        else:</span><br><span class="line">            return None</span><br><span class="line"></span><br><span class="line">    def __contains__(self,n):</span><br><span class="line">        return n in self.vertices</span><br><span class="line">    </span><br><span class="line">    def addEdge(self,f,t,cost&#x3D;0):</span><br><span class="line">            if f not in self.vertices:</span><br><span class="line">                nv &#x3D; self.addVertex(f)</span><br><span class="line">            if t not in self.vertices:</span><br><span class="line">                nv &#x3D; self.addVertex(t)</span><br><span class="line">            self.vertices[f].addNeighbor(self.vertices[t],cost)</span><br><span class="line">    </span><br><span class="line">    def getVertices(self):</span><br><span class="line">        return list(self.vertices.keys())</span><br><span class="line">        </span><br><span class="line">    def __iter__(self):</span><br><span class="line">        return iter(self.vertices.values())</span><br><span class="line">                </span><br><span class="line">class Vertex:</span><br><span class="line">    def __init__(self,num):</span><br><span class="line">        self.id &#x3D; num</span><br><span class="line">        self.connectedTo &#x3D; &#123;&#125;</span><br><span class="line">        self.color &#x3D; &#39;white&#39;</span><br><span class="line">        self.dist &#x3D; sys.maxsize</span><br><span class="line">        self.pred &#x3D; None</span><br><span class="line">        self.disc &#x3D; 0</span><br><span class="line">        self.fin &#x3D; 0</span><br><span class="line"></span><br><span class="line">    # def __lt__(self,o):</span><br><span class="line">    #     return self.id &lt; o.id</span><br><span class="line">    </span><br><span class="line">    def addNeighbor(self,nbr,weight&#x3D;0):</span><br><span class="line">        self.connectedTo[nbr] &#x3D; weight</span><br><span class="line">        </span><br><span class="line">    def setColor(self,color):</span><br><span class="line">        self.color &#x3D; color</span><br><span class="line">        </span><br><span class="line">    def setDistance(self,d):</span><br><span class="line">        self.dist &#x3D; d</span><br><span class="line"></span><br><span class="line">    def setPred(self,p):</span><br><span class="line">        self.pred &#x3D; p</span><br><span class="line"></span><br><span class="line">    def setDiscovery(self,dtime):</span><br><span class="line">        self.disc &#x3D; dtime</span><br><span class="line">        </span><br><span class="line">    def setFinish(self,ftime):</span><br><span class="line">        self.fin &#x3D; ftime</span><br><span class="line">        </span><br><span class="line">    def getFinish(self):</span><br><span class="line">        return self.fin</span><br><span class="line">        </span><br><span class="line">    def getDiscovery(self):</span><br><span class="line">        return self.disc</span><br><span class="line">        </span><br><span class="line">    def getPred(self):</span><br><span class="line">        return self.pred</span><br><span class="line">        </span><br><span class="line">    def getDistance(self):</span><br><span class="line">        return self.dist</span><br><span class="line">        </span><br><span class="line">    def getColor(self):</span><br><span class="line">        return self.color</span><br><span class="line">    </span><br><span class="line">    def getConnections(self):</span><br><span class="line">        return self.connectedTo.keys()</span><br><span class="line">        </span><br><span class="line">    def getWeight(self,nbr):</span><br><span class="line">        return self.connectedTo[nbr]</span><br><span class="line">                </span><br><span class="line">    def __str__(self):</span><br><span class="line">        return str(self.id) + &quot;:color &quot; + self.color + &quot;:disc &quot; + str(self.disc) + &quot;:fin &quot; + str(self.fin) + &quot;:dist &quot; + str(self.dist) + &quot;:pred \n\t[&quot; + str(self.pred)+ &quot;]\n&quot;</span><br><span class="line">    </span><br><span class="line">    def getId(self):</span><br><span class="line">        return self.id</span><br><span class="line"></span><br><span class="line">class adjGraphTests(unittest.TestCase):</span><br><span class="line">    def setUp(self):</span><br><span class="line">        self.tGraph &#x3D; Graph()</span><br><span class="line">        </span><br><span class="line">    def testMakeGraph(self):</span><br><span class="line">        gFile &#x3D; open(&quot;test.dat&quot;)</span><br><span class="line">        for line in gFile:</span><br><span class="line">            fVertex, tVertex &#x3D; line.split(&#39;|&#39;)</span><br><span class="line">            fVertex &#x3D; int(fVertex)</span><br><span class="line">            tVertex &#x3D; int(tVertex)</span><br><span class="line">            self.tGraph.addEdge(fVertex,tVertex)</span><br><span class="line">        for i in self.tGraph:</span><br><span class="line">            adj &#x3D; i.getAdj()</span><br><span class="line">            for k in adj:</span><br><span class="line">                print(i, k)</span><br></pre></td></tr></table></figure>
+
+<h2 id="广度优先搜索BFS、深度优先搜索DFS"><a href="#广度优先搜索BFS、深度优先搜索DFS" class="headerlink" title="广度优先搜索BFS、深度优先搜索DFS"></a>广度优先搜索BFS、深度优先搜索DFS</h2><p>Breadth-First-Search,Depth-First-Search  就是图的一种遍历方法，树有4种遍历方法 前序pre中序in后序post还有层次遍历。图只有两种，因为图没有根节点之说，而且各个节点间连接更多和复杂。<br>广度优先搜索如果是树结构就是树的层次遍历，深度优先搜索就是树的前序遍历。<br>广度利用一个队列和一个数组，数组记录各个节点是否被访问过，辅助队列弹出一个节点，压入下一层节点，直至队列弹出完毕。<br>深度利用一个栈和一个数组，数组记录各个节点是否被访问，访问一个节点就压入栈中，不断访问最后一个压入节点的下一层节点，直至该顶点所有关联顶点都被访问过，无法继续访问则弹出。<br>广度优先搜索和深度优先搜索得到的遍历顺序和图选择的存取结构有关系，如果是邻接矩阵则遍历顺序是一定的，如果是邻接链表，则遍历的顺序是不一定的。<br>无向图如果是邻接表形势，则空间复杂度是o(|v| + 2|E|) 有向图o(|v| + |E|) 。而邻接矩阵固定o(|v|^2)适合存储稠密图。求无向图和有向图的邻接链表的时间复杂度是O(1), 求有向图的入读是o(E).而领接矩阵的时间复杂度为O(|V|)<br>如果是多联通分量的广度深度优先遍历，就用一个循环去检查是否有顶点没有被访问，然后在对这个顶点入队 入栈进行遍历。<br>同样如果是邻接矩阵，则生成树的的结果是唯一的，如果是邻接表则生成树是不唯一的。<br>对于有向图，如果是强连通图，则调用一次dfs或者bfs就能够实现遍历，但是如果是非强连通图，可能会需要几次的bfs和dfs </p>
+<h2 id="图的问题解决思路"><a href="#图的问题解决思路" class="headerlink" title="图的问题解决思路"></a>图的问题解决思路</h2><p>先把所有顶点的关联顶点，全部建立边的关系。 然后选择dfs或者bfs。两个经典案例骑士周游问题dfs和词梯问题bfs。</p>
+<h2 id="启发式规则heuristic"><a href="#启发式规则heuristic" class="headerlink" title="启发式规则heuristic"></a>启发式规则heuristic</h2><p>启发式规则是用先验的只是来改进算法性能的做法，称为启发式规则heuristic，常用于人工智能领域。可以有效的减小搜索范围，更快达到目标等等。</p>
+<h2 id="Dijkstra算法"><a href="#Dijkstra算法" class="headerlink" title="Dijkstra算法"></a>Dijkstra算法</h2><p>解决带权最短路径问题的经典算法，这是一个迭代算法，得出一个顶点到其余所有顶点的最短路径。具体实现是在顶点vertex类中的成员dist用于记录从开始顶点到本顶顶啊的代全路径长度，权重之和，算法对图的每个顶点迭代一次。<br>出队的顶点相关联的点一次遍历看看比不比之前的值小，如果小就更新。需要注意的是Dijkstra算法只能处理大于0的权重的问题，如果图中出现负数权重，则算法会陷入无限循环。虽然Dijkstra算法完美解决了带权图的最短路径问题，但是实际上Internet的路由器其实是采用其他的算法。其中的原因是Dijkstra算法需要具备整个图的数据，而对于Internet路由器来说他是无法做到将所有的Internet路由器的信息和连接的信息保存在本地，这不只是数据量的问题，internet的动态变化特性也会将保存全图缺乏现实性。路由器的选径算法，对互联网来说极其重要。“距离向量路由算法”。  </p>
+<h2 id="最小生成树prim算法"><a href="#最小生成树prim算法" class="headerlink" title="最小生成树prim算法"></a>最小生成树prim算法</h2><p>算法主要是在互联网中网游设计者和网络收音机所面临的问题，信息广播问题。解决最小生成树的问题prim算法，属于贪心算法。就是每一步都沿着最小权重的边向前搜索。构造最小生成树的思路很简单，如果T还不是生成树，则反复做。找到一条最小权重的，可以安全添加的边，将边添加到树T。（可以安全添加：就是定义为一段顶点在树中，另一端不在树中的边，以保持树的无圈特性。）</p>
+<h2 id="字符串处理"><a href="#字符串处理" class="headerlink" title="字符串处理"></a>字符串处理</h2><h2 id="最小子串-最小覆盖子串"><a href="#最小子串-最小覆盖子串" class="headerlink" title="最小子串 最小覆盖子串"></a>最小子串 最小覆盖子串</h2><p>涉及到字符串的问题，如果是极值问题，最小或者最大什么的，先别考虑最的问题，先考虑怎么找到符合条件的串，然后在思考怎么通过一个串去找别的串来简便查找流程。<br>递归、动态规划（设立起始、终止坐标的二维动态规划，注意每一层的遍历顺序）、双指针是常用的字符串问题处理的方式。   </p>
+<h2 id="回文串问题"><a href="#回文串问题" class="headerlink" title="回文串问题"></a>回文串问题</h2><p>因为回文串的特性，轴对称，所以有两个特性，一个是最多只有一个元素是奇数，其他元素出现次数都是偶数；其次就是轴对称特性可以剪枝，所以可以通过中心扩散的方式模拟寻找子串。<br>中心扩散：每次假设中心是哪个元素或者哪两个，然后向外扩散判断是否符合回文条件。要考虑中心是一个字符还是两个字符，当然也可用两边遍历来完成。本质是动态规划~~~<br>中心扩散的方式是o(n**2)，涉及回文串问题有个Manacher 算法，可以降到o（n）。Manacher 算法是在线性时间内求解最长回文子串的算法</p>
+<h2 id="链表问题"><a href="#链表问题" class="headerlink" title="链表问题"></a>链表问题</h2><p>设计到链表问题，设置哑结点dummynode。<br>设计到链表问题可以考虑几种方法：</p>
+<ul>
+<li>快慢指针（无论是找中点还是找倒数第N个节点还是什么）</li>
+<li>哈希表+双链表 用Key存储val为Node的哈希表来实现遍历o(1)</li>
+</ul>
+<h2 id="树-1"><a href="#树-1" class="headerlink" title="树"></a>树</h2><p>树的问题 百分之八十都可以用递归来解决。   </p>
+<h2 id="全排列的问题"><a href="#全排列的问题" class="headerlink" title="全排列的问题"></a>全排列的问题</h2><p>就是建树的问题  递归和回朔都可以实现  相同的元素则剪枝<br>回朔算法可以实现inplace 消除了递归的一些切片和列表相加的开销 更优化<br>求解所有可能通常回朔可以实现，记住trackback的输入选择坐标输入，这样当到末尾时弹出 输出函数外</p>
+<pre><code>res = []
+path = []
+
+def backtrack(未探索区域, res, path):
+if 未探索区域满足结束条件:
+    res.add(path) # 深度拷贝
+    return
+for 选择 in 未探索区域当前可能的选择:
+    if 当前选择符合要求:
+        path.add(当前选择)
+        backtrack(新的未探索区域, res, path)
+        path.pop()
+</code></pre>
+<h2 id="递归问题"><a href="#递归问题" class="headerlink" title="递归问题"></a>递归问题</h2><p>递归先写递归终止条件<br>在想调用自身递归削减问题规模<br>在想返回啥  </p>
+<h2 id="遍历："><a href="#遍历：" class="headerlink" title="遍历："></a>遍历：</h2><p>后序遍历如果要写迭代法 可以用stack 然后root left right的顺序遍历，入栈，最后得到path翻转一下就是。或者用个visited实现，检查是否遍历过了。也是深度遍历，回退。<br><strong>如果不用visited的set可以用isinstance判断该节点是不是treenode，因为我们压入栈的时候，如果对于根节点我们只压入val，这样none和val可以实现直接输出到path</strong><br>正常做法：先用指针找到每颗子树的最左下角，然后进行进出栈操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def inorderTraversal(self, root: TreeNode) -&gt; List[int]: </span><br><span class="line">        res &#x3D; []</span><br><span class="line">        stack &#x3D; []</span><br><span class="line">        cur &#x3D; root</span><br><span class="line">        # 中序，模板：先用指针找到每颗子树的最左下角，然后进行进出栈操作</span><br><span class="line">        while stack or cur:</span><br><span class="line">            while cur:</span><br><span class="line">                stack.append(cur)</span><br><span class="line">                cur &#x3D; cur.left</span><br><span class="line">            cur &#x3D; stack.pop()</span><br><span class="line">            res.append(cur.val)</span><br><span class="line">            cur &#x3D; cur.right</span><br><span class="line">        return res</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 标记法</span><br><span class="line">class Solution:</span><br><span class="line">    def inorderTraversal(self, root: TreeNode) -&gt; List[int]:</span><br><span class="line">        if not root:</span><br><span class="line">            return list()</span><br><span class="line">        path &#x3D; []</span><br><span class="line">        stack &#x3D; [root]</span><br><span class="line">        while stack:</span><br><span class="line">            tmp &#x3D; stack.pop()</span><br><span class="line">            if isinstance(tmp, TreeNode):</span><br><span class="line">                stack.extend([tmp.right, tmp.val, tmp.left])</span><br><span class="line">            else:</span><br><span class="line">                if tmp:</span><br><span class="line">                    path.append(tmp)</span><br><span class="line">        return path</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="数组删除元素"><a href="#数组删除元素" class="headerlink" title="数组删除元素"></a>数组删除元素</h2><p>遇到数组中要删除多个元素，可以考虑双指针，一个指针指向需要插入的位置 另一个指针向后遍历，，，如果有些特性也可以直接丢到最后去</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://andrekuu.github.io/2021/04/22/%E7%AE%97%E6%B3%95%E7%BB%8F%E9%AA%8C/" data-id="cknrvilr00006dgve1xc852mj" data-title="算法经验" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          计算机基础
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/04/22/HTML%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">HTML学习笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/22/Mysql%E5%9F%BA%E7%A1%80/">Mysql基础</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%BB%86%E8%8A%82/">计算机网络细节</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/22/LeetCode-%E5%91%A8%E8%B5%9B%E6%80%BB%E7%BB%93/">LeetCode 周赛总结</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/22/%E7%AE%97%E6%B3%95%E7%BB%8F%E9%AA%8C/">算法经验</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 AndreKuu<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

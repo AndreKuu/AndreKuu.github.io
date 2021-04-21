@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>LeetCode 周赛总结 | AndreKuu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="名次： 883 &#x2F; 4801  （AC 3道） Bug 1次反思：这次周赛总体来说非常简单，名次大退步，全部题目都有思路，而且实现起来不复杂，上来就有思路了都，但是出了大问题，一个是第三题提交到了Pyhton2上白白bug了一次，一个是第四题，有问题居燃花了1个小时检查出来，记住记住！！！！初始化也是可能出问题的，一定要考虑初始化的数据是不是会错过一些判断条件！！！！！！    第一题明显复杂度不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 周赛总结">
+<meta property="og:url" content="https://andrekuu.github.io/2021/04/22/LeetCode-%E5%91%A8%E8%B5%9B%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="AndreKuu">
+<meta property="og:description" content="名次： 883 &#x2F; 4801  （AC 3道） Bug 1次反思：这次周赛总体来说非常简单，名次大退步，全部题目都有思路，而且实现起来不复杂，上来就有思路了都，但是出了大问题，一个是第三题提交到了Pyhton2上白白bug了一次，一个是第四题，有问题居燃花了1个小时检查出来，记住记住！！！！初始化也是可能出问题的，一定要考虑初始化的数据是不是会错过一些判断条件！！！！！！    第一题明显复杂度不">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-21T19:41:24.000Z">
+<meta property="article:modified_time" content="2021-04-21T19:42:30.100Z">
+<meta property="article:author" content="AndreKuu">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="AndreKuu" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">AndreKuu</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://AndreKuu.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-LeetCode-周赛总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/22/LeetCode-%E5%91%A8%E8%B5%9B%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2021-04-21T19:41:24.000Z" itemprop="datePublished">2021-04-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      LeetCode 周赛总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="名次：-883-4801-（AC-3道）-Bug-1次"><a href="#名次：-883-4801-（AC-3道）-Bug-1次" class="headerlink" title="名次： 883 / 4801  （AC 3道） Bug 1次"></a><em>名次： 883 / 4801  （AC 3道） Bug 1次</em></h2><h2 id="反思："><a href="#反思：" class="headerlink" title="反思："></a>反思：</h2><p>这次周赛总体来说非常简单，名次大退步，全部题目都有思路，而且实现起来不复杂，上来就有思路了都，但是出了大问题，一个是第三题提交到了Pyhton2上白白bug了一次，一个是第四题，有问题居燃花了1个小时检查出来，记住记住！！！！<strong>初始化也是可能出问题的，一定要考虑初始化的数据是不是会错过一些判断条件！！！！！！</strong>   </p>
+<p>第一题明显复杂度不高的情况，没必要上来就剪枝优化，simply is better！  </p>
+<h3 id="5701-仅执行一次字符串交换能否使两个字符串相等"><a href="#5701-仅执行一次字符串交换能否使两个字符串相等" class="headerlink" title="5701. 仅执行一次字符串交换能否使两个字符串相等"></a>5701. 仅执行一次字符串交换能否使两个字符串相等</h3><p>给你长度相等的两个字符串 s1 和 s2 。一次 字符串交换 操作的步骤如下：选出某个字符串中的两个下标（不必不同），并交换这两个下标所对应的字符。<br>如果对 其中一个字符串 执行 最多一次字符串交换 就可以使两个字符串相等，返回 true ；否则，返回 false 。</p>
+<p>示例 1：<br>输入：s1 = “bank”, s2 = “kanb”<br>输出：true<br>解释：例如，交换 s2 中的第一个和最后一个字符可以得到 “bank”<br>示例 2：<br>输入：s1 = “attack”, s2 = “defend”<br>输出：false<br>解释：一次字符串交换无法使两个字符串相等<br>示例 3：<br>输入：s1 = “kelb”, s2 = “kelb”<br>输出：true<br>解释：两个字符串已经相等，所以不需要进行字符串交换<br>示例 4：<br>输入：s1 = “abcd”, s2 = “dcba”<br>输出：false</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def areAlmostEqual(self, s1: str, s2: str) -&gt; bool:</span><br><span class="line">        n, m &#x3D; len(s1), len(s2)</span><br><span class="line">        lst1, lst2 &#x3D; [0] * 26, [0] * 26</span><br><span class="line">        count &#x3D; 0</span><br><span class="line">        if n !&#x3D; m:</span><br><span class="line">            return False</span><br><span class="line">        for i in s1:</span><br><span class="line">            lst1[ord(i) - ord(&#39;a&#39;)] +&#x3D; 1</span><br><span class="line">        for i in s2:</span><br><span class="line">            lst2[ord(i) - ord(&#39;a&#39;)] +&#x3D; 1</span><br><span class="line">        if lst1 !&#x3D; lst2:</span><br><span class="line">            return False</span><br><span class="line">        for i in range(n):</span><br><span class="line">            if s1[i] !&#x3D; s2[i]:</span><br><span class="line">                count +&#x3D; 1</span><br><span class="line">        return count &lt;&#x3D; 2</span><br></pre></td></tr></table></figure>
+<p>其实竞赛提交的代码其实有bug的就是我只统计了两个字符串是否相等啊，出现的字符种类是否相等，然后比较出现在相同index位置下不同的次数，这个其实忽视了比如像s1 = “abbbd”, s2 = “abddd”这种，就永远无法使用题目要求的直接执行一次交换位置实现！！！ 所以其实还是要统计两个字符串的字符出现频率和种类都相等，才可能通过题目要求的交换实现。     </p>
+<p>第二题更简单了 其实写法上可以更加简单，因为根据题意两条边之间必然会出现一个共同点</p>
+<h3 id="5702-找出星型图的中心节点"><a href="#5702-找出星型图的中心节点" class="headerlink" title="5702. 找出星型图的中心节点"></a>5702. 找出星型图的中心节点</h3><p>有一个无向的 星型 图，由 n 个编号从 1 到 n 的节点组成。星型图有一个 中心 节点，并且恰有 n - 1 条边将中心节点与其他每个节点连接起来。<br>给你一个二维整数数组 edges ，其中 edges[i] = [ui, vi] 表示在节点 ui 和 vi 之间存在一条边。请你找出并返回 edges 所表示星型图的中心节点。    </p>
+<p>示例 1：<br>输入：edges = [[1,2],[2,3],[4,2]]<br>输出：2<br>解释：如上图所示，节点 2 与其他每个节点都相连，所以节点 2 是中心节点。<br>示例 2：<br>输入：edges = [[1,2],[5,1],[1,3],[1,4]]<br>输出：1<br>提示：<br>3 &lt;= n &lt;= 105<br>edges.length == n - 1<br>edges[i].length == 2<br>1 &lt;= ui, vi &lt;= n<br>ui != vi<br>题目数据给出的 edges 表示一个有效的星型图   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def findCenter(self, edges: List[List[int]]) -&gt; int:</span><br><span class="line">        aset &#x3D; set()</span><br><span class="line">        for edge in edges:</span><br><span class="line">            if edge[0] in aset:</span><br><span class="line">                return edge[0]</span><br><span class="line">            if edge[1] in aset:</span><br><span class="line">                return edge[1]</span><br><span class="line">            aset.update(edge)</span><br></pre></td></tr></table></figure>
+
+<h3 id="1792-最大平均通过率"><a href="#1792-最大平均通过率" class="headerlink" title="1792. 最大平均通过率"></a>1792. 最大平均通过率</h3><p>一所学校里有一些班级，每个班级里有一些学生，现在每个班都会进行一场期末考试。给你一个二维数组 classes ，其中 classes[i] = [passi, totali] ，表示你提前知道了第 i 个班级总共有 totali 个学生，其中只有 passi 个学生可以通过考试。<br>给你一个整数 extraStudents ，表示额外有 extraStudents 个聪明的学生，他们 一定 能通过任何班级的期末考。你需要给这 extraStudents 个学生每人都安排一个班级，使得 所有 班级的 平均 通过率 最大 。<br>一个班级的 通过率 等于这个班级通过考试的学生人数除以这个班级的总人数。平均通过率 是所有班级的通过率之和除以班级数目。<br>请你返回在安排这 extraStudents 个学生去对应班级后的 最大 平均通过率。与标准答案误差范围在 10-5 以内的结果都会视为正确结果。<br>示例 1：</p>
+<p>输入：classes = [[1,2],[3,5],[2,2]], extraStudents = 2<br>输出：0.78333<br>解释：你可以将额外的两个学生都安排到第一个班级，平均通过率为 (3/4 + 3/5 + 2/2) / 3 = 0.78333 。<br>示例 2：    </p>
+<p>输入：classes = [[2,4],[3,9],[4,5],[2,10]], extraStudents = 4<br>输出：0.53485    </p>
+<p>提示：</p>
+<p>1 &lt;= classes.length &lt;= 105<br>classes[i].length == 2<br>1 &lt;= passi &lt;= totali &lt;= 105<br>1 &lt;= extraStudents &lt;= 105   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"># 我的思路是统计所有增加率的变化值变化，排序每次取最大的变化率的实现插入一个人，然后在插入回队列</span><br><span class="line">class Solution:</span><br><span class="line">    def maxAverageRatio(self, classes: List[List[int]], extraStudents: int) -&gt; float:</span><br><span class="line">        for i in classes:</span><br><span class="line">            i.append((i[0]+1)&#x2F;(i[1]+1) - i[0]&#x2F;i[1])</span><br><span class="line">        classes.sort(key&#x3D;lambda x:x[2])</span><br><span class="line">        def insort(s, lst, key &#x3D; 0):</span><br><span class="line">            left, right &#x3D; 0, len(lst)</span><br><span class="line">            while left &lt; right:</span><br><span class="line">                mid &#x3D; left + (right - left)&#x2F;&#x2F;2</span><br><span class="line">                if lst[mid][key] &lt; s[key]:</span><br><span class="line">                    left &#x3D; mid + 1</span><br><span class="line">                else:</span><br><span class="line">                    right &#x3D; mid</span><br><span class="line">            lst.insert(left, s) </span><br><span class="line">        for _ in range(extraStudents):</span><br><span class="line">            temp &#x3D; classes.pop()</span><br><span class="line">            temp &#x3D; [temp[0]+1, temp[1]+1, (temp[0]+2)&#x2F;(temp[1]+2) - (temp[0]+1)&#x2F;(temp[1]+1)]</span><br><span class="line">            insort(temp, classes, 2)</span><br><span class="line">        sum &#x3D; 0</span><br><span class="line">        for i in classes:</span><br><span class="line">            sum +&#x3D; i[0]&#x2F;i[1]</span><br><span class="line">        return sum&#x2F;len(classes)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># 另一种做法是 大根堆，效率高很多。</span><br><span class="line">class Solution:</span><br><span class="line">    def maxAverageRatio(self, classes: List[List[int]], extraStudents: int) -&gt; float:</span><br><span class="line">        diff &#x3D; lambda x, y: (x + 1) &#x2F; (y + 1) - x &#x2F; y</span><br><span class="line">        </span><br><span class="line">        q &#x3D; list()</span><br><span class="line">        ans &#x3D; 0.</span><br><span class="line">        for x, y in classes:</span><br><span class="line">            ans +&#x3D; x &#x2F; y</span><br><span class="line">            # python 中的优先队列是小根堆，所以要对增加量取相反数，达到大根堆的效果</span><br><span class="line">            q.append((-diff(x, y), x, y))</span><br><span class="line">        </span><br><span class="line">        heapq.heapify(q)</span><br><span class="line">        </span><br><span class="line">        for _ in range(extraStudents):</span><br><span class="line">            d, x, y &#x3D; heapq.heappop(q)</span><br><span class="line">            ans +&#x3D; -d</span><br><span class="line">            heapq.heappush(q, (-diff(x + 1, y + 1), x + 1, y + 1))</span><br><span class="line">        </span><br><span class="line">        return ans &#x2F; len(classes)</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="1793-好子数组的最大分数"><a href="#1793-好子数组的最大分数" class="headerlink" title="1793. 好子数组的最大分数"></a>1793. 好子数组的最大分数</h3><p>给你一个整数数组 nums （下标从 0 开始）和一个整数 k 。    </p>
+<p>一个子数组 (i, j) 的 分数 定义为 min(nums[i], nums[i+1], …, nums[j]) * (j - i + 1) 。一个 好 子数组的两个端点下标需要满足 i &lt;= k &lt;= j 。      </p>
+<p>请你返回 好 子数组的最大可能 分数 。       </p>
+<p>示例 1： </p>
+<p>输入：nums = [1,4,3,7,4,5], k = 3<br>输出：15<br>解释：最优子数组的左右端点下标是 (1, 5) ，分数为 min(4,3,7,4,5) * (5-1+1) = 3 * 5 = 15 。<br>示例 2：  </p>
+<p>输入：nums = [5,5,4,5,4,1,1,1], k = 0<br>输出：20<br>解释：最优子数组的左右端点下标是 (0, 4) ，分数为 min(5,5,4,5,4) * (4-0+1) = 4 * 5 = 20 。  </p>
+<p>提示：  </p>
+<p>1 &lt;= nums.length &lt;= 105<br>1 &lt;= nums[i] &lt;= 2 * 104<br>0 &lt;= k &lt; nums.length   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># 思路是维护window的边界扩展时贪心算法，两者最大的 </span><br><span class="line">class Solution:</span><br><span class="line">    def maximumScore(self, nums: List[int], k: int) -&gt; int:</span><br><span class="line">        i, j, temp &#x3D; k, k, 1</span><br><span class="line">        n &#x3D; len(nums)</span><br><span class="line">        min_temp &#x3D; nums[k]</span><br><span class="line">        res &#x3D; nums[k]</span><br><span class="line">        while i &gt; 0 and j &lt; n -1:</span><br><span class="line">            temp +&#x3D; 1</span><br><span class="line">            if nums[i - 1] &lt;&#x3D; nums[j + 1]:</span><br><span class="line">                j +&#x3D; 1</span><br><span class="line">                min_temp &#x3D; min(nums[j], min_temp)</span><br><span class="line">            else:</span><br><span class="line">                i -&#x3D; 1</span><br><span class="line">                min_temp &#x3D; min(nums[i], min_temp)</span><br><span class="line">            res &#x3D; max(res, temp * min_temp)</span><br><span class="line">        if not i:</span><br><span class="line">            for k in range(j + 1, n):</span><br><span class="line">                min_temp &#x3D; min(nums[k], min_temp)</span><br><span class="line">                temp +&#x3D; 1</span><br><span class="line">                res &#x3D; max(res, temp * min_temp)</span><br><span class="line">        else:</span><br><span class="line">            for k in range(i-1, -1, -1):</span><br><span class="line">                min_temp &#x3D; min(nums[k], min_temp)</span><br><span class="line">                temp +&#x3D; 1</span><br><span class="line">                res &#x3D; max(res, temp * min_temp)</span><br><span class="line">        return res</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"># 当然也不用每次相乘判断，只有当最小值更新的时候才需要更新res 所以可以剪枝</span><br><span class="line">class Solution:</span><br><span class="line">    def maximumScore(self, nums: List[int], k: int) -&gt; int:</span><br><span class="line">        l &#x3D; k #左边界</span><br><span class="line">        r &#x3D; k #右边界</span><br><span class="line">        n &#x3D; len(nums) #数组长度</span><br><span class="line">        res &#x3D; 0 #最大可能分数</span><br><span class="line">        while 1 :</span><br><span class="line">            while r &lt; n and nums[r] &gt;&#x3D; nums[k]:</span><br><span class="line">                r +&#x3D; 1 #向右寻找以nums[k]为最小值的好子数组</span><br><span class="line">            while l &gt;&#x3D; 0 and nums[l] &gt;&#x3D; nums[k]:</span><br><span class="line">                l -&#x3D; 1 #向左寻找以nums[k]为最小值的好子数组</span><br><span class="line">            res &#x3D; max(res, (r - l - 1) * nums[k]) #更新最大可能分数</span><br><span class="line">            if l &lt; 0 and r &#x3D;&#x3D; n: #遍历完数组，退出循环</span><br><span class="line">                break</span><br><span class="line">            if l &gt;&#x3D; 0 and r &lt; n: #贪心，更新nums[k]为左右边界中的较大者</span><br><span class="line">                nums[k] &#x3D; max(nums[l], nums[r]) </span><br><span class="line">            elif l &lt; 0: #左边已遍历完，更新为右边界</span><br><span class="line">                nums[k] &#x3D; nums[r]</span><br><span class="line">            else: #右边已遍历完，更新左边界</span><br><span class="line">                nums[k] &#x3D; nums[l]</span><br><span class="line">        return res</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="名次：-794-2853-（AC-2道）-Bug-1次"><a href="#名次：-794-2853-（AC-2道）-Bug-1次" class="headerlink" title="名次： 794 / 2853  （AC 2道） Bug 1次"></a><em>名次： 794 / 2853  （AC 2道） Bug 1次</em></h2><h2 id="反思：-1"><a href="#反思：-1" class="headerlink" title="反思："></a>反思：</h2><p>审题不清，第一道题的罚时是因为输出int没转换为str，输入输出格式为什么不检查一下在提交，不差这几秒；第三道题，求得结果自己脑海先入为主，复杂化了问题，读清楚题目求什么好么？<br>看了一眼前100的选手，大部分都是1000+  自己题量不够天赋还没有，还不懂差距在哪里么？</p>
+<p>第一题是个统计排序的题 可以用很多种排序方法实现，但是因为只是数字1-9，可以直接去重最后sorted()如果数据很大，可以考虑用堆排序，插入堆。</p>
+<h3 id="字符串中第二大的数字"><a href="#字符串中第二大的数字" class="headerlink" title="字符串中第二大的数字"></a>字符串中第二大的数字</h3><p>给你一个混合字符串 s ，请你返回 s 中 第二大 的数字，如果不存在第二大的数字，请你返回 -1 。</p>
+<p>混合字符串 由小写英文字母和数字组成。<br>示例 1：</p>
+<p>输入：s = “dfa12321afd”<br>输出：2<br>解释：出现在 s 中的数字包括 [1, 2, 3] 。第二大的数字是 2 。<br>示例 2：   </p>
+<p>输入：s = “abc1111”<br>输出：-1<br>解释：出现在 s 中的数字只包含 [1] 。没有第二大的数字。   
+    </p>
+<p>提示：</p>
+<p>1 &lt;= s.length &lt;= 500<br>s 只包含小写英文字母和（或）数字。   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def secondHighest(self, s: str) -&gt; int:</span><br><span class="line">        table &#x3D; set()</span><br><span class="line">        for token in s:</span><br><span class="line">            if token.isdigit():</span><br><span class="line">                table.add(token)</span><br><span class="line">        if len(table) &lt; 2:</span><br><span class="line">            return -1</span><br><span class="line">        return int(sorted(table)[-2])</span><br></pre></td></tr></table></figure>
+
+<p>第二题题目非常复杂和冗长，设计类的一个题。 先入先出的这样的一个结构。但是又涉及项目更新，所以想法应该还是往字典上走。  </p>
+<h3 id="设计一个验证系统"><a href="#设计一个验证系统" class="headerlink" title="设计一个验证系统"></a>设计一个验证系统</h3><p>你需要设计一个包含验证码的验证系统。每一次验证中，用户会收到一个新的验证码，这个验证码在 currentTime 时刻之后 timeToLive 秒过期。如果验证码被更新了，那么它会在 currentTime （可能与之前的 currentTime 不同）时刻延长 timeToLive 秒。  </p>
+<p>请你实现 AuthenticationManager 类：    </p>
+<p>AuthenticationManager(int timeToLive) 构造 AuthenticationManager 并设置 timeToLive 参数。<br>generate(string tokenId, int currentTime) 给定 tokenId ，在当前时间 currentTime 生成一个新的验证码。<br>renew(string tokenId, int currentTime) 将给定 tokenId 且 未过期 的验证码在 currentTime 时刻更新。如果给定 tokenId 对应的验证码不存在或已过期，请你忽略该操作，不会有任何更新操作发生。<br>countUnexpiredTokens(int currentTime) 请返回在给定 currentTime 时刻，未过期 的验证码数目。<br>如果一个验证码在时刻 t 过期，且另一个操作恰好在时刻 t 发生（renew 或者 countUnexpiredTokens 操作），过期事件 优先于 其他操作。     </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># 哈希表</span><br><span class="line">class AuthenticationManager:</span><br><span class="line"></span><br><span class="line">    def __init__(self, timeToLive: int):</span><br><span class="line">        self.limit &#x3D; timeToLive</span><br><span class="line">        self.table &#x3D; &#123;&#125;</span><br><span class="line"></span><br><span class="line">    def generate(self, tokenId: str, currentTime: int) -&gt; None:</span><br><span class="line">        self.table[tokenId] &#x3D; currentTime</span><br><span class="line"></span><br><span class="line">    def renew(self, tokenId: str, currentTime: int) -&gt; None:</span><br><span class="line">        if tokenId in self.table:</span><br><span class="line">            if currentTime - self.table[tokenId] &lt; self.limit:</span><br><span class="line">                self.table[tokenId] &#x3D; currentTime</span><br><span class="line">            else:</span><br><span class="line">                self.table.pop(tokenId)</span><br><span class="line"></span><br><span class="line">    def countUnexpiredTokens(self, currentTime: int) -&gt; int:</span><br><span class="line">        temp &#x3D; sorted(self.table.items(), key&#x3D;lambda x: x[1], reverse&#x3D;True)</span><br><span class="line">        timedelete &#x3D; currentTime - self.limit</span><br><span class="line">        for i in range(len(self.table) - 1, -1, -1):</span><br><span class="line">            if temp[i][1] &lt;&#x3D; timedelete:</span><br><span class="line">                self.table.pop(temp[i][0])</span><br><span class="line">            else:</span><br><span class="line">                break</span><br><span class="line">        return len(self.table)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">class Node:</span><br><span class="line">    def __init__(self, val&#x3D;0, key&#x3D;None, prev&#x3D;None, nxt&#x3D;None):</span><br><span class="line">        self.expire &#x3D; val</span><br><span class="line">        self.key &#x3D; key</span><br><span class="line">        self.prev &#x3D; prev</span><br><span class="line">        self.next &#x3D; nxt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class AuthenticationManager:</span><br><span class="line"></span><br><span class="line">    def __init__(self, timeToLive: int):</span><br><span class="line">        self.ttl &#x3D; timeToLive</span><br><span class="line">        self.head &#x3D; Node(-1)</span><br><span class="line">        self.tail &#x3D; Node(-1)</span><br><span class="line">        self.head.next &#x3D; self.tail</span><br><span class="line">        self.tail.prev &#x3D; self.head</span><br><span class="line">        self.map &#x3D; &#123;&#125;</span><br><span class="line"></span><br><span class="line">    # 新建一个节点，塞到链表最后面，添加到哈希表里</span><br><span class="line">    def generate(self, tokenId: str, currentTime: int) -&gt; None:</span><br><span class="line">        node &#x3D; Node(currentTime + self.ttl, tokenId)</span><br><span class="line">        self.map[tokenId] &#x3D; node</span><br><span class="line"></span><br><span class="line">        # 塞到最后</span><br><span class="line">        last &#x3D; self.tail.prev</span><br><span class="line">        last.next &#x3D; node</span><br><span class="line">        node.prev &#x3D; last</span><br><span class="line">        self.tail.prev &#x3D; node</span><br><span class="line">        node.next &#x3D; self.tail</span><br><span class="line"></span><br><span class="line">    # 如果这个节点存在且没有过期，那么把这个节点找出来，更新过期时间，塞到最后</span><br><span class="line">    def renew(self, tokenId: str, currentTime: int) -&gt; None:</span><br><span class="line">        if tokenId in self.map and self.map[tokenId].expire &gt; currentTime:</span><br><span class="line">            # 从原来的地方取出来</span><br><span class="line">            node &#x3D; self.map[tokenId]</span><br><span class="line">            prev &#x3D; node.prev</span><br><span class="line">            nxt &#x3D; node.next</span><br><span class="line">            prev.next &#x3D; nxt</span><br><span class="line">            nxt.prev &#x3D; prev</span><br><span class="line">            # 更新过期时间</span><br><span class="line">            node.expire &#x3D; currentTime + self.ttl</span><br><span class="line">            # 塞到最后</span><br><span class="line">            last &#x3D; self.tail.prev</span><br><span class="line">            last.next &#x3D; node</span><br><span class="line">            node.prev &#x3D; last</span><br><span class="line">            self.tail.prev &#x3D; node</span><br><span class="line">            node.next &#x3D; self.tail</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    # 在双向链表里把所有过期的节点删了，在哈希表里也删掉，返回长度</span><br><span class="line">    def countUnexpiredTokens(self, currentTime: int) -&gt; int:</span><br><span class="line">        while self.head.next.expire !&#x3D; -1 and self.head.next.expire &lt;&#x3D; currentTime:</span><br><span class="line">            node &#x3D; self.head.next</span><br><span class="line">            self.map.pop(node.key)</span><br><span class="line">            self.head.next &#x3D; node.next</span><br><span class="line">            node.next.prev &#x3D; self.head</span><br><span class="line">        return len(self.map)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>第三题是个有点脑筋急转弯+动态规划的题，这题竞赛的时候居然思考复杂化了，题目要求求的没读清楚，这个只要求从0开始的，最大整数，看清楚题目好么。<br>当思考陷入困局的时候，回头看一遍题目需求和条件！   </p>
+<h3 id="你能构造出连续值的最大数目"><a href="#你能构造出连续值的最大数目" class="headerlink" title="你能构造出连续值的最大数目"></a>你能构造出连续值的最大数目</h3><p>给你一个长度为 n 的整数数组 coins ，它代表你拥有的 n 个硬币。第 i 个硬币的值为 coins[i] 。如果你从这些硬币中选出一部分硬币，它们的和为 x ，那么称，你可以 构造 出 x 。   </p>
+<p>请返回从 0 开始（包括 0 ），你最多能 构造 出多少个连续整数。     </p>
+<p>你可能有多个相同值的硬币。   </p>
+<p> </p>
+<p>示例 1：   </p>
+<p>输入：coins = [1,3]<br>输出：2<br>解释：你可以得到以下这些值：   </p>
+<ul>
+<li>0：什么都不取 []</li>
+<li>1：取 [1]<br>从 0 开始，你可以构造出 2 个连续整数。<br>示例 2：</li>
+</ul>
+<p>输入：coins = [1,1,1,4]<br>输出：8<br>解释：你可以得到以下这些值：  </p>
+<ul>
+<li>0：什么都不取 [] </li>
+<li>1：取 [1]     </li>
+<li>2：取 [1,1]  </li>
+<li>3：取 [1,1,1]   </li>
+<li>4：取 [4]</li>
+<li>5：取 [4,1]   </li>
+<li>6：取 [4,1,1]</li>
+<li>7：取 [4,1,1,1]<br>从 0 开始，你可以构造出 8 个连续整数。<br>示例 3：  </li>
+</ul>
+<p>输入：nums = [1,4,10,3,1]<br>输出：20 
+    </p>
+<p>提示：   </p>
+<p>coins.length == n<br>1 &lt;= n &lt;= 4 * 104<br>1 &lt;= coins[i] &lt;= 4 * 104   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def getMaximumConsecutive(self, coins: List[int]) -&gt; int:</span><br><span class="line">        coins.sort()</span><br><span class="line">        count &#x3D; 1</span><br><span class="line">        for coin in coins:</span><br><span class="line">            if coin &lt;&#x3D; count:</span><br><span class="line">                count +&#x3D; coin</span><br><span class="line">            else:</span><br><span class="line">                break</span><br><span class="line">        return count</span><br></pre></td></tr></table></figure>
+
+<h2 id="名次：-1032-4996-（AC-3道）-Bug-3次"><a href="#名次：-1032-4996-（AC-3道）-Bug-3次" class="headerlink" title="名次： 1032/4996  （AC 3道） Bug 3次"></a><em>名次： 1032/4996  （AC 3道） Bug 3次</em></h2><h2 id="反思：-2"><a href="#反思：-2" class="headerlink" title="反思："></a>反思：</h2><p>第2道题直接想走捷径，瞎蒙一个，结果1分钟bug三次还是老老实实写的ac，这种就告诉我们欲速则不达，不要靠蒙，除非思路已经很清晰，明确答案确实是个脑筋急转弯。第四道题是实力没有思路就在那里硬写，其实不好，还是要想一想，大概可能的思路，不能硬暴力求解啊。纯浪费时间了。     </p>
+<ol>
+<li>字符串中不同整数的数目<br>给你一个字符串 word ，该字符串由数字和小写英文字母组成。<br>请你用空格替换每个不是数字的字符。例如，”a123bc34d8ef34” 将会变成 “ 123  34 8  34” 。注意，剩下的这<br>些整数间至少要用一个空格隔开：”123”、”34”、”8” 和 “34” 。<br>返回对 word 完成替换后形成的 不同 整数的数目。<br>如果两个整数的 不含前导零 的十进制表示不同，则认为这两个整数也不同。<br>示例 1：<br>输入：word = “a123bc34d8ef34”<br>输出：3<br>解释：不同的整数有 “123”、”34” 和 “8” 。注意，”34” 只计数一次。<br>示例 2：<br>输入：word = “leet1234code234”<br>输出：2<br>示例 3：<br>输入：word = “a1b01c001”<br>输出：1<br>解释：”1”、”01” 和 “001” 视为同一个整数的十进制表示，因为在比较十进制值时会忽略前导零的存在。<br>提示：<br>1 &lt;= word.length &lt;= 1000<br>word 由数字和小写英文字母组成 </li>
+</ol>
+<h3 id="这题就是一个字符串提取有用信息的问题，不涉及什么算法，主要是一些正常操作，解法也很多。对于python而言可以用re模块的正则表达式直接split提取，也可以正常的符合条件的扫描入一个去重的集合。有个小坑就是-001-和01这种-是一个数，不过示例中也给了所以可以规避。注意审题。"><a href="#这题就是一个字符串提取有用信息的问题，不涉及什么算法，主要是一些正常操作，解法也很多。对于python而言可以用re模块的正则表达式直接split提取，也可以正常的符合条件的扫描入一个去重的集合。有个小坑就是-001-和01这种-是一个数，不过示例中也给了所以可以规避。注意审题。" class="headerlink" title="这题就是一个字符串提取有用信息的问题，不涉及什么算法，主要是一些正常操作，解法也很多。对于python而言可以用re模块的正则表达式直接split提取，也可以正常的符合条件的扫描入一个去重的集合。有个小坑就是 001 和01这种 是一个数，不过示例中也给了所以可以规避。注意审题。"></a>这题就是一个字符串提取有用信息的问题，不涉及什么算法，主要是一些正常操作，解法也很多。对于python而言可以用re模块的正则表达式直接split提取，也可以正常的符合条件的扫描入一个去重的集合。有个小坑就是 001 和01这种 是一个数，不过示例中也给了所以可以规避。注意审题。</h3><p>这种字符串提取，while一般都更好用一些</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def numDifferentIntegers(self, word: str) -&gt; int:</span><br><span class="line">        aset &#x3D; set()</span><br><span class="line">        i &#x3D; 0</span><br><span class="line">        while i &lt; len(word):</span><br><span class="line">            if word[i].isdigit():</span><br><span class="line">                idx, i &#x3D; i, i + 1</span><br><span class="line">                while i &lt; len(word) and word[i].isdigit():</span><br><span class="line">                    i +&#x3D; 1</span><br><span class="line">                else:</span><br><span class="line">                    aset.add(int(word[idx:i]))</span><br><span class="line">            i +&#x3D; 1</span><br><span class="line">        return len(aset)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def numDifferentIntegers(self, word: str) -&gt; int:</span><br><span class="line">        lst &#x3D; list(word)</span><br><span class="line">        table &#x3D; set()</span><br><span class="line">        mystr &#x3D; &quot;&quot;</span><br><span class="line">        for i in lst:</span><br><span class="line">            if i.isdigit():</span><br><span class="line">                mystr +&#x3D; i</span><br><span class="line">            else:</span><br><span class="line">                if mystr:</span><br><span class="line">                    table.add(int(mystr))</span><br><span class="line">                    mystr &#x3D; &quot;&quot;</span><br><span class="line">        if mystr:</span><br><span class="line">            table.add(int(mystr))  </span><br><span class="line">        return len(table)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line">class Solution:</span><br><span class="line">    def numDifferentIntegers(self, word: str) -&gt; int:</span><br><span class="line">        res &#x3D; re.split(r&#39;[a-z]+&#39;, word)</span><br><span class="line">        return len(set(int(i) for i in res if i !&#x3D; &#39;&#39;))</span><br></pre></td></tr></table></figure>
+
+
+<p>2.还原排列的最少操作步数<br>给你一个偶数 n​​​​​​ ，已知存在一个长度为 n 的排列 perm ，其中 perm[i] == i​（下标 从 0 开始 计数）。<br>一步操作中，你将创建一个新数组 arr ，对于每个 i ：<br>如果 i % 2 == 0 ，那么 arr[i] = perm[i / 2]<br>如果 i % 2 == 1 ，那么 arr[i] = perm[n / 2 + (i - 1) / 2]<br>然后将 arr​​ 赋值​​给 perm 。<br>要想使 perm 回到排列初始值，至少需要执行多少步操作？返回最小的 非零 操作步数。<br>示例 1：<br>输入：n = 2<br>输出：1<br>解释：最初，perm = [0,1]<br>第 1 步操作后，perm = [0,1]<br>所以，仅需执行 1 步操作<br>示例 2：<br>输入：n = 4<br>输出：2<br>解释：最初，perm = [0,1,2,3]<br>第 1 步操作后，perm = [0,2,1,3]<br>第 2 步操作后，perm = [0,1,2,3]<br>所以，仅需执行 2 步操作<br>示例 3：<br>输入：n = 6<br>输出：4<br>提示：<br>2 &lt;= n &lt;= 1000<br>n​​​​​​ 是一个偶数   </p>
+<p>无脑模拟     有很多神牛的解法  数学方法我就先不学习了 有点难理解。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def reinitializePermutation(self, n: int) -&gt; int:</span><br><span class="line">        count &#x3D; 1</span><br><span class="line">        lst &#x3D; list(range(n))</span><br><span class="line">        tmp &#x3D; lst.copy()</span><br><span class="line">        alst &#x3D; lst.copy()</span><br><span class="line">        for i in range(n):</span><br><span class="line">            if i ^ 1:</span><br><span class="line">                alst[i] &#x3D; tmp[n &#x2F;&#x2F; 2 + (i - 1) &#x2F;&#x2F; 2]</span><br><span class="line">                continue</span><br><span class="line">            alst[i] &#x3D; tmp[i &#x2F;&#x2F; 2]</span><br><span class="line">        while alst !&#x3D; lst:</span><br><span class="line">            tmp &#x3D; alst.copy()</span><br><span class="line">            for i in range(n):</span><br><span class="line">                if i ^ 1:</span><br><span class="line">                    alst[i] &#x3D; tmp[n &#x2F;&#x2F; 2 + (i - 1) &#x2F;&#x2F; 2]</span><br><span class="line">                else:</span><br><span class="line">                    alst[i] &#x3D; tmp[i &#x2F;&#x2F; 2]</span><br><span class="line">            count +&#x3D; 1</span><br><span class="line">        return count</span><br></pre></td></tr></table></figure>
+<p>如果两倍在n以内，就到两倍的位置，否则就到乘2-n+1（奇数）位置。 反过来看。。。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Solution(object):</span><br><span class="line">    def reinitializePermutation(self, n):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type n: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        ans &#x3D; 1</span><br><span class="line">        mid &#x3D; n &#x2F;&#x2F; 2</span><br><span class="line">        track &#x3D; 1</span><br><span class="line">        while track !&#x3D; mid:</span><br><span class="line">            if track * 2 &lt; n:</span><br><span class="line">                track *&#x3D; 2</span><br><span class="line">            else:</span><br><span class="line">                track &#x3D; track * 2 + 1 - n</span><br><span class="line">            ans +&#x3D; 1</span><br><span class="line">        return ans</span><br></pre></td></tr></table></figure>
+
+
+<ol start="3">
+<li>替换字符串中的括号内容<br>给你一个字符串 s ，它包含一些括号对，每个括号中包含一个 非空 的键。  </li>
+</ol>
+<p>比方说，字符串 “(name)is(age)yearsold” 中，有 两个 括号对，分别包含键 “name” 和 “age” 。<br>你知道许多键对应的值，这些关系由二维字符串数组 knowledge 表示，其中 knowledge[i] = [keyi, valuei] ，表示键 keyi 对应的值为 valuei 。<br>你需要替换 所有 的括号对。当你替换一个括号对，且它包含的键为 keyi 时，你需要：<br>将 keyi 和括号用对应的值 valuei 替换。<br>如果从 knowledge 中无法得知某个键对应的值，你需要将 keyi 和括号用问号 “?” 替换（不需要引号）。<br>knowledge 中每个键最多只会出现一次。s 中不会有嵌套的括号。<br>请你返回替换 所有 括号对后的结果字符串。  </p>
+<p>示例 1：<br>输入：s = “(name)is(age)yearsold”, knowledge = [[“name”,”bob”],[“age”,”two”]]<br>输出：”bobistwoyearsold”<br>解释：<br>键 “name” 对应的值为 “bob” ，所以将 “(name)” 替换为 “bob” 。<br>键 “age” 对应的值为 “two” ，所以将 “(age)” 替换为 “two” 。<br>示例 2：<br>输入：s = “hi(name)”, knowledge = [[“a”,”b”]]<br>输出：”hi?”<br>解释：由于不知道键 “name” 对应的值，所以用 “?” 替换 “(name)” 。<br>示例 3：<br>输入：s = “(a)(a)(a)aaa”, knowledge = [[“a”,”yes”]]<br>输出：”yesyesyesaaa”<br>解释：相同的键在 s 中可能会出现多次。<br>键 “a” 对应的值为 “yes” ，所以将所有的 “(a)” 替换为 “yes” 。<br>注意，不在括号里的 “a” 不需要被替换。<br>示例 4：<br>输入：s = “(a)(b)”, knowledge = [[“a”,”b”],[“b”,”a”]]<br>输出：”ba”<br>提示：<br>1 &lt;= s.length &lt;= 105<br>0 &lt;= knowledge.length &lt;= 105<br>knowledge[i].length == 2<br>1 &lt;= keyi.length, valuei.length &lt;= 10<br>s 只包含小写英文字母和圆括号 ‘(‘ 和 ‘)’ 。<br>s 中每一个左圆括号 ‘(‘ 都有对应的右圆括号 ‘)’ 。<br>s 中每对括号内的键都不会为空。<br>s 中不会有嵌套括号对。<br>keyi 和 valuei 只包含小写英文字母。<br>knowledge 中的 keyi 不会重复。    </p>
+<p>还是一个字符串替换的问题。不涉及什么算法，不过可以用一个比较不错的字符串替换的方式就是replace然后加空格再split</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def evaluate(self, s: str, knowledge) -&gt; str:</span><br><span class="line">        table &#x3D; dict()</span><br><span class="line">        table.update(knowledge)</span><br><span class="line">        res &#x3D; s.replace(&quot;(&quot;, &quot; (&quot;).replace(&quot;)&quot;, &quot;) &quot;).split()</span><br><span class="line">        print(res)</span><br><span class="line">        for i in range(len(res)):</span><br><span class="line">            if res[i][-1] &#x3D;&#x3D; &quot;)&quot;:</span><br><span class="line">                res[i] &#x3D; table.get(res[i][1:-1], &#39;?&#39;)</span><br><span class="line">        return &#39;&#39;.join(res)</span><br></pre></td></tr></table></figure>
+<p>直接遍历判断也行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def evaluate(self, s: str, knowledge) -&gt; str:</span><br><span class="line">        table &#x3D; &#123;&#125;</span><br><span class="line">        for key, val in knowledge:</span><br><span class="line">            table[key] &#x3D; val</span><br><span class="line">        res &#x3D; []</span><br><span class="line">        i &#x3D; 0</span><br><span class="line">        while i &lt; len(s):</span><br><span class="line">            if s[i].isalnum():</span><br><span class="line">                res.append(s[i])</span><br><span class="line">                i +&#x3D; 1</span><br><span class="line">                continue</span><br><span class="line">            if s[i] &#x3D;&#x3D; &#39;(&#39;:</span><br><span class="line">                idx &#x3D; i</span><br><span class="line">                i +&#x3D; 1</span><br><span class="line">                while s[i] !&#x3D; &#39;)&#39;:</span><br><span class="line">                    i +&#x3D; 1</span><br><span class="line">                res.append(table.get(s[idx+1:i], &#39;?&#39;))</span><br><span class="line">                i +&#x3D; 1</span><br><span class="line">        return &#39;&#39;.join(res)</span><br></pre></td></tr></table></figure>
+<p>2021-4-4—235周赛</p>
+<h2 id="名次：-350-4493-（AC-3道）-Bug-1次"><a href="#名次：-350-4493-（AC-3道）-Bug-1次" class="headerlink" title="名次： 350/4493  （AC 3道） Bug 1次"></a><em>名次： 350/4493  （AC 3道） Bug 1次</em></h2><h2 id="反思：-3"><a href="#反思：-3" class="headerlink" title="反思："></a>反思：</h2><p>这次总体正常发挥，但是水平和码速度太慢了 要加强<br>还有老毛病 又忘了求余%10^9+7 下次遇到这种题先写return</p>
+<h2 id="第一题-截断句子"><a href="#第一题-截断句子" class="headerlink" title="第一题  截断句子"></a>第一题  截断句子</h2><p>句子 是一个单词列表，列表中的单词之间用单个空格隔开，且不存在前导或尾随空格。每个单词仅由大小写英文字母组成（不含标点符号）。</p>
+<p>例如，”Hello World”、”HELLO” 和 “hello world hello world” 都是句子。<br>给你一个句子 s​​​​​​ 和一个整数 k​​​​​​ ，请你将 s​​ 截断 ​，​​​使截断后的句子仅含 前 k​​​​​​ 个单词。返回 截断 s​​​​​​ 后得到的句子。</p>
+<p> </p>
+<p>示例 1：</p>
+<p>输入：s = “Hello how are you Contestant”, k = 4<br>输出：”Hello how are you”<br>解释：<br>s 中的单词为 [“Hello”, “how” “are”, “you”, “Contestant”]<br>前 4 个单词为 [“Hello”, “how”, “are”, “you”]<br>因此，应当返回 “Hello how are you”<br>示例 2：</p>
+<p>输入：s = “What is the solution to this problem”, k = 4<br>输出：”What is the solution”<br>解释：<br>s 中的单词为 [“What”, “is” “the”, “solution”, “to”, “this”, “problem”]<br>前 4 个单词为 [“What”, “is”, “the”, “solution”]<br>因此，应当返回 “What is the solution”<br>示例 3：</p>
+<p>输入：s = “chopper is not a tanuki”, k = 5<br>输出：”chopper is not a tanuki”
+ </p>
+<p>提示：</p>
+<p>1 &lt;= s.length &lt;= 500<br>k 的取值范围是 [1,  s 中单词的数目]<br>s 仅由大小写英文字母和空格组成<br>s 中的单词之间由单个空格隔开<br>不存在前导或尾随空格</p>
+<h3 id="考察字符串处理api接口"><a href="#考察字符串处理api接口" class="headerlink" title="考察字符串处理api接口"></a>考察字符串处理api接口</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def truncateSentence(self, s: str, k: int) -&gt; str:</span><br><span class="line">        return &quot; &quot;.join(s.split()[:k])</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 写也可以写</span><br><span class="line"></span><br><span class="line">class Solution:</span><br><span class="line">    def truncateSentence(self, s: str, k: int) -&gt; str:</span><br><span class="line">        lst &#x3D; []</span><br><span class="line">        left &#x3D; 0</span><br><span class="line">        for i in range(len(s)):</span><br><span class="line">            if s[i] &#x3D;&#x3D; &quot; &quot;:</span><br><span class="line">                lst.append(s[left:i])</span><br><span class="line">                if len(lst) &#x3D;&#x3D; k:</span><br><span class="line">                    return &quot; &quot;.join(lst)</span><br><span class="line">                left &#x3D; False</span><br><span class="line">            else:</span><br><span class="line">                if isinstance(left, bool):</span><br><span class="line">                    left &#x3D; i</span><br><span class="line">        return s</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="第二题-查找用户活跃分钟数"><a href="#第二题-查找用户活跃分钟数" class="headerlink" title="第二题 查找用户活跃分钟数"></a>第二题 查找用户活跃分钟数</h2><p>给你用户在 LeetCode 的操作日志，和一个整数 k 。日志用一个二维整数数组 logs 表示，其中每个 logs[i] = [IDi, timei] 表示 ID 为 IDi 的用户在 timei 分钟时执行了某个操作。</p>
+<p>多个用户 可以同时执行操作，单个用户可以在同一分钟内执行 多个操作 。</p>
+<p>指定用户的 用户活跃分钟数（user active minutes，UAM） 定义为用户对 LeetCode 执行操作的 唯一分钟数 。 即使一分钟内执行多个操作，也只能按一分钟计数。</p>
+<p>请你统计用户活跃分钟数的分布情况，统计结果是一个长度为 k 且 下标从 1 开始计数 的数组 answer ，对于每个 j（1 &lt;= j &lt;= k），answer[j] 表示 用户活跃分钟数 等于 j 的用户数。</p>
+<p>返回上面描述的答案数组 answer 。</p>
+<p> </p>
+<p>示例 1：</p>
+<p>输入：logs = [[0,5],[1,2],[0,2],[0,5],[1,3]], k = 5<br>输出：[0,2,0,0,0]<br>解释：<br>ID=0 的用户执行操作的分钟分别是：5 、2 和 5 。因此，该用户的用户活跃分钟数为 2（分钟 5 只计数一次）<br>ID=1 的用户执行操作的分钟分别是：2 和 3 。因此，该用户的用户活跃分钟数为 2<br>2 个用户的用户活跃分钟数都是 2 ，answer[2] 为 2 ，其余 answer[j] 的值都是 0<br>示例 2：</p>
+<p>输入：logs = [[1,1],[2,2],[2,3]], k = 4<br>输出：[1,1,0,0]<br>解释：<br>ID=1 的用户仅在分钟 1 执行单个操作。因此，该用户的用户活跃分钟数为 1<br>ID=2 的用户执行操作的分钟分别是：2 和 3 。因此，该用户的用户活跃分钟数为 2<br>1 个用户的用户活跃分钟数是 1 ，1 个用户的用户活跃分钟数是 2<br>因此，answer[1] = 1 ，answer[2] = 1 ，其余的值都是 0
+ </p>
+<p>提示：</p>
+<p>1 &lt;= logs.length &lt;= 104<br>0 &lt;= IDi &lt;= 109<br>1 &lt;= timei &lt;= 105<br>k 的取值范围是 [用户的最大用户活跃分钟数, 105]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def findingUsersActiveMinutes(self, logs: List[List[int]], k: int) -&gt; List[int]:</span><br><span class="line">        res &#x3D; list(0 for _ in range(k))</span><br><span class="line">        dic &#x3D; dict()</span><br><span class="line">        for log in logs:</span><br><span class="line">            dic[log[0]] &#x3D; dic.get(log[0], set())|&#123;log[1]&#125;</span><br><span class="line">        for key in dic:</span><br><span class="line">            res[len(dic[key]) - 1] +&#x3D; 1</span><br><span class="line">        return res</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="第三题-绝对差值和"><a href="#第三题-绝对差值和" class="headerlink" title="第三题  绝对差值和"></a>第三题  绝对差值和</h2><p>给你两个正整数数组 nums1 和 nums2 ，数组的长度都是 n 。</p>
+<p>数组 nums1 和 nums2 的 绝对差值和 定义为所有 |nums1[i] - nums2[i]|（0 &lt;= i &lt; n）的 总和（下标从 0 开始）。</p>
+<p>你可以选用 nums1 中的 任意一个 元素来替换 nums1 中的 至多 一个元素，以 最小化 绝对差值和。</p>
+<p>在替换数组 nums1 中最多一个元素 之后 ，返回最小绝对差值和。因为答案可能很大，所以需要对 109 + 7 取余 后返回。</p>
+<p>|x| 定义为：</p>
+<p>如果 x &gt;= 0 ，值为 x ，或者<br>如果 x &lt;= 0 ，值为 -x
+ </p>
+<p>示例 1：</p>
+<p>输入：nums1 = [1,7,5], nums2 = [2,3,5]<br>输出：3<br>解释：有两种可能的最优方案：</p>
+<ul>
+<li>将第二个元素替换为第一个元素：[1,7,5] =&gt; [1,1,5] ，或者</li>
+<li>将第二个元素替换为第三个元素：[1,7,5] =&gt; [1,5,5]<br>两种方案的绝对差值和都是 |1-2| + (|1-3| 或者 |5-3|) + |5-5| = 3<br>示例 2：</li>
+</ul>
+<p>输入：nums1 = [2,4,6,8,10], nums2 = [2,4,6,8,10]<br>输出：0<br>解释：nums1 和 nums2 相等，所以不用替换元素。绝对差值和为 0<br>示例 3：</p>
+<p>输入：nums1 = [1,10,4,4,2,7], nums2 = [9,3,5,1,7,4]<br>输出：20<br>解释：将第一个元素替换为第二个元素：[1,10,4,4,2,7] =&gt; [10,10,4,4,2,7]<br>绝对差值和为 |10-9| + |10-3| + |4-5| + |4-1| + |2-7| + |7-4| = 20
+ </p>
+<p>提示：</p>
+<p>n == nums1.length<br>n == nums2.length<br>1 &lt;= n &lt;= 105<br>1 &lt;= nums1[i], nums2[i] &lt;= 105</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def minAbsoluteSumDiff(self, nums1: List[int], nums2: List[int]) -&gt; int:</span><br><span class="line">        n &#x3D; len(nums1)</span><br><span class="line">        dlst &#x3D; []</span><br><span class="line">        res &#x3D; 0</span><br><span class="line">        for i in range(n):</span><br><span class="line">            tmp &#x3D; abs(nums1[i] - nums2[i])</span><br><span class="line">            dlst.append((tmp, i))</span><br><span class="line">            res +&#x3D; tmp</span><br><span class="line">        dlst.sort(reverse&#x3D;True)</span><br><span class="line">        max_up &#x3D; 0</span><br><span class="line">        copy_1 &#x3D; sorted(nums1)</span><br><span class="line"></span><br><span class="line">        for item in dlst:</span><br><span class="line">            if max_up &gt;&#x3D; item[0]:</span><br><span class="line">                break</span><br><span class="line">            idx &#x3D; bisect.bisect_left(copy_1, nums2[item[1]])</span><br><span class="line">            if 0 &lt; idx &lt; n:</span><br><span class="line">                tmp &#x3D; max(item[0] - abs(copy_1[idx] - nums2[item[1]]), item[0] - abs(copy_1[idx - 1] - nums2[item[1]]))</span><br><span class="line">            elif idx &#x3D;&#x3D; 0:</span><br><span class="line">                tmp &#x3D; item[0] - abs(copy_1[0] - nums2[item[1]])</span><br><span class="line">            else:</span><br><span class="line">                tmp &#x3D; item[0] - abs(copy_1[-1] - nums2[item[1]])</span><br><span class="line">            max_up &#x3D; max(max_up, tmp)</span><br><span class="line">        return (res - max_up) %(10**9 + 7)</span><br></pre></td></tr></table></figure>
+
+<h2 id="名次：-273-10000-（AC-3道）-Bug-2次"><a href="#名次：-273-10000-（AC-3道）-Bug-2次" class="headerlink" title="名次： 273/10000  （AC 3道） Bug 2次"></a><em>名次： 273/10000  （AC 3道） Bug 2次</em></h2><h3 id="反思：-4"><a href="#反思：-4" class="headerlink" title="反思："></a>反思：</h3><p>这次是转变编程以来，成绩最好的一次，可惜没有进一步突破，第四道题确实太有挑战性了。<br>前面出现了两次bug都是非常容易避免的，依次是数据规模太大要求10^9 + 7求余，真实白白扣时间啊；第二题的bug也是非常容易规避的，因为偷懒不想求一个等差数列，这告诉我们不要偷懒，不要觉得复杂度足够低了就偷个懒，也许这题复杂度要求不是10^7呢，就要把你卡死呢？ 所以不要放松警惕。  </p>
+<ol>
+<li>下次遇到求余，先写return</li>
+<li>不要偷懒</li>
+<li>不要沾沾自喜，写完遇到第四题也要认真思考，在哪里聊天浪费时间，浮躁！万一能做出来呢？这不是亲手捏死自己的可能性吗？？？    </li>
+</ol>
+<h2 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h2><ol>
+<li>采购方案<br>小力将 N 个零件的报价存于数组 nums。小力预算为 target，假定小力仅购买两个零件，要求购买零件的花费不超过预算，请问他有多少种采购方案。</li>
+</ol>
+<p>注意：答案需要以 1e9 + 7 (1000000007) 为底取模，如：计算初始结果为：1000000008，请返回 1</p>
+<p>示例 1：</p>
+<p>输入：nums = [2,5,3,5], target = 6</p>
+<p>输出：1</p>
+<p>解释：预算内仅能购买 nums[0] 与 nums[2]。</p>
+<p>示例 2：</p>
+<p>输入：nums = [2,2,1,9], target = 10</p>
+<p>输出：4</p>
+<p>解释：符合预算的采购方案如下：<br>nums[0] + nums[1] = 4<br>nums[0] + nums[2] = 3<br>nums[1] + nums[2] = 3<br>nums[2] + nums[3] = 10</p>
+<p>提示：</p>
+<p>2 &lt;= nums.length &lt;= 10^5<br>1 &lt;= nums[i], target &lt;= 10^5</p>
+<h3 id="抽象成为数学模型就是-在一个数组内寻找两个数之和小于指定数，返回能找到多少个这样的两数组合。"><a href="#抽象成为数学模型就是-在一个数组内寻找两个数之和小于指定数，返回能找到多少个这样的两数组合。" class="headerlink" title="抽象成为数学模型就是 在一个数组内寻找两个数之和小于指定数，返回能找到多少个这样的两数组合。"></a>抽象成为数学模型就是 在一个数组内寻找两个数之和小于指定数，返回能找到多少个这样的两数组合。</h3><p>思路还是这样，我们可以暴力穷举所有的数字对 比较是否大于，但是明显我们就知道这样比较会超时，而且可以优化。  如果将数字排序，那么确定一个数字，那么另一个数字范围就确定了，不需要一个个比较就将比较的时间复杂度降到了o(n),当然排序开销是nlogn。<br>当然感觉还是可以继续降低复杂度，就是计数统计，然后排序键值这样排序复杂度降到klogk然后用键对应val用前缀和。但是中间多了两次o(n)的遍历，所以总遍历应该还是差不太多，但是数据量很大而且重复数字很多的时候可能会有点用？不过重复数字很多的排序sort也会接近o(n)   </p>
+<h3 id="排序-双指针"><a href="#排序-双指针" class="headerlink" title="排序+双指针"></a>排序+双指针</h3><pre><code>class Solution:
+    def purchasePlans(self, nums: List[int], target: int) -&gt; int:
+        nums.sort()
+        left, right = 0, len(nums) - 1
+        res = 0
+        while left &lt; right:
+            while left &lt; right and nums[left] + nums[right] &gt; target:
+                right -= 1
+            res += right - left
+            left += 1
+        return res %(10**9 + 7)
+</code></pre>
+<p>在寻找右做表的时候可以用bisect二分查找  </p>
+<h2 id="第二题："><a href="#第二题：" class="headerlink" title="第二题："></a>第二题：</h2><p>某乐团的演出场地可视作 num * num 的二维矩阵 grid（左上角坐标为 [0,0])，每个位置站有一位成员。乐团共有 9 种乐器，乐器编号为 1~9，每位成员持有 1 个乐器。</p>
+<p>为保证声乐混合效果，成员站位规则为：自 grid 左上角开始顺时针螺旋形向内循环以 1，2，…，9 循环重复排列。例如当 num = 5 时，站位如图所示</p>
+<p>image.png</p>
+<p>请返回位于场地坐标 [Xpos,Ypos] 的成员所持乐器编号。</p>
+<p>示例 1：</p>
+<p>输入：num = 3, Xpos = 0, Ypos = 2</p>
+<p>输出：3</p>
+<p>解释：</p>
+<p>示例 2：</p>
+<p>输入：num = 4, Xpos = 1, Ypos = 2</p>
+<p>输出：5</p>
+<p>提示：</p>
+<p>1 &lt;= num &lt;= 10^9<br>0 &lt;= Xpos, Ypos &lt; num </p>
+<h3 id="第二题因为数据项的限制，显然模拟是不可能过的，-这题关键是要找到数学方法，就是用数学方法确定指定坐标是第多少个数，然后求余数-需要-心细。就是多少圈，按照圈来找对应是第多少个。"><a href="#第二题因为数据项的限制，显然模拟是不可能过的，-这题关键是要找到数学方法，就是用数学方法确定指定坐标是第多少个数，然后求余数-需要-心细。就是多少圈，按照圈来找对应是第多少个。" class="headerlink" title="第二题因为数据项的限制，显然模拟是不可能过的， 这题关键是要找到数学方法，就是用数学方法确定指定坐标是第多少个数，然后求余数   需要 心细。就是多少圈，按照圈来找对应是第多少个。"></a>第二题因为数据项的限制，显然模拟是不可能过的， 这题关键是要找到数学方法，就是用数学方法确定指定坐标是第多少个数，然后求余数   需要 心细。就是多少圈，按照圈来找对应是第多少个。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def orchestraLayout(self, num: int, xPos: int, yPos: int) -&gt; int:</span><br><span class="line">        quan &#x3D; min((xPos + 1, yPos + 1, num - xPos, num - yPos))</span><br><span class="line">        # print(quan)</span><br><span class="line">        if xPos &#x3D;&#x3D; quan - 1:</span><br><span class="line">            tmp &#x3D; yPos - quan + 2</span><br><span class="line">        elif xPos &#x3D;&#x3D; num - quan:</span><br><span class="line">            tmp &#x3D; num - (quan - 1) * 2 + num - (quan - 1) * 2 - 1 + (num - quan - yPos)</span><br><span class="line">        elif yPos &#x3D;&#x3D; quan - 1:</span><br><span class="line">            tmp &#x3D; 4 * num - 4 - 8 * (quan - 1) - (xPos - quan)</span><br><span class="line">        else:</span><br><span class="line">            tmp &#x3D; num - (quan - 1) * 2 + xPos - (quan - 1)</span><br><span class="line">        res &#x3D; (4*num + 8 - 8*quan + 4*num) * (quan - 1) &#x2F;&#x2F; 2</span><br><span class="line">        res +&#x3D; tmp</span><br><span class="line">        return (res - 1) % 9 + 1</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h2><ol start="3">
+<li>魔塔游戏<br>题目难度Medium<br>小扣当前位于魔塔游戏第一层，共有 N 个房间，编号为 0 ~ N-1。每个房间的补血道具/怪物对于血量影响记于数组 nums，其中正数表示道具补血数值，即血量增加对应数值；负数表示怪物造成伤害值，即血量减少对应数值；0 表示房间对血量无影响。</li>
+</ol>
+<p>小扣初始血量为 1，且无上限。假定小扣原计划按房间编号升序访问所有房间补血/打怪，为保证血量始终为正值，小扣需对房间访问顺序进行调整，每次仅能将一个怪物房间（负数的房间）调整至访问顺序末尾。请返回小扣最少需要调整几次，才能顺利访问所有房间。若调整顺序也无法访问完全部房间，请返回 -1。</p>
+<p>示例 1：</p>
+<p>输入：nums = [100,100,100,-250,-60,-140,-50,-50,100,150]</p>
+<p>输出：1</p>
+<p>解释：初始血量为 1。至少需要将 nums[3] 调整至访问顺序末尾以满足要求。</p>
+<p>示例 2：</p>
+<p>输入：nums = [-200,-300,400,0]</p>
+<p>输出：-1</p>
+<p>解释：调整访问顺序也无法完成全部房间的访问。</p>
+<p>提示：</p>
+<p>1 &lt;= nums.length &lt;= 10^5<br>-10^5 &lt;= nums[i] &lt;= 10^5</p>
+<h3 id="这题看上去就是模拟起手就好了每次贪心算法，那走扣血做多的那个-放到最后就可以了。-可以用一个堆来维护扣血的这些房间集合。最小堆即可，每次弹出扣血最多也就是数最小的那个数。"><a href="#这题看上去就是模拟起手就好了每次贪心算法，那走扣血做多的那个-放到最后就可以了。-可以用一个堆来维护扣血的这些房间集合。最小堆即可，每次弹出扣血最多也就是数最小的那个数。" class="headerlink" title="这题看上去就是模拟起手就好了每次贪心算法，那走扣血做多的那个 放到最后就可以了。  可以用一个堆来维护扣血的这些房间集合。最小堆即可，每次弹出扣血最多也就是数最小的那个数。"></a>这题看上去就是模拟起手就好了每次贪心算法，那走扣血做多的那个 放到最后就可以了。  可以用一个堆来维护扣血的这些房间集合。最小堆即可，每次弹出扣血最多也就是数最小的那个数。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def magicTower(self, nums: List[int]) -&gt; int:</span><br><span class="line">        if sum(nums) &lt; 0:</span><br><span class="line">            return -1</span><br><span class="line">        res &#x3D; 1</span><br><span class="line">        q &#x3D; []</span><br><span class="line">        count &#x3D; 0</span><br><span class="line">        for i in range(len(nums)):</span><br><span class="line">            res +&#x3D; nums[i]</span><br><span class="line">            if nums[i] &lt; 0:</span><br><span class="line">                heapq.heappush(q, nums[i])</span><br><span class="line">                if res &lt;&#x3D; 0:</span><br><span class="line">                    tmp &#x3D; heapq.heappop(q)</span><br><span class="line">                    res -&#x3D; tmp</span><br><span class="line">                    count +&#x3D; 1</span><br><span class="line">        return count</span><br></pre></td></tr></table></figure>
+
+<h2 id="第四题"><a href="#第四题" class="headerlink" title="第四题"></a>第四题</h2><p>很难带状态转移的dfs<br>4. 变换的迷宫<br>某解密游戏中，有一个 N*M 的迷宫，迷宫地形会随时间变化而改变，迷宫出口一直位于 (n-1,m-1) 位置。迷宫变化规律记录于 maze 中，maze[i] 表示 i 时刻迷宫的地形状态，”.” 表示可通行空地，”#” 表示陷阱。</p>
+<p>地形图初始状态记作 maze[0]，此时小力位于起点 (0,0)。此后每一时刻可选择往上、下、左、右其一方向走一步，或者停留在原地。</p>
+<p>小力背包有以下两个魔法卷轴（卷轴使用一次后消失）：</p>
+<p>临时消除术：将指定位置在下一个时刻变为空地；<br>永久消除术：将指定位置永久变为空地。<br>请判断在迷宫变化结束前（含最后时刻），小力能否在不经过任意陷阱的情况下到达迷宫出口呢？</p>
+<p>注意： 输入数据保证起点和终点在所有时刻均为空地。</p>
+<p>示例 1：</p>
+<p>输入：maze = [[“.#.”,”#..”],[“…”,”.#.”],[“.##”,”.#.”],[“..#”,”.#.”]]</p>
+<p>输出：true</p>
+<p>解释：<br>maze.gif</p>
+<p>示例 2：</p>
+<p>输入：maze = [[“.#.”,”…”],[“…”,”…”]]</p>
+<p>输出：false</p>
+<p>解释：由于时间不够，小力无法到达终点逃出迷宫。</p>
+<p>示例 3：</p>
+<p>输入：maze = [[“…”,”…”,”…”],[“.##”,”###”,”##.”],[“.##”,”###”,”##.”],[“.##”,”###”,”##.”],[“.##”,”###”,”##.”],[“.##”,”###”,”##.”],[“.##”,”###”,”##.”]]</p>
+<p>输出：false</p>
+<p>解释：由于道路不通，小力无法到达终点逃出迷宫。</p>
+<p>提示：</p>
+<p>1 &lt;= maze.length &lt;= 100<br>1 &lt;= maze[i].length, maze[i][j].length &lt;= 50<br>maze[i][j] 仅包含 “.”、”#”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def escapeMaze(self, maze):</span><br><span class="line">        T &#x3D; len(maze)</span><br><span class="line">        r, c &#x3D; len(maze[0]), len(maze[0][0])</span><br><span class="line">        available &#x3D; defaultdict(bool)</span><br><span class="line">        for t, mz in enumerate(maze):</span><br><span class="line">            for x, line in enumerate(mz):</span><br><span class="line">                for y, s in enumerate(line):</span><br><span class="line">                    available[t, x, y] &#x3D; (s &#x3D;&#x3D; &#39;.&#39;)</span><br><span class="line">        directions &#x3D; [(1, 0), (-1, 0), (0, 1), (0, -1), (0, 0)]</span><br><span class="line">        def valid(x, y):</span><br><span class="line">            return 0 &lt;&#x3D; x &lt; r and 0 &lt;&#x3D; y &lt; c</span><br><span class="line"></span><br><span class="line">        @lru_cache(None)</span><br><span class="line">        def dp(t, x, y, status):</span><br><span class="line">            &#39;&#39;&#39;</span><br><span class="line">                status:</span><br><span class="line">                    0: 0</span><br><span class="line">                    1: 存在临时</span><br><span class="line">                    2: 存在永久</span><br><span class="line">                    3: 都存在</span><br><span class="line">            &#39;&#39;&#39;</span><br><span class="line">            # print(t, x, y, status, px, py)</span><br><span class="line">            if r + c - x - y &gt; T + 1 - t:</span><br><span class="line">                return False</span><br><span class="line">            if x &#x3D;&#x3D; r - 1 and y &#x3D;&#x3D; c - 1:</span><br><span class="line">                return True</span><br><span class="line">            for dx, dy in directions:</span><br><span class="line">                nx, ny &#x3D; x + dx, y + dy</span><br><span class="line">                if valid(nx, ny):  # 如果不越界</span><br><span class="line">                    if available[t+1, nx, ny]:  # 如果可以访问</span><br><span class="line">                        if dp(t+1, nx, ny, status):</span><br><span class="line">                            return True</span><br><span class="line">                    else:  # 如果不可访问</span><br><span class="line">                        if status &#x3D;&#x3D; 1:</span><br><span class="line">                            # 只有临时, 用临时</span><br><span class="line">                            if dp(t+1, nx, ny, 0):</span><br><span class="line">                                return True</span><br><span class="line">                        if status &#x3D;&#x3D; 2:</span><br><span class="line">                            # 用永久</span><br><span class="line">                            for nt in range(t+1, T):</span><br><span class="line">                                if dp(nt, nx, ny, 0):</span><br><span class="line">                                    return True</span><br><span class="line">                        if status &#x3D;&#x3D; 3:</span><br><span class="line">                            # 用临时;用永久</span><br><span class="line">                            # px, py: 永久空地</span><br><span class="line">                            if dp(t+1, nx, ny, 2):</span><br><span class="line">                                return True</span><br><span class="line">                            for nt in range(t+1, T):</span><br><span class="line">                                if dp(nt, nx, ny, 1):</span><br><span class="line">                                    return True</span><br><span class="line">            return False</span><br><span class="line">        return dp(0, 0, 0, 3)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://andrekuu.github.io/2021/04/22/LeetCode-%E5%91%A8%E8%B5%9B%E6%80%BB%E7%BB%93/" data-id="cknrvilqy0004dgve4q6jfrek" data-title="LeetCode 周赛总结" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%BB%86%E8%8A%82/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          计算机网络细节
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">计算机基础</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/22/Mysql%E5%9F%BA%E7%A1%80/">Mysql基础</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%BB%86%E8%8A%82/">计算机网络细节</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/22/LeetCode-%E5%91%A8%E8%B5%9B%E6%80%BB%E7%BB%93/">LeetCode 周赛总结</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/22/%E7%AE%97%E6%B3%95%E7%BB%8F%E9%AA%8C/">算法经验</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 AndreKuu<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

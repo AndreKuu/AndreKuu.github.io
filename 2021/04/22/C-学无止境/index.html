@@ -13,12 +13,10 @@
 <meta property="og:site_name" content="AndreKuu">
 <meta property="og:description" content="C&#x2F;C++历史C++ 是什么都能干，干的很精细，python是干活糙快猛。20世纪七十年代Bell实验室为了开发UNIX系统便携设计了C语言。C++是C语言的超集，既可以面向过程设计，又可以面向对象程序设计。C语言是一种结构化程序设计语言，侧重如何通过一个过程对输入进行运算处理得到输出。C++侧重如何构造一个与描述问题相对应的对象模型。C强调的算法和设计结构，后者融入了抽象设计的概念。 C++可以">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://andrekuu.github.io/2021/04/22/C-%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/1.png">
 <meta property="article:published_time" content="2021-04-21T18:47:14.000Z">
-<meta property="article:modified_time" content="2021-04-21T19:03:02.742Z">
+<meta property="article:modified_time" content="2021-04-21T19:05:02.077Z">
 <meta property="article:author" content="AndreKuu">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://andrekuu.github.io/2021/04/22/C-%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/1.png">
   
     <link rel="alternate" href="/atom.xml" title="AndreKuu" type="application/atom+xml">
   
@@ -105,7 +103,8 @@
 <li>Generic Programming（GP,泛型编程）数据的类型变化的时候，编译器自动处理，使得代码本身更加通用。     </li>
 <li>FP functional programming 函数式编程   函数式编程就是说你输入数据可能会对函数外的数据造成影响，函数式编程就是防止你对外面有影响。而且函数式编程可以接受一个函数作为输入，输出一个函数作为结果。   </li>
 </ol>
-<h2 id="C-版本"><a href="#C-版本" class="headerlink" title="C++ 版本"></a>C++ 版本</h2><p>有98版本，还有2011年的11版本 还有2020年刚发的20版本<br><img src="1.png" alt="高级语言演化"><br>吸收了C和BASH的很多特性，形成了python, C++ 11也从python吸收了很多特性<br>C++基础之上发展了JAVA和C#  </p>
+<h2 id="C-版本"><a href="#C-版本" class="headerlink" title="C++ 版本"></a>C++ 版本</h2><p>有98版本，还有2011年的11版本 还有2020年刚发的20版本   </p>
+<p>吸收了C和BASH的很多特性，形成了python, C++ 11也从python吸收了很多特性<br>C++基础之上发展了JAVA和C#  </p>
 <h2 id="基本框架、语法要素"><a href="#基本框架、语法要素" class="headerlink" title="基本框架、语法要素"></a>基本框架、语法要素</h2><p>文件包含命令#include &lt;iostream&gt;因为调用了cout函数，相当于声明要把后面这个文件代码放到这里来，类似于python的import。有的要带.h有的不需要是不同的编译器造成的，VS C++是需要不要.h的   </p>
 <h2 id="开发工具"><a href="#开发工具" class="headerlink" title="开发工具"></a>开发工具</h2><p>Editor、Compiler and Linker(编辑器、编译器和连接器)<br>VS Studio 这些属于继承开发环境 integrated developing Environment IDE<br>visual studio 选择工程 - 属性- c/c++-语言-可以选择使用C++哪种标准<br>#include&lt;&gt;直接从编译器自带的函数库中寻找文件<br>#include””是先从自定义的文件中找 ，如果找不到在从函数库中寻找文件<br>采用”&lt; &gt;”方式进行包含的头文件表示让编译器在编译器的预设标准路径下去搜索相应的头文件，如果找不到则报错。<br>特别要注意的是，如果是标准库头文件，那么既可以采用&lt;&gt;的方式，又可以采用” “的方式，而用户自定义的头文件只能采用” “的方式。<br>函数由函数头和函数体组成<br>system是系统提供的库函数，system(“pause”)是暂停系统运行，方便我们观察输出结果。cout&lt;&lt;s&lt;&lt;endl;<br>C/C++程序有一个或多个函数组成，不管位置怎么样，main有且只有一个，而且执行总是从main函数开始的。<br>书写形式自由，一行内可以一条或多条语句<br>C/C++是区分大小写字母的<br>系统已经定义过、有特殊含义、不能他用的专用单词：break int char break for define<br>标识符 是指用户自定义的标识符，用于程序中变量和常量、函数取名。取名只能用字母数字和下划线，必须以字母或者下划线开头。</p>
 <h2 id="行注释、段注释"><a href="#行注释、段注释" class="headerlink" title="行注释、段注释"></a>行注释、段注释</h2><p>// 和 /*  */ 分号是语句结束的标志  </p>
@@ -2662,7 +2661,7 @@ while (1) &#123;
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://andrekuu.github.io/2021/04/22/C-%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/" data-id="cknrtq4a90000gsveebmeb4iz" data-title="C++学无止境" class="article-share-link">Share</a>
+      <a data-url="https://andrekuu.github.io/2021/04/22/C-%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/" data-id="cknrvilr30008dgve3pm00amw" data-title="C++学无止境" class="article-share-link">Share</a>
       
       
       
@@ -2670,6 +2669,20 @@ while (1) &#123;
   </div>
   
     
+<nav id="article-nav">
+  
+    <a href="/2021/04/22/Python%E8%AF%AD%E8%A8%80%E5%BA%95%E5%B1%82%E7%BB%86%E8%8A%82/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Python语言底层细节
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
   
 </article>
 
@@ -2703,7 +2716,23 @@ while (1) &#123;
       <ul>
         
           <li>
-            <a href="/2021/04/22/C-%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/">C++学无止境</a>
+            <a href="/2021/04/22/Mysql%E5%9F%BA%E7%A1%80/">Mysql基础</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%BB%86%E8%8A%82/">计算机网络细节</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/22/LeetCode-%E5%91%A8%E8%B5%9B%E6%80%BB%E7%BB%93/">LeetCode 周赛总结</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/22/%E7%AE%97%E6%B3%95%E7%BB%8F%E9%AA%8C/">算法经验</a>
           </li>
         
       </ul>

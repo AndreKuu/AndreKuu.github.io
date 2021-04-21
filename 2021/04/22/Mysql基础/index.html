@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Mysql基础 | AndreKuu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="数据库基础数据库定义：某种有组织的方式存储的数据集合，保存有组织的数据的容器（区分QBMS 数据库管理系统）   表的定义 ： 表是一种结构化文件，是某种特定类型数据的结构化清单。由行和列组成。（不同类的数据类型不要放在同一个表中）表名：具有唯一性（在同一个库里只能有一个表名的表即数据库.表名唯一） 模式： 关于数据库和表的分布以及特性的信息。   列（column）：表中的一个字段。所有的表都是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql基础">
+<meta property="og:url" content="https://andrekuu.github.io/2021/04/22/Mysql%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="AndreKuu">
+<meta property="og:description" content="数据库基础数据库定义：某种有组织的方式存储的数据集合，保存有组织的数据的容器（区分QBMS 数据库管理系统）   表的定义 ： 表是一种结构化文件，是某种特定类型数据的结构化清单。由行和列组成。（不同类的数据类型不要放在同一个表中）表名：具有唯一性（在同一个库里只能有一个表名的表即数据库.表名唯一） 模式： 关于数据库和表的分布以及特性的信息。   列（column）：表中的一个字段。所有的表都是">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-21T19:45:49.000Z">
+<meta property="article:modified_time" content="2021-04-21T19:45:59.229Z">
+<meta property="article:author" content="AndreKuu">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="AndreKuu" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">AndreKuu</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://AndreKuu.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Mysql基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/22/Mysql%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time class="dt-published" datetime="2021-04-21T19:45:49.000Z" itemprop="datePublished">2021-04-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Mysql基础
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="数据库基础"><a href="#数据库基础" class="headerlink" title="数据库基础"></a>数据库基础</h2><p>数据库定义：<br>某种有组织的方式存储的数据集合，保存有组织的数据的容器<br>（区分QBMS 数据库管理系统）  </p>
+<p>表的定义 ： 表是一种结构化文件，是某种特定类型数据的结构化清单。由行和列组成。<br>（不同类的数据类型不要放在同一个表中）<br>表名：具有唯一性（在同一个库里只能有一个表名的表即数据库.表名唯一）</p>
+<p>模式： 关于数据库和表的分布以及特性的信息。  </p>
+<p>列（column）：表中的一个字段。所有的表都是由一个或多个列组成的。每一列存储特定信息。  </p>
+<p>数据类型（datatype）：所容许的数据的类型。  </p>
+<p>行（row）：表中的一条记录。表的数据是按照行存储的。  </p>
+<p>主键（primary key）： 一列（或一组列）其只能够唯一区分表中每一行。</p>
+<p>【应该总是定义主键】<br>【主键有且不重复，不允许出现NULL值】<br>【主键的好习惯：1.不更新主键里的值；2.不在主键中使用未来可能会改变的值】</p>
+<p>SQL定义：[ˈsiːkwəl] 结构化查询语句（structured query language）的缩写。是一种专门和数据库通行的语言。SQL语句部分通用，但是并不是完全可以移植的。  </p>
+<h2 id="MYSQL简介"><a href="#MYSQL简介" class="headerlink" title="MYSQL简介"></a>MYSQL简介</h2><p>MYSQL定义： 一种数据库管理系统、数据库软件，DBMS。现在是甲骨文齐下的产品。<br>MYSQL优势：  </p>
+<pre><code>1. 成本：Mysql是免费的，Mysql开放源代码
+2. 性能：Mysql执行很快
+3. 可信赖：是最受欢迎的关系型数据库
+4. 简单：MySQL容易安装和使用  
+</code></pre>
+<p>DMBS分为两类：一种是基于共享文件系统的DBMS，另一种是客户机-服务器的DMBS（Mysql\oracle\sql server都是基于后者）。后者服务器部分是负责所有数据访问和处理的一个软件。这个软件运行在是成为数据库服务器的计算机上，与数据文件打交道的只有服务器。客户机和服务器可以装在一台计算机或者多台上，不管在不在同一台，都需要通过服务器软件和客户机软件通信。<br>MYSQL 在4版本引入InnoDB引擎，增加了事务处理这个功能。</p>
+<p>MYSQL 工具：mysql命令行实用程序、mysql administrator、mysql navicat、mysql workbench</p>
+<h2 id="使用MySQL"><a href="#使用MySQL" class="headerlink" title="使用MySQL"></a>使用MySQL</h2><p>客户机软件连接到MYSQL需要：  </p>
+<pre><code>1. 主机名（计算机名）----- 如果连接到本地MySQL服务器 则为localhost  默认端口3306
+2. 端口 port
+3. 一个合法的用户名
+4. 用户口令
+</code></pre>
+<p>选择数据库： use关键字  必须先use数据库，打开数据库，才能使用数据库</p>
+<pre><code>USE database_name；
+</code></pre>
+<p>显示数据库/表: show关键字</p>
+<pre><code>show databases;
+show tables;
+</code></pre>
+<p>显示表内信息：show、describe关键字</p>
+<pre><code>show columns from table_name;
+describe table_name;
+</code></pre>
+<p>显示服务器状态：</p>
+<pre><code>show status;
+</code></pre>
+<p>其他show语句：</p>
+<pre><code>show create database database_name；
+show create table table_name；
+show grants;
+show errors;
+show warnings;
+</code></pre>
+<p>help 语句大大的棒棒~，可以显示show的用法和语法</p>
+<pre><code>help 关键字；
+help show;
+</code></pre>
+<h2 id="检索数据"><a href="#检索数据" class="headerlink" title="检索数据"></a>检索数据</h2><p>SQL语句不区分大小写。<br>SQL语句处理时，其中的空格被忽略。<br>检索行和列：</p>
+<pre><code>select column_name1 as new_name,column_name2... from table_name;
+select *from table_name;
+</code></pre>
+<p>去重distinct关键字，应用于select查询里的所有列</p>
+<pre><code>select distinct column_name1,column_name2 from table_name;
+</code></pre>
+<p>[distinct 指定后面所有列必须都相同的数据才被去重]</p>
+<p>limit (number) 指不多于 number行。 行数不够就显示能返回的那么多行。 limit n1, n2 == limit n2 offset n1  n1为起始行数，mysql里表从0行开始。  </p>
+<p>完全限定的列名字：  </p>
+<pre><code>table_name.column_name 
+</code></pre>
+<h2 id="检索排序"><a href="#检索排序" class="headerlink" title="检索排序"></a>检索排序</h2><p>允许使用非检索的列排序</p>
+<p>检索默认升序 ASC，也可以改成 DESC降序 后面添加即可</p>
+<pre><code>select * from table_name order by column_name DESC/ASC;
+</code></pre>
+<p>DESC/ASC只对直接位于其前面的列名起作用。对多个列依次排序应该按照排列优先级的顺序来排列order by后面的列，并用逗号隔开。至于大小写比较这些设计 字符集和校对顺序。</p>
+<h2 id="过滤数据"><a href="#过滤数据" class="headerlink" title="过滤数据"></a>过滤数据</h2><p>SQL过滤和应用过滤：数据也可以在应用层过滤，但是缺点是：让用户机应用（或开发语言）处理数据库的工作将会极大的影响应用的性能，并且所创建的应用不具备可伸缩性。如果是客户机上过滤数据，服务器不得不通过网络发送多余数据，也将导致网络带宽的浪费。</p>
+<p>order by group by 都得在where 字句后面。就是先过滤，在按要求整理数据排序和按组。</p>
+<p>where子句操作符  不等于 &lt;&gt; ,!=两种都可<br>两只之间用between(包含两个端点）<br>where 执行匹配的时候，不区分大小写。<br>数值相比不需要单引号，字符串需要。<br>NULL 比较要 IS/IS NOT</p>
+<pre><code>select  column_name from table_name where column_name is NULL;
+</code></pre>
+<p>逻辑操作符 AND OR ，和其他语言一样，在处理OR操作符之前优先处理AND</p>
+<p>IN操作符 其实实现了or功能，而且比OR执行清单更快 ;IN最大特点是可以包含其他SELECT语句。</p>
+<pre><code>select * from table_name where column_name in (value_1,value_2...)
+</code></pre>
+<p>关键字NOT</p>
+<h2 id="用通配符进行过滤"><a href="#用通配符进行过滤" class="headerlink" title="用通配符进行过滤"></a>用通配符进行过滤</h2><p>通配符定义 ：用来匹配值的一部分的特殊字符<br>LIKE操作符<br>通配符% 表示任何字符出现任意次数(包括0次)（当然不能匹配NULL，like’%’也不行）</p>
+<pre><code>like ‘q%’
+</code></pre>
+<p>注意提防尾部空格的字符，因为‘%character’如果他尾部跟了空格，则搜索不到。</p>
+<p>下划线 _ 通配符：只匹配单个字符。不能不多也不能少。</p>
+<p>通配符挺有用的，但是这种功能有很大的代价，就是处理要比别的搜索慢很多，所以推荐使用全文本搜索。</p>
+<p>关于通配符的几个建议：</p>
+<pre><code>1.不要过度使用通配符。其他操作符和语句能实现的功能，不用通配符。
+2.如果必须要使用通配符，记得把他放在搜索模式的末尾处，让别的搜索先实现。
+</code></pre>
+<h2 id="用正则表达式进行搜索"><a href="#用正则表达式进行搜索" class="headerlink" title="用正则表达式进行搜索"></a>用正则表达式进行搜索</h2><p>正则表达式 是用来匹配文本的特殊的字符串。</p>
+<p>regexp 取代like</p>
+<p>‘.’是正则表达式里匹配人一个字符的</p>
+<pre><code>SELECT column_name from table_name where column_name regexp &#39;.000haha&#39;;
+</code></pre>
+<p>此外注意：如果匹配字符串在列值内部，则like无法匹配（除非’%character%’），regexp可以实现(不需要通配符)。</p>
+<p>regexp 正则表达式匹配默认不区分大小写 ，如果区分需要关键字BINARY</p>
+<pre><code>SELECT column_name from table_name where column_name regexp BINARY &#39;JETPaCK .000&#39;;
+</code></pre>
+<p>regexp 里的OR 就是逻辑里的‘|’</p>
+<pre><code>SELECT column_name from table_name where column_name regexp &#39;1000|2000&#39;;
+</code></pre>
+<p>regexp 里的IN 就是‘[]’</p>
+<pre><code>SELECT column_name from table_name where column_name regexp &#39;[123]ton&#39;;
+</code></pre>
+<p>匹配含有’1ton’,’2ton’,’3ton’的<br>同时可以用 ‘-’来继续简化范围</p>
+<pre><code>SELECT column_name from table_name where column_name regexp &#39;[1-9]ton&#39;;
+</code></pre>
+<p>同理[a-z]也可以实现</p>
+<p>匹配特殊字符比如上面提到的‘.’’|’’[]’’-‘ 都需要转义符 \</p>
+<pre><code>SELECT column_name from table_name where column_name regexp &#39;\\.&#39;;
+SELECT column_name from table_name where column_name regexp &#39;\\\&#39;;
+</code></pre>
+<h3 id="重复元字符"><a href="#重复元字符" class="headerlink" title="重复元字符"></a>重复元字符</h3><pre><code>* 匹配0或多个 +  ？0或1个  &#123;n&#125; n个  &#123;n,&#125; &gt;=n个  &#123;n,m&#125; 
+[:alnum:] 任意字母和数字
+
+SELECT column_name from table_name where column_name regexp &#39;[0-9][0-9][0-9]&#39;;
+SELECT column_name from table_name where column_name regexp &#39;[:alnum:]&#123;3&#125;&#39;;
+</code></pre>
+<h3 id="定位符"><a href="#定位符" class="headerlink" title="定位符"></a>定位符</h3><p>^ 文本的开始<br>$ 文本的结束</p>
+<pre><code>SELECT column_name from table_name where column_name regexp &#39;^[0-9\\.]&#39;;
+</code></pre>
+<p>regexp检查总是返回 0（无匹配）或者 1（匹配）</p>
+<h2 id="创建计算字段"><a href="#创建计算字段" class="headerlink" title="创建计算字段"></a>创建计算字段</h2><p>计算字段并不实际存在数据库表中，计算字段是运行select内产生的。<br>拼接字段<br>concat（）函数</p>
+<pre><code>select concat(vend_name,&#39;(&#39;,vend_country,&#39;)&#39;) as total from vendors;
+</code></pre>
+<p>rtrim()函数去掉右边空格  Ltrim()去除左边空格   trim（）去除两边空格</p>
+<pre><code>select concat(rtrim(vend_name),&#39;(&#39;,rtrim(vend_country),&#39;)&#39;) as total from vendors;
+</code></pre>
+<p>AS 关键字 跟别名，别名在客户机应用都可以按照别名来引用这个列，就想实际一个列一样，也可以省略as 直接跟别名。别名又是也称为导出列。</p>
+<p>Now（）函数返回当前日期和时间</p>
+<h2 id="使用数据处理函数"><a href="#使用数据处理函数" class="headerlink" title="使用数据处理函数"></a>使用数据处理函数</h2><p>MYSQL支持利用函数来处理数据。  </p>
+<h3 id="文本处理函数"><a href="#文本处理函数" class="headerlink" title="文本处理函数"></a>文本处理函数</h3><p>Upper(column_name) lower() length()</p>
+<h3 id="日期和时间处理函数"><a href="#日期和时间处理函数" class="headerlink" title="日期和时间处理函数"></a>日期和时间处理函数</h3><p>Date() 返回日期的日期那部分<br>Time() 返回日期的时间那部分<br>day()  返回日期的天数<br>Now()返回当前时期和时间<br>Year()<br>month()<br>adddate()增加一个日期<br>addtime()增加一个时间(时、分)<br>datediff() 计算两个日期的差 datediff(a-b) </p>
+<pre><code>select adddate(date,interval 1 day) from test;
+</code></pre>
+<p>MYSQL日期格式：yyyy-mm-dd 2025-09-01</p>
+<pre><code>select cust_id,cust_num from orders where date(order_date) = &#39;2009-01-01&#39;;
+</code></pre>
+<h3 id="数值处理函数"><a href="#数值处理函数" class="headerlink" title="数值处理函数"></a>数值处理函数</h3><p>Abs() 一个数的绝对值<br>Mod() 取模的余数<br>rand() 随机函数<br>sqrt() 平方根</p>
+<h2 id="汇总函数"><a href="#汇总函数" class="headerlink" title="汇总函数"></a>汇总函数</h2><h3 id="聚集函数"><a href="#聚集函数" class="headerlink" title="聚集函数"></a>聚集函数</h3><p>AVG() COUNT() MAX() MIN() SUM()</p>
+<p>AVG为了获得多个列的值需要使用多个AVG函数  AVG函数忽略NULL的列</p>
+<pre><code>select (avg(column_name1)+avg(column_name2))/2 as avg_twocols from test 
+</code></pre>
+<p>count(*)不忽略NULL 但是count(column_name)忽略NULL</p>
+<p>max、min、sum都自动忽略NULL值</p>
+<p>sum（）可以计算多个列的值</p>
+<pre><code>select sum(nums_col1 + nums_col2 + nums_col3*2) from test;
+</code></pre>
+<p>distinct 关键字的使用</p>
+<pre><code>select avg(distinct column_name) from test;
+</code></pre>
+<h2 id="分组数据"><a href="#分组数据" class="headerlink" title="分组数据"></a>分组数据</h2><p>分组允许把数据分为多个逻辑组，并对每个组能实现聚集计算。</p>
+<pre><code>select vend_id, count(*) as num_prods from product group by vend_id;
+</code></pre>
+<p>group by子句中重要规则：</p>
+<pre><code>1.group by 子句可以包含任意数目的列。
+2.如果再group by中嵌套了分组，数据在最后规定的分组内汇总。
+3.group by 列出来的列 只能是有效列，不能是聚集函数。如果再select中使用表达式，则必须在group by 后面子句中指定相同的表达式，不能使用别名。
+4.select 中除了聚合函数以外，各列必须在group by里给出。
+5.NULL的行会被分到一组。
+6.跟在where后面，order前面
+</code></pre>
+<p>使用with rullup 汇总:</p>
+<pre><code>select vend_id,count(*) as num_prods from products group by vend_id with rollup;
+</code></pre>
+<h3 id="过滤分组"><a href="#过滤分组" class="headerlink" title="过滤分组"></a>过滤分组</h3><p>having过滤分组 where过滤行，基于分组实现的过滤条件，where实现不了。</p>
+<h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><p>查询 query  子查询 subquery定义：就是嵌套在其他查询里的查询。<br>SELECT 里的查询总是子查询总是从内向外处理。 格式化subquery，适当的缩进方便阅读和调试。<br>子查询的效率不高，最好避免，尤其避免多层嵌套子查询。<br>写子查询的查询语句的时候最好建立和测试最内层的查询，然后确认后嵌入子查询一层一层的给它穿衣服，同时检测和测试。</p>
+<h2 id="联结表"><a href="#联结表" class="headerlink" title="联结表"></a>联结表</h2><p>SQL最强大的功能之一就是能在数据检索查询的执行中连联结 JOIN 表。  </p>
+<p>关系表定义：关系表就是通过一些常用的值，也就是各个数据关系，来把信息分解成多个表，一类数据一个表。<br>外键foreign key 外键为某个表中的一列，包含另一个表的主键值，定义了两个表之间的关系。<br>关系型的数据可以有效和高效的处理和存储，是关系型数据库的可伸缩性要比非关系型数据库要好。<br>可伸缩性scale定义：能够适应不断增加的数据量而不失败。  </p>
+<p>联结的定义： 联结是一种机制，用来在一条select 语句中关联不同表中的数据。联结由MYSQL根据需要存在，它存在于查询的执行之中。</p>
+<p>创建联结：     </p>
+<pre><code>select a.col1,b.col1
+from a,b
+where a.colx = b.coly;
+</code></pre>
+<p>或者通过内连接的表达形式实现：</p>
+<pre><code>select a.col1,b.col1
+from a INNER join b on (a.colx = b.coly);
+</code></pre>
+<p>推荐第二种形势 INNER JOIN 形势 因为更规范 而且<br>where子句在联结时是很重要的，因为Mysql不知道如何对这多张表进行联结，必须要人为确定各个表联结条件实现找到每个表的不同行正确联结起来。<br>如果不设定where条件，得到的则是笛卡尔积。检索出来的行数是第一个表的行数 m 和第二表的行数 n 的乘积 m*n。</p>
+<p>多个表内连接 INNER JOIN 之间不需要加逗号,用where来联结多个表的时候，用and来实现。</p>
+<pre><code>select a.col1,b.col1
+from a INNER join b on (a.colx = b.coly)
+        INNER JOIN c on (a.colx = c.colz);
+</code></pre>
+<p>也可以笛卡尔积联结就是 cross join   </p>
+<p>MYSQL在运行关联指定的每个表处理联结是非常耗费资源的，所以不要连接不必要的表，越少越好。联结的越多，性能掉得越快。<br>查询的新能收到操作类型、表中数据量、是否存在索引或者键以及其他一些条件的影响。因此，有必要对不同选择机制进行实验来确定最适合具体情况的方法。联结是关系型数据库最有效最强大的特性。一般情况下，非关系型数据库的扩展性很强，选择关系型数据库一般对数据的一致性要求非常高的时候。   </p>
+<h2 id="创建高级联结"><a href="#创建高级联结" class="headerlink" title="创建高级联结"></a>创建高级联结</h2><h3 id="使用表的别名"><a href="#使用表的别名" class="headerlink" title="使用表的别名"></a>使用表的别名</h3><p>注意：表别名只在查询执行中使用，和列别名可以返回客户机不同，表别名不返回客户机。  </p>
+<h3 id="自连接"><a href="#自连接" class="headerlink" title="自连接"></a>自连接</h3><p>self join  </p>
+<pre><code>select a.col1,a.col2
+from table_name a ,table_name b
+where a.colx = b.colx
+</code></pre>
+<p>或者自连接表达形式：</p>
+<pre><code>select a.col1,a.col2
+from table_name a join table_name b on (a.colx = b.colx);
+</code></pre>
+<p>优先考虑使用自联结而不是子查询，联结通常比子查询快得多。</p>
+<h3 id="自然联结"><a href="#自然联结" class="headerlink" title="自然联结"></a>自然联结</h3><p>自然联结排除多次出现的结果，使得相同联结的列只返回一次。通过我们自己选择select 列的时候自己删掉就好了。   </p>
+<pre><code>select c.* ,o.order_num,o.order_data,oi.prod_id,op.item_price
+from customers c,orders o, orderitems oi
+where c.cust_id = o.cust.id and oi.order_num = o.order_num and prod_id = &#39;FB&#39;;
+</code></pre>
+<h3 id="外部联结"><a href="#外部联结" class="headerlink" title="外部联结"></a>外部联结</h3><p>联结包含了哪些相关表中没有的行，这种类型的联结称为外部联结。 也就是会产生悬浮行。<br>OUTER JOIN  mysql没有外全连接。 LEFT JOIN ,RIGHT JOIN 。左外部联结可以通过颠倒FROM 或者where 子句中的数据表顺序转换为由外部联结。</p>
+<h2 id="组合查询"><a href="#组合查询" class="headerlink" title="组合查询"></a>组合查询</h2><p>MYSQL允许多个select语句用union连接起来一并返回。这些组合查询通常称为 并（union）或者复合查询。<br>有两种情况我们经常用到union  </p>
+<pre><code>1. 在单个查询中从不同表返回类似的结构的数据
+2. 对单个表执行多个查询，按单个查询返回结果
+</code></pre>
+<p>记住大部分时候OR都不如union </p>
+<pre><code>SELECT vend_id,prod_id,prod_price
+from products
+where prod_price &lt;=5
+union
+select vend_id,prod_id,prod_price
+form products
+where prod_id in (1001,1002);
+</code></pre>
+<p>union的规则：</p>
+<pre><code>1. union中每个查询必须含有相同的列、表达式或聚合函数，不过各个列不需要相同顺序次序排列。 
+2. 各个列数据类型必须兼容，类型不必完全相同，但必须是DBMS可以隐含转换类型。
+</code></pre>
+<p>union的特性：  会自动从结果集中去除重复行，和where子句一样。这是默认行为，也可以通过union all 来取代union实现匹配所有行，union all不去重。<br>union结果排序的时候只能用一条order by 子句，必须在最后一个select 语句之后。</p>
+<h2 id="全文本搜索"><a href="#全文本搜索" class="headerlink" title="全文本搜索"></a>全文本搜索</h2><p>全文本搜索是一种高级的数据查询和选择方式。</p>
+<p>并非所有引擎都支持全文本搜索。MYISAM支持，INNODB不支持。<br>基于like关键字和基于文本搜索的regexp正则表达式的搜索机制非常有用 但是：</p>
+<pre><code>1. 性能： 通配符和正则表达式通常要求MYSQL尝试匹配表中的所有行，而且这些搜索极少使用表索引。
+2. 明确控制：使用通配符和正则表达式匹配很难明确控制匹配什么不匹配什么。
+3. 智能化的结果：他们无法提供智能化的选择结果的方法。
+</code></pre>
+<p>优势：在使用全文本搜索时，mysql不需要分别查看每个行，不需要分别分析和处理每个词，mysql创建指定列中各词的一个索引，搜索可以针对这些词进行。mysql可以快速有效的决定那些词匹配那些词不匹配以及他们匹配的频率。 </p>
+<h3 id="使用全文本搜索"><a href="#使用全文本搜索" class="headerlink" title="使用全文本搜索"></a>使用全文本搜索</h3><p>为了进行全文搜素，必须对被搜索的列进行索引，而且要随着数据的改变不断地重新索引。在索引以后，可以用MATCH()、Against()执行搜索。</p>
+<h4 id="启用全文本搜索"><a href="#启用全文本搜索" class="headerlink" title="启用全文本搜索"></a>启用全文本搜索</h4><p>创建表时启用全文本搜索，CREATE TABLE语句，接受FULLTEXT子句，他给出一个被索引列的一个逗号分隔的列表。  </p>
+<pre><code>CREATE TABLE TEST
+( note_id int not NULL AUTO_INCREMENT,
+  prod_id char(10) NOT NULL ,
+  note_text text NULL,
+  primary key(note_id),
+  FUllTEXT(note_text)
+)ENGINE = MYISAM;
+</code></pre>
+<p>MYSQL会根据子句FULLTEXT(note_text)来对它进行索引。在定义以后，MYSQL会自动维护该索引。在增加更新或删除行时，索引随之自动更新。</p>
+<p>TIPS: 不要在导入数据时使用FULLTEXT，更新索引需要花一定的时间，虽然不多，如果再导入数据到一个新表，此时不应该启用FULLTEXT索引。应该先导入所有输入，然后再修改表，定义FULLTEXT。这样有助于更快的导入数据，而且索引数据的总时间小于导入每行分别进行索引的总时间。  </p>
+<h4 id="进行全文本搜索"><a href="#进行全文本搜索" class="headerlink" title="进行全文本搜索"></a>进行全文本搜索</h4><p>在索引之后，使用两个函数MATCH()和Against()执行全文本搜索牟其中MATCH()指定被搜索的列，Against()指定要使用的搜索表达式。</p>
+<pre><code>select note_text
+from table_name
+where MATCH(note_text) Against(&#39;rabbit&#39;);
+</code></pre>
+<p>MATCH()的值必须和FULLTEXT定义中的相同，如果指定多个列，则必须列出他们，并且要求次序正确。<br>这里的检索和正则表达式一样，除非关键字 BINARY 否则不区分大小写。  </p>
+<p>全文本搜索返回的结果还是按照文本匹配良好程度顺序返回的。具有更高等级的行先返回。  </p>
+<p>MATCH(col_name) AGAINST(‘str’) 其实是一个计算列，如果匹配会算出一个大于0的匹配度级别，不匹配时就是0，所以where其实就是判断真伪。这个等级值根据词的数目、唯一词的数目、整个索引中词的总数以及包含该词的行的数目计算出来。</p>
+<p>由于数据是索引的，所以全文本搜索是相当快。</p>
+<h4 id="使用查询扩展"><a href="#使用查询扩展" class="headerlink" title="使用查询扩展"></a>使用查询扩展</h4><p>查询扩展用来设法放宽所返回的全文本搜索结果的范围。使用查询扩展时，MYSQL对数据和索引进行了两边扫描来完成搜索：</p>
+<pre><code>1. 先是一个基本的全文本搜索与搜索条件匹配的行。
+2. 其次MYSQL检查这些匹配行并进行选择所有有用词。
+3. 再其次MYSQL会再次进行全文本搜索，扩大原来的条件，包含这些筛选出来的有用词。 
+</code></pre>
+<p>查询扩展只适用于 4.1 以上版本  </p>
+<h3 id="布尔文本搜索"><a href="#布尔文本搜索" class="headerlink" title="布尔文本搜索"></a>布尔文本搜索</h3><p>MYSQL支持全文本搜索的另外一种方式：布尔方式 BOOLEAN mode，在即使没有FULLTEXT索引也可以使用  但是这是一种非常缓慢地操作。 </p>
+<pre><code>select note_text
+from table_name
+where MATCH(note_text) Against(&#39;rabbit&#39; in BOOLEAN MODE);
+
+
+select note_text
+from table_name
+where MATCH(note_text) Against(&#39;rabbit - rope*&#39; in BOOLEAN MODE);
+</code></pre>
+<p>全文本boolean mode 操作符：</p>
+<pre><code>+  包含 词必须存在
+-  排除 词必须不出现
+&gt;  包含 而且增加等级值
+&lt;  包含 而且减少等级值
+~  取消一个词的排序值
+*  词尾的通配符
+&quot;&quot; 定义一个短语整体
+
+select note_text
+from table_name
+where MATCH(note_text) Against(&#39;+rabbit + bait&#39; in BOOLEAN MODE); -- 包含两者才算匹配
+
+select note_text
+from table_name
+where MATCH(note_text) Against(&#39;rabbit  bait&#39; in BOOLEAN MODE); -- 包含其中一个词就可
+
+select note_text
+from table_name
+where MATCH(note_text) Against(&#39;“rabbit bait&quot;&#39; in BOOLEAN MODE); -- 包含这个不可分割的短语
+
+select note_text
+from table_name
+where MATCH(note_text) Against(&#39;+rabbit  +（&lt;bait)&#39; in BOOLEAN MODE); -- 必须包含两个而且降低bait的等级
+</code></pre>
+<p>布尔方式中，只排列结果，不排序。</p>
+<h3 id="全文本搜索的注意事项"><a href="#全文本搜索的注意事项" class="headerlink" title="全文本搜索的注意事项"></a>全文本搜索的注意事项</h3><pre><code>1. 短词被忽略且从索引中排除。短词定义为哪些具有3个或者3个一下字符的词。
+2. MYSQL内建的非用词 stopword 这些词在索引全文本搜索时总是被忽略。
+3. MYSQL规定50%规则，一个词出现频率超过50% 也被视作非用词。但BOOLEAN MODE不这样。
+4. 表中行数少于3行，则全文本搜索不反悔结果。
+5. 忽略词中的单引号。don&#39;t的索引 dont
+6. 尽在MYISAM中引擎支持全文本搜索。
+7. 不具备词分隔符的语言（日语、汉语），不能恰当返回全文本搜索结果。
+</code></pre>
+<h2 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h2><p>插入数据设计系统安全，可对每个表和用户设置插入权限。  </p>
+<pre><code>INSERT INTO table_name values(val1,val2,...);--数值不用‘’ 字符串需要 同时需要对应列排序不然会插入出错。
+INSERT INTO table_name(col1,col2,...) values(val1,val2,...);
+</code></pre>
+<p>插入自动增加的列时只需要插入NULL就行了 不需要插入就是。但是要写！！！ </p>
+<p>第二种方式比第一种方式安全，因为表变化也不影响插入安全。一般不要使用没有给出明确列的插入语句。</p>
+<p>‘’’<br>提高整体性能：数据库经常被多个客户访问，对处理什么请求以及什么次序处理，是管理MYSQL的重要任务，INSERT操作可能很耗时，特别是有很多索引要更新的时候骂他可能会降低等待处理的select语句的性能，如果数据检索是最重要的，可以通过insert into中间插入关键字，LOW_PRIORITY 来降低insert插入优先级。 </p>
+<pre><code>INSERT LOW_PRIORITY INTO 
+</code></pre>
+<p>这个思考也适用于DELETE 和 UPDATE<br>‘’’</p>
+<h3 id="插入多行"><a href="#插入多行" class="headerlink" title="插入多行"></a>插入多行</h3><p>就像python的元组一样 给个括号就完事了</p>
+<pre><code>INSERT INTO customers(cust_name,cust_city) values(&#39;andre&#39;,&#39;nanjing&#39;),(&#39;andrew&#39;,&#39;shenzhen&#39;);
+</code></pre>
+<p>建议多使用这种复合插入语句实现多条插入，这样可以提高INSERT性能。</p>
+<h3 id="插入检索出的数据"><a href="#插入检索出的数据" class="headerlink" title="插入检索出的数据"></a>插入检索出的数据</h3><p>说白了就是子查询</p>
+<pre><code>INSERT INTO table_name(col1,col2,...) select colx,coly,... from table_name2;
+</code></pre>
+<p>插入检索出的数据主要和位置一一对应实现。</p>
+<h2 id="更新和删除数据"><a href="#更新和删除数据" class="headerlink" title="更新和删除数据"></a>更新和删除数据</h2><p>update和delete一定要仔细和细心，where子句一定要好好写，千万别省略了不然更新表中所有行。</p>
+<h3 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h3><pre><code>update table_name set col1 = val1 , col2 = val2 where condition1 and/or condition2;
+</code></pre>
+<p>IGNORE关键字： 使用UPDATE语句更新多行的时候，出现一个错误则整个UPDATE操作会被取消，IGNORE可以使得发生错误也可以继续进行更新。IGNORE 跟在update后面就好了</p>
+<pre><code>update IGNORE table_name...
+</code></pre>
+<p>= NULL ：update set 利用 =NULL 实现单元格删除</p>
+<pre><code>update table_name set column1 = NULL where colx = val1;
+</code></pre>
+<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><pre><code>DELETE FROM table_name where condition1;
+</code></pre>
+<p>如果想更快的葱表中删除所用行，可以用TRUNCATE table_name；本质是删除原来这张表然后重建一个同名表。</p>
+<p>一些关于更新、删除的TIPS:</p>
+<pre><code>1. 主键在更新删除中非常重要；
+2. 在更、删之前 应该用select语句先测试过滤条件，保证where正确性。
+3. 在强制实施应用完整性的数据库，MYSQL不允许删除具有与其他表相关关联的数据的行。
+</code></pre>
+<h2 id="创建和操作表"><a href="#创建和操作表" class="headerlink" title="创建和操作表"></a>创建和操作表</h2><pre><code>create table table_name(
+cust_id int NOT NULL AUTO_INCREMENT,
+cust_city char(50) NOT NULL,
+cust_email char(50) NULL,
+primary key (cust_id)
+)engine = INNODB;
+</code></pre>
+<p>创建的表名在同一个库里不得重复 否则报错。如果你想创建一个在它不存在时候才创建，则是在表名后面加上IF NOT EXISTS：</p>
+<pre><code>create table table_name IF NOT EXISTS(
+cust_id int NOT NULL AUTO_INCREMENT,
+cust_city char(50) NOT NULL,
+cust_email char(50) NULL,
+primary key (cust_id)
+)engine = INNODB;
+</code></pre>
+<p>default 是NOT NULL的是不接受插入和更新行时没有值的，必须得有，除非AUTO_INCREMENT。</p>
+<p>！！！记住 NULL是空值 和空串是不等价的，’’（在python里空串里面没有空格 是等价NONE的 这里和NULL是不等价的）<br>主键是必须NOT NULL的。</p>
+<p>AUTO_INCREMENT指本列每增加一行时，比如每次insert 自动对该列增量。每个表必须最多只有一个AUTO_INCREMENT，而且他必须被索引，比如通过使他成为主键。</p>
+<p>AUTO_INCREMENT 可以被覆盖，当insert插入的时候这一列有值插入进来，而且没有被用过，那么这个值覆盖自动增量值，而且后续从这个值开始急需增量。 </p>
+<p>如何确定最后AUTO_INCREMENT的列的值呢，可以用last_insert——id()来实现</p>
+<p>插入的时候如果没有给定值，则使用default 默认值，但是MYSQL只支持敞亮，不支持函数作为默认值。</p>
+<h3 id="引擎"><a href="#引擎" class="headerlink" title="引擎"></a>引擎</h3><p>MYSQL有一个具体管理和处理数据内部的内部引擎，该引擎具体创建表，支持你的各种从数据库处理操作和请求。</p>
+<pre><code>1. InnoDB是个可靠地事务处理引擎，但是不支持全文本搜索；
+2. MEMORY 在功能上等同于MYISAM但是由于数据存储在内存（不是磁盘），所以速度非常快，适用于临时表。
+3. MYISAM是一个性能极高的引擎，支持全文本搜索，但是不支持事务处理。
+</code></pre>
+<p>引擎类型可以混用。但是外键不能跨引擎，外键是用来强制应用完整性的，不能跨引擎，就是使用一个引擎的表不能引用两一个具有使用不同引擎的表的外键。</p>
+<h3 id="更新表"><a href="#更新表" class="headerlink" title="更新表"></a>更新表</h3><pre><code>alter table table_name change col_name col_newname newtype newdefault;
+</code></pre>
+<p>增加列/删除咧：</p>
+<pre><code>alter table table_name add col_name type default;
+alter table table_name drop col_name;
+</code></pre>
+<p>定义外键：</p>
+<pre><code>alter table orderitems
+add constraint fk_orders 
+foreign key (ord_num) references orders(ord_num);
+</code></pre>
+<h3 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h3><pre><code>drop table table_name;
+</code></pre>
+<h3 id="重命名表"><a href="#重命名表" class="headerlink" title="重命名表"></a>重命名表</h3><pre><code>rename table table_name to table_newname;
+alter table table_name rename table_newname;
+</code></pre>
+<h2 id="使用视图"><a href="#使用视图" class="headerlink" title="使用视图"></a>使用视图</h2><p>视图： 是虚拟的表，与包含数据的表不同，视图只包含使用时动态检索数据的查询。<br>作为视图，他不包含表中应该有的任何列和数据, 它包含的是一个SQL查询。</p>
+<p>为什么使用视图：</p>
+<ul>
+<li>重用SQL语句</li>
+<li>简化复杂的SQL操作。在编写查询后，可以方便的重用它们，而不需要知道它的查询细节。</li>
+<li>使用表的组成部分而不是整个表</li>
+<li>保护数据。可以赋予用户标的特定部分的访问权限而不是整个表的访问权限。</li>
+<li>更改数据格式和表示。视图可以返回与底层表的表示和格式不同的数据。</li>
+</ul>
+<p>视图创建完成后，可以用与表基本相同的方式利用他们，甚至能添加和更新数据。<br>视图仅仅用来查看存储在别处的数据的一种设施，视图本身不包含数据，他们返回数据是从别的表中检索出来的，在添加和更改这些表中数据时，视图将返回改变过的数据。<br>因为视图本身不包含数据，所以每次使用视图的时候，都要处理查询执行时所需的任一个检索，如果用多个联结和过滤条件创建了复杂的视图或者嵌套了视图，可能会发现性能下降的很厉害。    </p>
+<h3 id="视图规则："><a href="#视图规则：" class="headerlink" title="视图规则："></a>视图规则：</h3><ul>
+<li>视图也需要唯一命名</li>
+<li>对于可以创建的视图数目没有限制</li>
+<li>创建视图也需要创建视图的访问权限</li>
+<li>视图可以嵌套</li>
+<li>视图里也可以使用order by</li>
+<li>视图不能索引，也没有触发器和默认值</li>
+<li>视图可以与表一起使用</li>
+</ul>
+<h3 id="使用视图-1"><a href="#使用视图-1" class="headerlink" title="使用视图"></a>使用视图</h3><p>创建视图create view view_name as select 语句删除视图DROP view view_name，更新视图是先用drop删除，在CREATE一个，或者直接用create or replace view view_name。如果要更新的视图不存在，这个语句会创建一个视图。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE VIEW productcustomers AS</span><br><span class="line">select cust_name,cust_contact,prod_id</span><br><span class="line">from customers,orders,orderitems</span><br><span class="line">where customers.cust_id &#x3D; orders.cust_id</span><br><span class="line">and orderitems.order_num &#x3D; orders.order_num</span><br></pre></td></tr></table></figure>
+
+<p>MYSQL实际处理次查询的时候，会把指定的WHERE子句添加到试图查询中已有的WHERE子句中，以便正确过滤数据。</p>
+<h3 id="更新视图"><a href="#更新视图" class="headerlink" title="更新视图"></a>更新视图</h3><p>视图本身是没有数据的，所以每次对视图增加或者删除行，实际上是对其基表增加或删除行。但并非是所有视图都是可以更新的。如果视图定义中有一下操作，则不能对视图进行更新：</p>
+<ul>
+<li>分组 使用GROUP BY 和 HAVING</li>
+<li>联结</li>
+<li>子查询</li>
+<li>并</li>
+<li>聚集函数（MAX\MIN\COUNT\SUM）</li>
+<li>DISTINCT</li>
+<li>导出（计算列）</li>
+</ul>
+<p>因为视图主要功能是检索数据的。</p>
+<h2 id="使用存储过程"><a href="#使用存储过程" class="headerlink" title="使用存储过程"></a>使用存储过程</h2><p>大多数SQL语句都是针对一个或者多个表的单条操作，但是并非所有操作都是这么简单，经常有一个完整的操作需要多条语句才能完成。</p>
+<p>存储过程简单的说 就是为了以后使用而保存的一条或者多条SQL语句的集合。可以将其视为批文件，虽然他们不仅限于批处理。   </p>
+<h3 id="使用存储过程的优点："><a href="#使用存储过程的优点：" class="headerlink" title="使用存储过程的优点："></a>使用存储过程的优点：</h3><ul>
+<li>通过把处理封装在容易使用的单元中，简化了复杂的操作</li>
+<li>保护数据的完整性，防止犯错。</li>
+<li>简化对变动的管理。如果表名、列名或者业务逻辑发生改变，只需要更改存储过程的代码。</li>
+<li>提高安全性，通过存储过程的限制对基础数据的访问。</li>
+<li>提高性能，使用存储过程比单独使用SQL语句要快。</li>
+</ul>
+<p>简单说就是 简单、安全、高性能。创建存储过程也需要权限。</p>
+<h3 id="存储过程的使用"><a href="#存储过程的使用" class="headerlink" title="存储过程的使用"></a>存储过程的使用</h3><p>MySQL存储过程的执行为调用，用CALL </p>
+<pre><code>CALL PROCEDURE_NAME();
+CALL PROCEDURE_NAME(@variable_name,@variable_name2)
+</code></pre>
+<p>用create procedure procedure_name() begin SQL语句 ； end;实现    如果存储过程中接收参数，他们将在（）里列举出来。<br>MYSQL命令行中创建需要先，DELIMITER 来更改分隔符，如果命令行实用程序要解释存储过程自身内的；字符，则他不会最终成为存储过程的成分，这会使得报错语法错误。</p>
+<pre><code>DELIMITER //
+CREATE PROCEDURE productpricing()
+BEGIN
+    select AVG(PRO_PRICE) as priceaverage
+    FROM products;
+END //
+DELIMITER ;
+</code></pre>
+<p>delimiter 告诉命令行是用实用程序用// 做为新的分割符号。也可以用别的。<br>存储过程实际上是一种函数，所以存储过程名需要有()符号，即使不传递参数也需要。<br>删除存储过程用DROP     </p>
+<pre><code>DROP PROCEDURE procedure_name；
+DROP PROCEDUER IF EXISTS procedure_name;
+</code></pre>
+<h3 id="变量-variable"><a href="#变量-variable" class="headerlink" title="变量 variable"></a>变量 variable</h3><p>变量定义：变量是内存中的一个特定位置，用来临时存储数据。<br>可以用</p>
+<pre><code>SET @variable_name = value;
+</code></pre>
+<p>来实现赋值</p>
+<pre><code>select value into @variable_name;
+</code></pre>
+<p>这样也可  </p>
+<p>创建时用out指出响应的参数用来从存储过程中传出的值，返回。用IN传递给存储过程。用INOUT类型的参数来传入传出。<br>返回集是不被允许的，不能够通过一个参数返回多个行和列。只能有多个参数来返回一个行。</p>
+<pre><code>CREATE procedure productingpricing(
+out p1 decimal(8,2),
+out ph decimal(8,2))
+begin
+    select MIN(prod_price) into p1 from products;
+    select max(prod_price) into ph from products;
+END;
+
+CALL productingpricing(@pricelow,@pricehigh);
+select @pricelow, @pricehigh;
+</code></pre>
+<p>所有变量必须要@开头</p>
+<pre><code>CREATE procedure ordertotal(
+IN onumber INT,
+out ototal DECIMAL(8,2)
+)
+begin
+    select SUM(item_price*quantity)
+    from orderitems
+    where order_num = onumber
+    INTO orotal;
+END;
+</code></pre>
+<p>存储过程内注释使用 前置 –<br>用DECLARE 语句定义两个局部变量  DECLATE要求指定变量名和数据类型，也支持默认值。 </p>
+<pre><code>declare taxrate int default 6;
+</code></pre>
+<p>IF 语句<br>    IF taxable THEN<br>        select total + (total/100*TAXRATE) into total ;<br>    end IF;    </p>
+<h3 id="检查存储过程"><a href="#检查存储过程" class="headerlink" title="检查存储过程"></a>检查存储过程</h3><pre><code>show create procedure ordertotal;
+
+show procedure status;
+</code></pre>
+<p>COMMENT 关键字用来给show procedure status的结果中显示。</p>
+<h2 id="使用游标CURSOR"><a href="#使用游标CURSOR" class="headerlink" title="使用游标CURSOR"></a>使用游标CURSOR</h2><p>MYSQL5增加了游标功能<br>MYSQL检索操作返回一组称为结果集的行，需要在检索出来的行中前进或后退一行或多行，是使用游标的原因。游标是一个存储在MYSQL服务器上的数据库查询，她不是一个select语句，而是该语句检索出来的结果集。在存储了游标之后，应用程序可以根据需要滚动或浏览其中的数据。游标主要用于交互式应用，其中用户需要滚动屏幕上的数据，并对数据进行浏览或作出更改。</p>
+<p>游标主要用于交互式应用，其中用户需要滚动屏幕上的数据，并对数据进行浏览或作出更改。只能用于存储过程，MYSQL的游标只能用于存储过程或函数。 </p>
+<p>在游标能使用前，必须声明它，这个过程实际上没有检索数据。只是定义使用的select语句而已。一旦声明后，必须打开游标以供使用。在结束游标使用时候，必须关闭游标。</p>
+<h3 id="创建游标"><a href="#创建游标" class="headerlink" title="创建游标"></a>创建游标</h3><p>游标用declare for 语句创建</p>
+<pre><code>CREATE procedure processorders()
+begin 
+    declare ordernumbers cursor
+    for 
+    select order_num from orders;
+end;
+</code></pre>
+<p>打开游标：</p>
+<pre><code>open ordernumbers;
+</code></pre>
+<p>关闭游标：</p>
+<pre><code>close ordernumbers;
+</code></pre>
+<p>close 释放游标所有使用的内部资源和内存，因此每个游标如果不用了就要关闭。</p>
+<p>如果你不明确关闭游标，mysql会在到达end语句后自动关闭它。</p>
+<pre><code>CREATE procedure processorders()
+begin 
+    declare ordernumbers cursor
+    for 
+    select order_num from orders;
+    open ordernumbers;
+
+    close ordernumbers;
+end;
+</code></pre>
+<p>在一个游标打开后，可以使用FETCH语句分别访问它的每一行，FETCH指定检索什么数据，检索出来的数据存储在什么地方。他还自动向前移动游标中的内部行指针，使得吓一跳FETCH语句检索下一行。</p>
+<pre><code>CREATE procedure processorders()
+begin 
+    declare ordernumbers cursor
+    for 
+    select order_num from orders;
+    open ordernumbers;
+    FETCH ordernumbers into o; 
+
+    close ordernumbers;
+end;
+</code></pre>
+<p>declare 语句发布的时候存在特定的次序，用declare语句定义的局部变量必须在定义任意游标或者句柄之前定义，而句柄必须在游标之后定义。</p>
+<p>除了repeat语句，MYSQL还支持循环语句，可以用来重复执行代码，直到使用leave语句手动退出为止。通常repeat语句的语法使他更适合用于对游标的循环。</p>
+<h2 id="使用触发器"><a href="#使用触发器" class="headerlink" title="使用触发器"></a>使用触发器</h2><p>如果你需要某条语句在事件发生的时候自动执行。就需要触发器。<br>触发器定义： 是MYSQL相应DELETE\INSERT\UPDATE语句执行的一条MYSQL语句（或者位于begin end之间的一组一句）。（即表结构发生变化的时候自动触发执行的一组MYSQL语句）其他MYSQL语句不支持触发器。 </p>
+<h3 id="创建触发器"><a href="#创建触发器" class="headerlink" title="创建触发器"></a>创建触发器</h3><ul>
+<li>唯一触发器名</li>
+<li>触发器关联的表</li>
+<li>触发器应该相应的活动（delete、update）</li>
+<li>触发器何时执行</li>
+</ul>
+<p>触发器名必须在每个表唯一，但不必在数据库唯一。</p>
+<pre><code>CREATE TRIGGER newproduct after insert on products
+for each row select &#39;product added&#39;;
+</code></pre>
+<p>只有表才支持触发器，视图和临时表都不支持。触发器按照每个表每个事件定义，每个表事件每次只允许一个触发器，所以一个表最多有6个触发器。单一触发器不能与多个事件或者多个表关联。</p>
+<p>删除触发器</p>
+<pre><code>drop trigger trigger_name;
+</code></pre>
+<p>触发器无法更新 只能删除重造。</p>
+<h3 id="使用触发器-1"><a href="#使用触发器-1" class="headerlink" title="使用触发器"></a>使用触发器</h3><p>INsert 触发器：</p>
+<ul>
+<li>在INSERT触发器代码内，可以应用一个名为new的虚拟表，访问被插入的行；</li>
+<li>在before insert触发器中，new得知可以被更新（允许更改被插入的值）</li>
+<li>对于AUTO_increment列，new在insert执行之前包含0，在insert执行之后包含新的自动生成的值。</li>
+</ul>
+<p>当前版本不允许触发器返回任何结果，所以必须要用into @变量名</p>
+<pre><code>create trigger trigger_name after insert on table_name
+for each row select new.column_name1,new.column_name2 into @various_name1,@various_name2;
+</code></pre>
+<p>DELETE触发器：<br>-在DELETE触发器内可以引用一个叫OLD的虚拟表，访问被删除的行，OLD中的值全都是只读的，不能更新。</p>
+<pre><code>create trigger deletedorder before delete on orders
+for each row 
+begin
+    insert into archive_orders(order_num,order_date,cust_id)
+    values(old.order_num,old.order_date,old.cust_id);
+end;
+</code></pre>
+<p>尽量使用before delete触发器，因为befor delete触发的有点：由于某种原因，如果不能存档，则delete本身会被放弃。</p>
+<p>update触发器：</p>
+<ul>
+<li>在update触发器代码中，可以引用一个名为old的虚拟表访问之前的值，引用一个名为new的虚拟表访问更新的值。</li>
+<li>before update触发器，new中的值可能也会被更新</li>
+<li>old中的值都是只读的，不可以更新</li>
+</ul>
+<p>显然任何数据净化都需要update之前进行。</p>
+<p>创建触发器的可能需要特护的安全访问权限，但是触发器执行是自动的。如果insert\delete\update能执行，则相关触发器也可以执行。</p>
+<p>触发器可以很好地保证数据一致性（数据大小写、格式），他总是自动执行而且与客户机无关。</p>
+<p>触发器的一种非常有意义的使用是创建审计跟踪，使用触发器，把更改（如果需要还有之前之后的状态）记录到另一个表中很方便。</p>
+<p>但是触发器不支持call  所以触发器内部不能调用存储过程。</p>
+<h2 id="管理事务处理"><a href="#管理事务处理" class="headerlink" title="管理事务处理"></a>管理事务处理</h2><p>并非所有引擎都支持事务处理，MYISAM不支持，INNODB支持。</p>
+<p>事务处理transaction processing 可以用来维护数据库的完整性，他保证成批的Mysql操作要么完全执行，要么完全不执行。</p>
+<p>事务处理是一种机制，用来管理必须成批执行的MYSQL操作，以保证数据库不包含不完整的操作结果。利用事务处理，可以保证一组操作不会中途停止，要么全部执行要么，完全不执行。如果没有错误发生，整租语句提交到（写到）数据库表。如果发生错误则进行回退（撤销）已恢复数据库到某种安全的状态。</p>
+<ul>
+<li>事务 transaction 指一组SQL语句</li>
+<li>回退 rollback  只撤销指定sql语句</li>
+<li>提交 commit 制将未存储的SQL语句写入数据库表中</li>
+<li>保留点 savepoint 知事务处理中设置的临时占位符，你可以对他发布回退</li>
+</ul>
+<p>控制事务处理：<br>管理事务处理的关键在于酱SQL与剧组分解为逻辑块，并且明确规定数据何时应该回退，何时不应该回退。</p>
+<pre><code>start transaction;
+delete from ordertotals;
+rollback;
+</code></pre>
+<p>rollback回退到start transaction时的数据库表状态，并同时关闭了事务，要是需要再次使用需要再次start。rollback只能在一个事务处理内使用。</p>
+<p>事务处理用来管理INSERT\UPDATA\DELETE语句，但是不能回退create\DROP操作 事务处理块有则撤销不掉。</p>
+<h3 id="commit"><a href="#commit" class="headerlink" title="commit"></a>commit</h3><p>一般MYSQL都是硬汉提交的，提交写入保存操作是自动执行的，但是在事务处理块中，提交不会隐含的进行，为进行明确的提交，使用commit语句</p>
+<pre><code>start transaction;
+delete from ordertotals;
+delete from orderprice;
+commit;
+</code></pre>
+<p>因为事务处理块中，提交不会隐含提交，最后commit提交，sql语句块，当语句块内出现错误时，则全部撤销，如果没有错误就写入。<br>commit 和rollback后则会自动关闭事务transaction</p>
+<h3 id="使用保留点"><a href="#使用保留点" class="headerlink" title="使用保留点"></a>使用保留点</h3><p>为了支持回退部分事务处理，必须能在事务处理块中合适位置放置占位符，如果要回退，则回退到某个占位符。<br>这些占位符成为保留点，可以用savepoint创建占位符。</p>
+<pre><code>SAVEPOINT DELETE1;
+</code></pre>
+<p>保留点也要唯一取名。倒退的时候用rollback to</p>
+<pre><code>ROLLBACK TO DELETE1;
+</code></pre>
+<p>保留点越多越好。保留点在事务处理完后自动释放。也可以用 release savepoint；</p>
+<h3 id="更改默认提交行为"><a href="#更改默认提交行为" class="headerlink" title="更改默认提交行为"></a>更改默认提交行为</h3><pre><code>SET autocommit = 0;
+</code></pre>
+<p>autocommit 标志决定是否自动提交更改，不管有没有commit语句。</p>
+<p>autocommit标志是针对每个连接而不是服务器的~！！！</p>
+<h2 id="本地化-全球化"><a href="#本地化-全球化" class="headerlink" title="本地化 全球化"></a>本地化 全球化</h2><h3 id="字符集-和校对顺序"><a href="#字符集-和校对顺序" class="headerlink" title="字符集 和校对顺序"></a>字符集 和校对顺序</h3><p>名词定义：</p>
+<ul>
+<li>字符集： 字母和符号的集合</li>
+<li>编码： 为某个字符集成员的内部表示</li>
+<li>校对：未规定字符如何比较的指令</li>
+<li>不同的语言和字符集需要不同的方式存储和检索。</li>
+</ul>
+<p>显示所有字符集和默认校对：</p>
+<pre><code>show character set;
+</code></pre>
+<p>显示所有可用校对</p>
+<pre><code>show collation；
+</code></pre>
+<p>一般区分大小写是_cs 不区分则  _ci<br>字符集很少是服务器范围的，不同表甚至不同列都是不同的字符集，而且两者可以在创建表的时候可以规定。</p>
+<pre><code>create table mytable
+(
+    column1 int,
+    column2 varchar(10)
+)default character set hebrew
+collate hebrew_general_ci;
+</code></pre>
+<p>如果只执行character则使用默认校对顺序。</p>
+<p>可以对指定列特别规定：</p>
+<pre><code>create table mytable
+(
+    column1 int,
+    column2 varchar(10)，
+    column2 varchar(10) character set latin 
+)default character set hebrew
+collate hebrew_general_ci;
+</code></pre>
+<p>校对对order by至关重要，如果你要按照和创建表不同的校对顺序实现也可以在select 语句内实现</p>
+<pre><code>select * from customers
+order by lastname,firstname collate latin_general_cs;
+</code></pre>
+<p>字符集可以应用很广泛，在group，having,聚集函数和别名都可以用到。</p>
+<h2 id="安全管理"><a href="#安全管理" class="headerlink" title="安全管理"></a>安全管理</h2><p>利用访问控制 访问控制和用户权限管理 </p>
+<p>MYSQL服务器的安全基础：用户应该对他们需要的数据具有适当的访问权既不能多，也不能少。</p>
+<p>访问控制：定义：  就是给用户提供他们所需要的访问权限，但是也仅仅提供他们所需的访问权。</p>
+<p>现实生活中，日常工作不应该使用root，应该创建一系列账号，有的用于管理有的用于用户使用，有的供开发人员使用。</p>
+<p>访问控制的必要性：1.防止用户恶意企图；2.防止数据梦魇，防止无意识错误。</p>
+<p>除非必要不要使用root。</p>
+<h3 id="管理用户"><a href="#管理用户" class="headerlink" title="管理用户"></a>管理用户</h3><p>mysql内有一个表user 装所有用户的，内有个user列包含所有用户名。</p>
+<p>创建一个用户账号：</p>
+<pre><code>CREATE user ben identified by &#39;password&#39;;
+</code></pre>
+<p>也可以用grant来创建用户</p>
+<p>也可以用在表user里插入行来实现，不过这样不安全，mysql用来存储用户账号信息的表，极为重要。</p>
+<p>重命名一个用户</p>
+<pre><code>rename user user_name ti user_newname；
+</code></pre>
+<p>删除用户账号</p>
+<pre><code>DROP USER user_name:
+</code></pre>
+<p>旧版本mysql需要先用revoke解除与账号相关的权限，然后再用drop user；</p>
+<h3 id="设置访问权限"><a href="#设置访问权限" class="headerlink" title="设置访问权限"></a>设置访问权限</h3><p>为了看到赋予用户账号的权限 需要用show grants for user_name;</p>
+<pre><code>show grants for user_name;
+</code></pre>
+<p>MYSQL的权限用用户名@主机名的方式结合定义，user@host 如果不加指定主机名，则使用默认主机名。</p>
+<p>设置权限用到GRANT关键字，需要以下信息：</p>
+<ul>
+<li>要授予的权限</li>
+<li>被授予访问权限的数据库或者表格</li>
+<li>用户名</li>
+</ul>
+<pre><code>GRANT SELECT ON database_name.table_name to user_name;
+</code></pre>
+<p>grant的反操作是revoke</p>
+<pre><code>revoke SELECT ON database_name.table_name from user_name;
+</code></pre>
+<p>常用几个表示：</p>
+<ul>
+<li>所有操作 grant/revoke all on….</li>
+<li>整个数据库 on database_name.* </li>
+</ul>
+<p>使用grant 和 revoke的时候用户账号必须存在，但是表和数据库可以不存在，这允许管理员在创建数据库和标志前设计和实现安全措施。副作用是如果数据库和表被删除时，相关访问权限任然存在，如果在创建了同名数据库或者表，则这些权限任然起作用。</p>
+<pre><code>grant select, delete, drop on crash.* for bforta;
+</code></pre>
+<h3 id="用户改密码现在变了："><a href="#用户改密码现在变了：" class="headerlink" title="用户改密码现在变了："></a>用户改密码现在变了：</h3><pre><code>use mysql;
+alter user user_name@host_name identified with mysql_native_password by &#39;newpassword&#39;;
+</code></pre>
+<h2 id="数据库维护"><a href="#数据库维护" class="headerlink" title="数据库维护"></a>数据库维护</h2><h3 id="备份数据库"><a href="#备份数据库" class="headerlink" title="备份数据库"></a>备份数据库</h3><p>使用命令行实用程序mysqldump转储所有数据库内容到某个外部文件。</p>
+<pre><code>mysqldump -u user_name -p database_name &gt; file_name;
+</code></pre>
+<p>可用命令行实现mysqlhotcopy从一个数据库复制所有数据，但是并非所有引擎都支持这个实用程序。</p>
+<h3 id="为了保障所有数据都被写到磁盘（包括索引数据）-可能需要在进行备份前，使用FLUSH-TABLES-语句"><a href="#为了保障所有数据都被写到磁盘（包括索引数据）-可能需要在进行备份前，使用FLUSH-TABLES-语句" class="headerlink" title="为了保障所有数据都被写到磁盘（包括索引数据） 可能需要在进行备份前，使用FLUSH TABLES 语句"></a>为了保障所有数据都被写到磁盘（包括索引数据） 可能需要在进行备份前，使用FLUSH TABLES 语句</h3><h3 id="进行数据库维护"><a href="#进行数据库维护" class="headerlink" title="进行数据库维护"></a>进行数据库维护</h3><p>检查表键是否正确：</p>
+<pre><code>analyze table table_name;
+</code></pre>
+<p>MYISAM表上还对索引检查：</p>
+<pre><code>check table table_name;
+</code></pre>
+<p>如果MYISAM表访问产生不正确的不一致的结果，需要用repair table来修复相应的表。<br>如果从一个表中删除大量数据，应该用optimize table table_name； 来回收所用空间，从而优化表的性能。</p>
+<h3 id="诊断启动问题"><a href="#诊断启动问题" class="headerlink" title="诊断启动问题"></a>诊断启动问题</h3><p>MYSQL配置或者服务器本身出现更改的时候容易出现服务器启动问题，在排除系统启动问题时，应该手动用mysqld启动。</p>
+<h3 id="查看日志文件"><a href="#查看日志文件" class="headerlink" title="查看日志文件"></a>查看日志文件</h3><p>错误日志 它包含启动和关闭以及任意关键错误的细节。这个日志通常在data目录中叫hostname.err</p>
+<p>查询日志。他记录所有mysql活动，诊断问题的时候非常有用。通常叫hostname.log 在data目录下。</p>
+<p>二进制文件。记录更新过的数据所有语句。data目录内叫 hostname.bin</p>
+<p>缓慢查询日志。次日至纪录执行缓慢的任何查询，这个日志在确定数据库何时需要优化很有用。 hostname-slow.log 位于data目录中。 </p>
+<p>在使用日志时，可以用FLUSH LOGS语句来刷新和重新开始所有日志文件。</p>
+<h2 id="改善性能"><a href="#改善性能" class="headerlink" title="改善性能"></a>改善性能</h2><ul>
+<li>MYSQL 有特定的硬件建议。对于生产的服务器来说，应该遵循这些硬件建议。</li>
+<li>生产DBMS应该运行在自己的专用服务器上。</li>
+<li>MYSQL使用默认设置预先设置的，随着业务量和逻辑的变化，需要重新调整内存分配，缓冲区大小等等。</li>
+<li>MYSQL是一个多用户多线程的DBMS，化而言之经常执行多个任务。如果这些任务中一个执行特别缓慢，则所有请求都会缓慢，如果看到显著地性能不良，可以使用show procelist显示所有活动进程和他们线程id和执行时间。可以用kill命令终结某个特定进程。</li>
+<li>explain语句可以让mysql解释他如何执行一个select 语句</li>
+<li>一般来说存储过程执行要比一条条执行要快。</li>
+<li>要使用正确的数据类型。</li>
+<li>绝不检索必须求还多的数据。</li>
+<li>insert可以用可选自delayed来延迟</li>
+<li>在导入数据时，应该关闭自动提交，你可能还想删除索引，然后导入完成后，在重建他们。</li>
+<li>必须靠索引数据库表来改善数据检索性能。需要分析使用select语句已找出重复where 和order by 子句。如果一个简单的where子句结果都花了很长，那么可以断定其中使用的列，就是需要索引的对象。</li>
+<li>or改成union</li>
+<li>索引改善检索性能，但是损害插入、删除、更新性能，所以不怎么检索的数据不要索引。</li>
+<li>LIKE很慢最好使用全文本搜索 fulltext。</li>
+<li>数据库是不断变化的，需要不断的调整。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://andrekuu.github.io/2021/04/22/Mysql%E5%9F%BA%E7%A1%80/" data-id="cknrvilqy0005dgve69ig7gjw" data-title="Mysql基础" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%BB%86%E8%8A%82/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">计算机网络细节</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/22/Mysql%E5%9F%BA%E7%A1%80/">Mysql基础</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%BB%86%E8%8A%82/">计算机网络细节</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/22/LeetCode-%E5%91%A8%E8%B5%9B%E6%80%BB%E7%BB%93/">LeetCode 周赛总结</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/22/%E7%AE%97%E6%B3%95%E7%BB%8F%E9%AA%8C/">算法经验</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 AndreKuu<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

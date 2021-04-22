@@ -71,6 +71,614 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Linux" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/22/Linux/" class="article-date">
+  <time class="dt-published" datetime="2021-04-22T03:48:53.000Z" itemprop="datePublished">2021-04-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/22/Linux/">Linux</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="linux-后端大门"><a href="#linux-后端大门" class="headerlink" title="linux 后端大门"></a>linux 后端大门</h1><h2 id="部署虚拟环境和安装Linux"><a href="#部署虚拟环境和安装Linux" class="headerlink" title="部署虚拟环境和安装Linux"></a>部署虚拟环境和安装Linux</h2><h3 id="安装VM虚拟机"><a href="#安装VM虚拟机" class="headerlink" title="安装VM虚拟机"></a>安装VM虚拟机</h3><p>VMware WorkStation 我在安装过程中遇到过点击安装包就秒退的情况，这可能和版本有关系，反正官网上我下了几个都不好使，最后在baidu网盘上找了个靠谱的最终实现了下载安装。<br>记得选择增强型键盘驱动程序。安装完虚拟机，不能立即安装linux系统，还需要先对虚拟机内设置操作系统的硬件标准。下载好系统的光盘映像，创建新的虚拟机，最大磁盘可以设置默认的20GB，内存1GB,2GB都可，安装RHEL 7，设置root管理员密码一定要尽量复杂，否则对于系统来说面临很大的安全隐患。  </p>
+<h3 id="重置root管理员密码"><a href="#重置root管理员密码" class="headerlink" title="重置root管理员密码"></a>重置root管理员密码</h3><pre><code>ctrl + alt   # 返回自己的计算机
+</code></pre>
+<p>重启系统，在进入界面中，按e进入内核编辑模式，在UTF-8后面 加上</p>
+<pre><code>rd.break
+</code></pre>
+<p>ctrl + X组合键运行修改后的内核程序<br>30s后进入经济求援模式，输入以下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mount -o remount,rw &#x2F;sysroot</span><br><span class="line">chroot &#x2F;sysroot</span><br><span class="line">passwd</span><br><span class="line">&#x2F;&#x2F;这里输入新密码 但是注意要不低于8位否则 被遮住了你也不知道</span><br><span class="line">&#x2F;&#x2F;再输入一遍新密码</span><br><span class="line">touch &#x2F;.autorelabel</span><br><span class="line">exit</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+<h3 id="RPM红帽软件包管理器"><a href="#RPM红帽软件包管理器" class="headerlink" title="RPM红帽软件包管理器"></a>RPM红帽软件包管理器</h3><p>Linux系统中安装文件原来只能采取源码包的方式安装，早期安装程序非常困难，而且大多数的服务程序仅仅提供源代码，需要运维人员自行编译代码并解决很多软件依赖关系。<br>RPM有点像windows里的控制面板，建立了一个统一的数据库文件，详细的记录软件信息，并能够自动分析依赖关系。RPM已经被广泛接受在众多linux系统采用。</p>
+<h3 id="Yum软件仓库"><a href="#Yum软件仓库" class="headerlink" title="Yum软件仓库"></a>Yum软件仓库</h3><p>RPM可以帮助用户查询软件相关的依赖关系，Yum软件仓库进一步降低软件安装的难度和复杂度，可以根据用户的要求分析出所需要的软件包以及相关的依赖关系，然后自动从服务器下载软件包并安装到系统。</p>
+<h3 id="Linux初始化进程"><a href="#Linux初始化进程" class="headerlink" title="Linux初始化进程"></a>Linux初始化进程</h3><p>Linux操作系统的开机的过程：</p>
+<ol>
+<li>从BIOS开始进入Boot loader，在加载系统内核，然后内核进行初始化</li>
+<li>最终启动初始化进程。<br>初始化进程作为Linux系统的第一个进程，他需要完成Linux系统中相关的初始化工作，为用户提供合适的工作环境。RHEL 7 已经采用sysstemd初始化进程服务。systemd初始化进程服务采用了并发启动机制，开机速度得到小的提升，虽然systemd初始化进程服务有很多特性，但还是有缺点：</li>
+<li>systemd初始化进程服务仅可在Linux系统下进行，抛弃了UNIX系统用户。</li>
+<li>systemd接管了很多其他服务比如cgroup等</li>
+</ol>
+<p>RHEL 7系统是使用systemctl命令来管理服务的。比如查询某个服务的运行状态，可以用</p>
+<pre><code>systemctl status 服务名.service
+</code></pre>
+<p>查看服务的运行状态 其中.service可以省略</p>
+<h2 id="必须掌握的Linux命令"><a href="#必须掌握的Linux命令" class="headerlink" title="必须掌握的Linux命令"></a>必须掌握的Linux命令</h2><p>让系统各种硬件设备各司其职又能协同运行的就是系统内核。<br>Linux系统的内核完成 硬件资源的分配、调度等管理任务。</p>
+<h3 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h3><p>Linux系统中有些图形化工具  比如逻辑卷管理器LVM 确实很好用，极大的降低了运维惹人员操作出错的概率。但是图形化工具其实是调用了脚本来完成相应的工作，往往只是为了完成某种工作而设计的，缺乏Linux命令原有的灵活性和可控性。而且图形化工具相较于Linux命令行界面会更加消耗系统资源。<br>shell 就是这样的一个命令行工具。shell成为终端或者壳，充当的是人和内核、硬件之间的翻译官。用户把命令输入键入shell，他就回去调用相应的程序服务去完成某些工作。现在红帽系统在内的主流Linux系统磨人的是使用终端Bash解释器。<br>Bash有四个特点：</p>
+<ol>
+<li>通过按上下方向键调用过去执行过的Linux命令。</li>
+<li>命令或参数只是需要输入前几位就行了，后面用Tab补齐。</li>
+<li>具有强大的批处理脚本。</li>
+<li>具有使用环境变量功能。</li>
+</ol>
+<h3 id="常见的Linux执行格式是："><a href="#常见的Linux执行格式是：" class="headerlink" title="常见的Linux执行格式是："></a>常见的Linux执行格式是：</h3><pre><code>命令名称 [命令参数] [命令对象]
+</code></pre>
+<p>注意空格分开<br>命令对象一般是指要处理的文件、目录、用户等资源。<br>命令参数可以用长格式（完整选项名称），也可以用短格式（单个字母的缩写），两者分别用 – 与 - 作为前缀。<br>参数值需要根据不同的命令和需求情况而发生改变。  </p>
+<pre><code>man --help
+man -h
+</code></pre>
+<p>单机not listed切换至root管理员身份  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">空格键      向下翻一页</span><br><span class="line">page down  向下翻一页</span><br><span class="line">home       回到首页</span><br><span class="line">end        前往尾页</span><br><span class="line">&#x2F;          从上向下搜索关键词 如 &#x2F;Linux</span><br><span class="line">? 		   同 &#x2F;</span><br><span class="line">n          定位下一个搜索到的关键词</span><br><span class="line">N          定位上一个搜索到的关键词</span><br><span class="line">q          退出帮助程序</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="常用系统工作命令"><a href="#常用系统工作命令" class="headerlink" title="常用系统工作命令"></a>常用系统工作命令</h3><h4 id="echo命令"><a href="#echo命令" class="headerlink" title="echo命令"></a>echo命令</h4><p>用于在终端输出字符串或变量提取后的值  格式为</p>
+<pre><code>echo [字符串|$变量]
+</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo hello world！</span><br><span class="line">echo $SHELL</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;hello world&quot;&gt;&gt; hanwen_stuff</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>格式  </p>
+<pre><code>echo 写入文件 &quot;内容&quot; &gt;&gt; 文件名
+</code></pre>
+<p>注意提取变量的时候区分大小写     </p>
+<h4 id="date命令"><a href="#date命令" class="headerlink" title="date命令"></a>date命令</h4><p>用于设置系统的时间、日期    格式为</p>
+<pre><code>date [选项][+指定的格式]
+</code></pre>
+<p>%t 跳格<br>%H 小时<br>%I 小时<br>%M 分钟<br>%S 秒钟<br>%j 今年中第几天<br>%m 月<br>%d 日<br>%Y 年  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">date</span><br><span class="line">date &quot;+%Y-%m-%d %H:%M:%S&quot;</span><br><span class="line">date -s &quot;20210101 9:30:00&quot;</span><br><span class="line">date &quot;+%j&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="reboot"><a href="#reboot" class="headerlink" title="reboot"></a>reboot</h4><p>重启</p>
+<pre><code>reboot
+</code></pre>
+<p>只有root才可以执行，因为这种涉及硬件资源的管理权限  </p>
+<h4 id="poweroff"><a href="#poweroff" class="headerlink" title="poweroff"></a>poweroff</h4><p>关闭系统</p>
+<pre><code>poweroff
+</code></pre>
+<p>只有root才可以执行，因为这种涉及硬件资源的管理权限 </p>
+<h4 id="wget命令"><a href="#wget命令" class="headerlink" title="wget命令"></a>wget命令</h4><p>用于在终端中下载网络文件 格式为：</p>
+<pre><code>wget[参数]下载地址
+</code></pre>
+<p>-b 后台下载模式<br>-p 下载到指定目录<br>-t 最大尝试次数<br>-c 断点续传<br>-p 下载页面中所有资源 包括图片、视频等<br>-r 递归下载</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget http:&#x2F;&#x2F;www.xxxxxxx.com&#x2F;docs&#x2F;xxxxxx.pdf</span><br><span class="line">wget -r -p http:&#x2F;&#x2F;...............</span><br></pre></td></tr></table></figure>
+
+<h4 id="ps命令"><a href="#ps命令" class="headerlink" title="ps命令"></a>ps命令</h4><p>查看系统中的进程状态</p>
+<pre><code>ps[参数]
+</code></pre>
+<p>-a 显示所有进程<br>-u 用户以及其他详细信息<br>-x 显示没有控制终端的进程<br>Linux系统中时刻运行着很多进程，常见的5种进程状态分别为，运行，中断，不可中断，僵死 和停止。</p>
+<ul>
+<li>运行：R 进程正在运行或在运行队列中等待</li>
+<li>中断:S 进程处于休眠中，当某个条件形成后或者接收到信号时，则脱离该状态。  </li>
+<li>不可中断:D 进程不响应系统异步信号，即使Kill命令额不能将其终止。  </li>
+<li>僵死：Z 进程已经终止，但是进程描述符依然存在，知道父进程调用wait4（）系统函数后将进程释放  </li>
+<li>停止：T 进程收到停止信号后停止运行<br>PID 进程的ID号<br>start 是进程启动的时间  command命令名称和参数<br>Linux系统的命令参数有长短格式之分，长格式和长格式、短格式之间不能合并，但是短格式之间可以合并，合并后仅保留一个 - 减号 即可。另外ps命令可以允许参数不加减号 - ，因此可直接写成ps aux的样子。   <h4 id="TOP命令"><a href="#TOP命令" class="headerlink" title="TOP命令"></a>TOP命令</h4>top命令用于动态的监视进程活动。前五行为系统整体的统计信息，第一行<br>系统时间、运行时间、登录终端数、系统负载（三个数值一次为1分钟、5分钟、15分钟内的平均值，数值越小负载越低）<br>第二行：进程总数、运行中的进程数、睡眠中的进程数、停止的进程数、僵死的进程数</li>
+</ul>
+<h4 id="pidof命令"><a href="#pidof命令" class="headerlink" title="pidof命令"></a>pidof命令</h4><p>pidof用于查询某个指定服务进程的PID值</p>
+<pre><code>pidof[参数][服务名称]
+</code></pre>
+<p>每个进程的进程号码值PID是唯一的，可以通过PID来区分不同的进程。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pidof sshdq</span><br></pre></td></tr></table></figure>
+
+<h4 id="kill命令"><a href="#kill命令" class="headerlink" title="kill命令"></a>kill命令</h4><p>用来终止某个指定PID的服务进程</p>
+<pre><code>kill[参数]【进程PID】
+</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill 2156</span><br></pre></td></tr></table></figure>
+
+<h4 id="killall命令"><a href="#killall命令" class="headerlink" title="killall命令"></a>killall命令</h4><p>killall命令用于终止某个指定的服务所对应的全部进程</p>
+<pre><code>killall[参数][进程名称]
+</code></pre>
+<p>复杂的软件服务程序会有多个进程协同为用户提供服务，可以pidof 服务名称，可以得到所有PID 。killall 可以终止齐下的所有进程。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">killall httpd</span><br></pre></td></tr></table></figure>
+
+<h4 id="ctrl-c组合键-可以在终端执行一个命令后，立即停止它。"><a href="#ctrl-c组合键-可以在终端执行一个命令后，立即停止它。" class="headerlink" title="ctrl + c组合键  可以在终端执行一个命令后，立即停止它。"></a>ctrl + c组合键  可以在终端执行一个命令后，立即停止它。</h4><h4 id="如果有些命令在执行时不断地在屏幕上输出信息，影响到后续输入，则可以在执行命令时末尾加上一个-amp-符号，这样命令将进入系统后台执行。"><a href="#如果有些命令在执行时不断地在屏幕上输出信息，影响到后续输入，则可以在执行命令时末尾加上一个-amp-符号，这样命令将进入系统后台执行。" class="headerlink" title="如果有些命令在执行时不断地在屏幕上输出信息，影响到后续输入，则可以在执行命令时末尾加上一个 &amp;符号，这样命令将进入系统后台执行。"></a>如果有些命令在执行时不断地在屏幕上输出信息，影响到后续输入，则可以在执行命令时末尾加上一个 &amp;符号，这样命令将进入系统后台执行。</h4><h3 id="系统状态检测命令"><a href="#系统状态检测命令" class="headerlink" title="系统状态检测命令"></a>系统状态检测命令</h3><h4 id="ifconfig命令"><a href="#ifconfig命令" class="headerlink" title="ifconfig命令"></a>ifconfig命令</h4><p>ifconfig命令用于获取网卡配置和网络状态</p>
+<pre><code>ifconfig [网络设备][参数]
+</code></pre>
+<p>可以查看网卡名称、inet参数后面的IP地址、eher参数后面的网卡物理地址MAC地址，以及RX\TX的接收数据包和发送数据包的累计流量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
+
+<h4 id="uname命令"><a href="#uname命令" class="headerlink" title="uname命令"></a>uname命令</h4><p>uname命令用于查看系统内核系统版本的信息</p>
+<pre><code>uname[-a]
+</code></pre>
+<p>一般会固定搭配-a查看当前系统的内核名称、主机名、内核发行版本、硬件名称等等</p>
+<h4 id="uptime命令"><a href="#uptime命令" class="headerlink" title="uptime命令"></a>uptime命令</h4><p>查看系统负载信息</p>
+<pre><code>uptime
+</code></pre>
+<p>显示系统时间、已经运行的时间、启用终端数量以及平均负载值(1min.5min.15min)<br>负载值越低越好，尽量不要长期超过1，生产环境下不要超过5。</p>
+<h4 id="free命令"><a href="#free命令" class="headerlink" title="free命令"></a>free命令</h4><p>显示系统内存使用量信息 </p>
+<pre><code>free[-h]
+</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free -h</span><br></pre></td></tr></table></figure>
+<p>内存总量、已用量、可用量（free）、进程共享的内存量、磁盘缓存的内存量、缓存的内存量 </p>
+<h4 id="who命令"><a href="#who命令" class="headerlink" title="who命令"></a>who命令</h4><p>用于查看登入主机的用户终端的信息  </p>
+<pre><code>who[参数]
+</code></pre>
+<h4 id="last命令"><a href="#last命令" class="headerlink" title="last命令"></a>last命令</h4><p>用于查看所有登录系统的登录记录</p>
+<pre><code>last[参数]
+</code></pre>
+<p>这些信息都是以日志的形势保存在系统里，所以还是很容易对其内容篡改的。</p>
+<h4 id="history-命令"><a href="#history-命令" class="headerlink" title="history 命令"></a>history 命令</h4><p>用于显示历史执行过的命令。（1000条），不够用还可以设置。</p>
+<pre><code>history[-c]
+</code></pre>
+<p>-c参数会清空所有的命令历史记录。历史命令会被保存到用户目录中的.bash_history里 Linux系统中以.开头的文件都是隐藏文件，这些文件大部分都是系统服务文件。可以用cat命令查看文件内容。</p>
+<pre><code>！[编码数字]
+</code></pre>
+<p>来重复执行某一次命令 这个数字对应history里的第几次命令</p>
+<pre><code>！14
+</code></pre>
+<h4 id="sosreport命令"><a href="#sosreport命令" class="headerlink" title="sosreport命令"></a>sosreport命令</h4><p>用于收集系统配置 框架信息并输出诊断文档</p>
+<pre><code>sosreport
+</code></pre>
+<h3 id="工作目录切换命令"><a href="#工作目录切换命令" class="headerlink" title="工作目录切换命令"></a>工作目录切换命令</h3><h4 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h4><p>用于显示目前中断所处的工作目录 </p>
+<pre><code>pwd[选项]
+</code></pre>
+<h4 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h4><p>cd命令切换工作路径 </p>
+<pre><code>cd[目录名称]
+</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;etc   # 切换到指定目录</span><br><span class="line">cd -      # 返回上一次的目录</span><br><span class="line">cd ~  	  # 返回当前用户的家目录</span><br><span class="line">cd ..     # 返回上一级目录</span><br><span class="line">cd ~username  # 返回指定用户的家目录</span><br></pre></td></tr></table></figure>
+
+<h4 id="ls命令"><a href="#ls命令" class="headerlink" title="ls命令"></a>ls命令</h4><p>用于显示目录中的文件信息</p>
+<pre><code>ls[选项][文件]
+</code></pre>
+<p>ls -a参数看到全部文件 包括隐藏文件 使用“-l”参数可以查看文件大小、属性的详细信息。-d是查看目录属性信息 </p>
+<pre><code>ls -al
+</code></pre>
+<h3 id="文本文件编辑命令"><a href="#文本文件编辑命令" class="headerlink" title="文本文件编辑命令"></a>文本文件编辑命令</h3><p>Linux系统中一切皆文件 对服务程序进行配置就是对程序配置文件编辑  </p>
+<h4 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h4><p>用于查看较小规模的纯文本文件 </p>
+<pre><code>cat[选项][文件]
+</code></pre>
+<p>-n参数可以显示行号  cat查看大文本文件会让信息一直在屏幕上快速翻滚。</p>
+<pre><code>cat -n initial-setup-ks.cfg
+</code></pre>
+<h4 id="more"><a href="#more" class="headerlink" title="more"></a>more</h4><p>用于查看大文本文件 </p>
+<pre><code>more[选项][文件]  
+</code></pre>
+<p>最下方有百分比提示看了多少了，其次空格键和回车键支持翻页   </p>
+<pre><code>more initial-setup-ks.cfg
+</code></pre>
+<h4 id="head"><a href="#head" class="headerlink" title="head"></a>head</h4><p>用于查看纯文本文件的前N行，格式为 </p>
+<pre><code>head[选项][文件]
+</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head -n 20 initial-setup-ks.cfg</span><br></pre></td></tr></table></figure>
+
+<h4 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h4><p>用于查看纯文本文件的后N行 或持续刷新内容  </p>
+<pre><code>tail[选项][文件]
+</code></pre>
+<p>和head方法参数都一样<br>当要实时查看最新的日志文件时候，此时的命令格式为</p>
+<pre><code>tail -f 文件名
+</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -f &#x2F;var&#x2F;log&#x2F;messages</span><br></pre></td></tr></table></figure>
+
+<h4 id="tr"><a href="#tr" class="headerlink" title="tr"></a>tr</h4><p>用于替换文本文件中的字符</p>
+<pre><code>tr[原始字符][目标字符]
+</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat anaconda-ks.cfg | tr [:lower:]  [:upper:]</span><br></pre></td></tr></table></figure>
+<p>两个正则表达式记得分开 不然就算一个字符串所以报错缺少   </p>
+<h4 id="wc"><a href="#wc" class="headerlink" title="wc"></a>wc</h4><p>wc命令用于统计制定文本的行数、字数、字节数</p>
+<pre><code>wc[参数]文本
+</code></pre>
+<p>-l 只显示行数<br>-w 只显示单词数<br>-c 只显示字节数</p>
+<h4 id="cut"><a href="#cut" class="headerlink" title="cut"></a>cut</h4><p>用于按列提取文本字符  </p>
+<pre><code>cut[参数]文本
+</code></pre>
+<p>-f参数用来设置需要看的列数 -d参数用来设置间隔符号</p>
+<pre><code>cut -d: -f 1 /etc/passwd
+</code></pre>
+<h4 id="diff"><a href="#diff" class="headerlink" title="diff"></a>diff</h4><p>diff命令用于比较多个文本文件的差异 </p>
+<pre><code>diff [参数] 文件
+</code></pre>
+<p>–brief参数来确定两个文件是否不同<br>-c 比较多个文件差异<br>可以用于文件判断是否被篡改  </p>
+<pre><code>diff --brief diff_A.txt diff_B.txt
+</code></pre>
+<h3 id="文件目录管理命令"><a href="#文件目录管理命令" class="headerlink" title="文件目录管理命令"></a>文件目录管理命令</h3><h4 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h4><p>用于创建空白文件后者设置文件的时间 </p>
+<pre><code>touch [选项][文件名]
+</code></pre>
+<p>创建一个空白的文本文件<br>-a 参数 仅仅修改读取时间atime<br>-m 参数 仅仅修改修改时间mtime<br>-d 同时修改mtime atime</p>
+<pre><code>touch -d &quot;2020-12-12 14:22&quot; hanwen_stuff
+</code></pre>
+<h4 id="wq"><a href="#wq" class="headerlink" title=":wq"></a>:wq</h4><p>mkdir创建空白的目录 </p>
+<pre><code>mkdir[选项]【目录】
+</code></pre>
+<p>-p参数可以递归嵌套生成嵌套目录  </p>
+<pre><code>mkdir hanwentrain
+cd hanwentrain
+mkdir -p a/b/c/d/e
+</code></pre>
+<h4 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h4><p>cp复制文件或目录 格式为</p>
+<pre><code>cp [选项] 源文件 目标文件
+</code></pre>
+<p>如果目标文件是目录 则会吧源文件复制到该目录中<br>如果目标文件是文件 则会询问是否要覆盖它<br>如果目标文件不存在，则会执行正常的复制操作<br>-p 保留原始文件属性<br>-d 如果对象为链接文件  保留该链接文件的属性<br>-r 持续递归复制 用于目录<br>-i 若目标文件存在询问是否覆盖<br>-a 相当于-pdr</p>
+<h4 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h4><p>用于剪切文件或者文件重命名  </p>
+<pre><code>mv [选项]源文件[目标路径|目标文件名]
+</code></pre>
+<p>mv和cp不同 他会默认把源文件删除   所以在同一个目录使用mv操作实际上就是重命名   </p>
+<h4 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h4><p>删除文件或目录  (remove)</p>
+<pre><code>rm [文件名]
+</code></pre>
+<p>系统默认询问你是否确定执行删除操作 如果你不想总是看到这种反复提醒的确认信息，需要输入y 再enter ，直接enter则是否认的意思 。<br>默认 -f参数可以强制删除   此外如果要删除目录 必须要跟一个-r，系统会逐层嵌套询问是否进入目录xxx ，以及是否确认删除xxx    </p>
+<pre><code>rm install.log
+rm -f linux.log
+rm -fa 文件夹名 
+</code></pre>
+<h4 id="dd"><a href="#dd" class="headerlink" title="dd"></a>dd</h4><p>用于指定大小和个数的数据块来复制文件或转换文件  格式为dd[参数]<br>能够让用户按照指定大小和个数的数据块来复制文件内容，如果愿意的话，还可以在复制过程中转换其中的数据。<br>Linux系统中有过一个/dev/zero的设备文件，他不会占用系统存储空间，却可以提供无穷尽的数据，可以用它作为dd 命令的输入文件 。<br>if=  输入文件名称<br>of=  输出文件名称<br>bs=  设置每一个块的大小<br>count=  设置要复制的块的个数  </p>
+<pre><code>dd if=/dev/zero of=560_file count=1 bs=560M
+</code></pre>
+<p>等于号左右不能加空格  dd可以复制文件 也可以吧比如印文件做成iso格式的镜像文件，dd可以直接压制出来。</p>
+<pre><code>dd if=/dev/cdrom of=RHEL-server-7.0-x86_64-Linuxprobe.co.iso 
+</code></pre>
+<h4 id="file"><a href="#file" class="headerlink" title="file"></a>file</h4><p>用于查看文件的类型 </p>
+<pre><code>file 文件名  
+</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file anaconda-ks.cfg</span><br></pre></td></tr></table></figure>
+
+<h3 id="打包压缩与搜索命令"><a href="#打包压缩与搜索命令" class="headerlink" title="打包压缩与搜索命令"></a>打包压缩与搜索命令</h3><h4 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h4><p>对文件进行压缩或解压  </p>
+<pre><code>tar [选项][文件]
+</code></pre>
+<p>-c 创建压缩文件<br>-x 解开压缩文件<br>-t 查看压缩包内有哪些文件<br>-z 用Gzip压缩或解压<br>-j 用zip2压缩或解压<br>-v 显示压缩解压过程<br>-f 目标文件名<br>-P 保留原始权限和属性<br>-p 使用绝对路径来压缩<br>-C 解压到指定目录<br>注意 -f参数特别重要 他必须放到参数的最后一位  代表压缩或者解压的软件包名称<br>可以常用 -czvf 压缩 -xzvf解压</p>
+<pre><code>tar -czvf etc.tar.gz /etc
+tar -czvf 压缩包名称.tar.gz 要打包的目录或文件
+
+tar -czvf 压缩包名称.tar.gz tar [-C 指定位置 不指定就解压在原地]
+</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xzvf hanwentartrain.tar.gz -C hanwentar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h4><p>在文本执行关键词搜索 并显示匹配的结果 </p>
+<pre><code>grep[选项][文件]
+</code></pre>
+<p>-n 显示显示搜索到的信息的行号<br>-v 参数用于反选信息（即是没有包含关键词的所有信息行）  </p>
+<p>/etc/passwd 文件是保存所有用户信息的  </p>
+<pre><code>grep hello hanwentrain
+</code></pre>
+<h4 id="find"><a href="#find" class="headerlink" title="find"></a>find</h4><p>按照指定条件来查找文件   </p>
+<pre><code>find[查找路径] 寻找条件 操作 
+</code></pre>
+<p>-name 匹配名称<br>-perm 匹配权限<br>-user 匹配所有者<br>-group 匹配所有组<br>-mtime -n +n 匹配修改内容时间 -n为多少天内，+n为多少天前<br>-atime -n +n 匹配访问文件时间 -n为多少天内，+n为多少天前<br>-ctime -n +n 匹配修改文件权限时间 -n为多少天内，+n为多少天前<br>-newer f1 !f2匹配比f1新但是比f2旧的文档<br>-size 匹配文件大小<br>-prune 忽律某个目录<br>–type b/d/c/p/l/f 匹配文件类型<br>-etec…. {}\； 后面可以跟用于金已处理搜索结果的命令   </p>
+<pre><code>find /etc -name &quot;host*&quot; -print
+
+find / -name &quot;hanwen*&quot;
+</code></pre>
+<p>/ 空格 不加任何地址是全局搜索 </p>
+<h3 id="tab键补齐简直太好用了"><a href="#tab键补齐简直太好用了" class="headerlink" title="tab键补齐简直太好用了"></a>tab键补齐简直太好用了</h3><h4 id="！是Linux-shell里的关键字，如果字符串输入，记得是单引号，双引号会报错"><a href="#！是Linux-shell里的关键字，如果字符串输入，记得是单引号，双引号会报错" class="headerlink" title="！是Linux shell里的关键字，如果字符串输入，记得是单引号，双引号会报错"></a>！是Linux shell里的关键字，如果字符串输入，记得是单引号，双引号会报错</h4><h2 id="输入输出重定向"><a href="#输入输出重定向" class="headerlink" title="输入输出重定向"></a>输入输出重定向</h2><p>输入重定向是指把文件导入命令中， 而输出重定向是指把原来要输出到屏幕的数据信息，写入指定文件中。相较于输入重定向，我们用输出重定向频率更高。<br>输出重定向有两种，一种是标准输出重定向，一个是错误输出重定向，以及清空写入与追加写入两种。  </p>
+<ul>
+<li>标准输入重定向 STDIN 文件描述符 0， 默认从键盘输入，也可以从其他文件或命令中输入。  </li>
+<li>标准输出重定向 STDOUT 文件描述符 1， 默认输出到屏幕  </li>
+<li>错误输出重定向 STDERR 文件描述符 2， 默认输出到屏幕   </li>
+</ul>
+<p>简单来说，当我们标准输出没问题的时候，不用加文件描述符1，如果是要catch错误信息，需要加入2，虽然都会创建文件，但是如果没有错误则不会写入。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">命令 &lt; 文件</span><br><span class="line">命令 &lt;&lt; 分界符</span><br><span class="line">命令 &lt; 文件1 &gt;文件2 将文件1作为命令的标准输入并将标准输出到文件2中去</span><br><span class="line">命令 &gt; 文件 将标准输出重定向到一个文件（清空原有文件数据）</span><br><span class="line">命令 2&gt; 文件 将错误输出重定向到一个文件（清空原有文件数据）</span><br><span class="line">命令 &gt;&gt; 文件 将标准输出重定向到一个文件（追加到原有内容后面）</span><br><span class="line">命令 2&gt;&gt; 文件 将错误输出重定向到一个文件（追加到原有内容后面）</span><br><span class="line">命令 &amp;&gt;&gt; 文件 将标准输出和错误输出都到一个文件中 </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">man bash &gt; readme.txt</span><br><span class="line">echo &#39;welcome to Linux world!!!&#39; &gt; readme.txt</span><br><span class="line">echo &#39;fighting ! hanwen&#39; &gt;&gt; readme.txt</span><br><span class="line">ls -l xxxxxx 2&gt;&gt; errorlog.txt </span><br></pre></td></tr></table></figure>
+
+<p>如果想把命令的报错信息写入到文件，用户执行一个自动化的shell脚本的时候，这个操作会特别有用特别实用，因为它可以吧整个脚本执行过程中的报错信息都记录到文件中，便于安装后的排错工作。    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wc -l &lt; readme.txt</span><br></pre></td></tr></table></figure>
+
+<h2 id="管道命令符"><a href="#管道命令符" class="headerlink" title="管道命令符"></a>管道命令符</h2><p>同时按下键盘上的shift+\键 即可进入输入管道符 其执行格式为“命令A|命令B”<br>把前一个原本要输出到屏幕的标准正常数据当做是后一个命令的标准输入   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;&#x2F;sbin&#x2F;nologin&quot; &#x2F;etc&#x2F;passwd | wc -l</span><br><span class="line">ls -l &#x2F;etc&#x2F;|more</span><br></pre></td></tr></table></figure>
+<p>用户修改密码的时，通常都需要输入两次密码进行确认。在编写自动化脚本的时候将成为非常致命的缺陷，通过把管道符和passwd命令的 –stdin参数结合，我们可以用一条命令来完成密码重置操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;hanwen&quot;|passwd --stdin root</span><br><span class="line">&#96;&#96;&#96;   </span><br><span class="line">&#96;&#96;&#96;   </span><br><span class="line">mail -s &quot;readme&quot; root@linuxprobe.com &lt;&lt; over</span><br><span class="line">&gt; context</span><br><span class="line">&gt; context</span><br><span class="line">&gt; over</span><br><span class="line">&#96;&#96;&#96;   </span><br><span class="line">命令A|命令B|命令C 可以一直嵌套管道符</span><br><span class="line"></span><br><span class="line">### su</span><br><span class="line"></span><br><span class="line">	su - username</span><br><span class="line">登录用户</span><br><span class="line"></span><br><span class="line">	exit</span><br><span class="line">退出登录</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 命令行的通配符</span><br><span class="line">通配符就是通用匹配信息的符号  </span><br><span class="line">*代表匹配0-无穷个字符  </span><br><span class="line">？代表单个字符   </span><br><span class="line">[0-9]代表0-9的单个数字字符    </span><br><span class="line">[a-z]代表a-z的单个字母字符   </span><br><span class="line">[123]代表1,2,3中任意一个字符    </span><br><span class="line"></span><br><span class="line">	ls -l &#x2F;dev&#x2F;sda*</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 四个常用的转义符  </span><br><span class="line">反斜杠 \  使反斜杠后面的变量变成单纯的字符串   </span><br><span class="line">单引号 &#39;  &#39; 转移其中所有的变量变成单纯的字符串   </span><br><span class="line">双引号 &quot;  &quot; 保留其中的变量属性，不进行转义处理</span><br><span class="line">反引号 &#96;  &#96; 把其中的命令执行返回一个结果  </span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;Linux</span><br><span class="line">price&#x3D;5</span><br><span class="line">echo &quot;price is $price&quot;</span><br><span class="line">echo &quot;price is \$$price&quot;</span><br><span class="line">echo &#96;uname -a&#96;</span><br></pre></td></tr></table></figure>
+
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>在Linux中变量一般都大写，我们可以直接通过变量名称提取到对应的变量值。<br>Linux系统中环境变量是用来定义一些系统运行环境的一些参数，比如每个用户不同的家目录，邮件存放地址。</p>
+<h3 id="命令在Linux系统里的四个步骤"><a href="#命令在Linux系统里的四个步骤" class="headerlink" title="命令在Linux系统里的四个步骤"></a>命令在Linux系统里的四个步骤</h3><ol>
+<li><p>判断用户是否以及绝对路径或者相对路径的方式输入命令，如果是的话直接执行。</p>
+</li>
+<li><p>Linux系统检查用户的输入命令是否为别名命令，即是用户自顶一个的一个命令名称替换原来的命令名称。可以用alias命令来创建一个 </p>
+<p> alias 别名=命令<br> unalias 别名  </p>
+</li>
+<li><p>bash解释器判断用户输入的是内部之灵还是外部指令。如果是内部指令，就是解释器内部的指令，则会直接执行。  </p>
+</li>
+<li><p>系统在多个路径中查找用户输入的命令文件，定义这些路径的变量叫PATH，可以简单的理解为解释器小助手。PATH变量是一个用各个路径间冒号相连的环境变量。这些路径的增加或删除会影响到Bash解释器对命令的查找</p>
+<p> echo $PATH<br> path=$path:/root/bin</p>
+</li>
+</ol>
+<p>在接手一台LINUX系统后 执行命令前要检查PATH变量中是否有可疑的目录。</p>
+<p>常用的环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">HOME 用户的主目录（家目录）</span><br><span class="line">SHELL 用户在使用的shell解释器名称</span><br><span class="line">HISTSIZE 输出历史命令记录条数</span><br><span class="line">MAIL 右键保存路径</span><br><span class="line">LANG 系统语言</span><br><span class="line">RANDOM 生成一个随机的数字</span><br><span class="line">PATH 解释器搜索用户执行命令的路径</span><br></pre></td></tr></table></figure>
+<p>一个相同的变量在不同的用户是不同的，也是不通的，除非用export 命令提升为全局变量。</p>
+<pre><code>export 变量名
+</code></pre>
+<h2 id="Vim文本编辑器"><a href="#Vim文本编辑器" class="headerlink" title="Vim文本编辑器"></a>Vim文本编辑器</h2><p>日常工作中免不了需要编写文档，这些工作都是通过文本编辑器完成的。<br>Vim文本编辑器默认安装在当前所有Linux操作系统上<br>Vim文本编辑器有三种模式,命令模式、末行模式、编辑模式。<br>命令模式：控制光标移动 ，可以对文本进行复制、粘贴、删除、查找功能<br>输入模式：正常文本录入<br>末行模式：保存或退出文档 以及设置编辑环境<br>每次运行Vim编辑器会默认进入命令模式，先切换到输入模式在进行文档编辑工作。<br>在编辑完文档后需要先返回命令模式，在进入末行模式，执行文档的保存或退出。Vim中无法直接从输入模式切换到末行模式。  </p>
+<p>命令模式：<br>dd 删除（剪贴）光标所在整行<br>yy 复制光标缩在整行<br>n 显示搜索命令定位的下一个字符串<br>N 显示搜索命令定位的上一个字符串<br>u 撤销上一条命令<br>p 将之前删除dd或复制yy的粘贴到光标后面<br>yG 从光标位置复制到文件尾<br>ggyG  全部复制<br>yy 复制游标所在行整行<br>选中文本进行复制 在命令模式下按 v 进入 Visual Mode，然后用 方向键 或 hjkl 选择文本，再按 y 进行复制<br>p    粘贴至游标后（下）<br>P    粘贴至游标前（上）  </p>
+<p>末行模式主要用于保存或者退出。在命令模式中输入一个冒号进入末行模式<br>:w 保存<br>:wq! 强制保存后退出<br>:q  退出<br>:q!  强制退出不保存<br>:set nu  显示行数<br>:命令  执行命令<br>:整数  跳转到这一行<br>？字符串 从文本从下向上搜索该字符串<br>/字符串  从文本从上向下搜索该字符串    </p>
+<p>创建一个可以直接</p>
+<pre><code>vim 文件名 
+</code></pre>
+<p>命令模式下a、i、o三个键都可以切换到输入模式<br>a键与i键分别是光标后面一位和光标当前位置切换到输入模式<br>而 o键是光标下面创建一个空行 然后等待输入   </p>
+<p>记住一点就是输入模式还是末行模式 都是esc退回命令模式   </p>
+<h2 id="配置主机名称"><a href="#配置主机名称" class="headerlink" title="配置主机名称"></a>配置主机名称</h2><p>为了方便局域网中查找某台特定的主机，或者对主机进行区分，除了要有IP地址外，还要为主机配置一个主机名，主机之间可以用类似于域名的名称来互相访问。在Linux系统中，主机名大多保存在 /etc/hostname 文件中  </p>
+<ol>
+<li><p>使用VIM编辑器 </p>
+</li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li><p>“/etc/hostname”主机名称文件  </p>
+</li>
+<li><p>把原始主机名称删除后 追加新的名称  记得保存 wq!</p>
+</li>
+<li><p>退出文档 使用hostname检查是否修改成功</p>
+<p> vim /etc/hostname</p>
+</li>
+</ol>
+<h2 id="配置网卡信息"><a href="#配置网卡信息" class="headerlink" title="配置网卡信息"></a>配置网卡信息</h2><p>网卡IP地址配置是否正确是两台服务器是否可以通信的前提。<br>配置网络服务的工作其实就是编辑网卡配置文件。<br>而在RHEL7中，网卡配置文件的前缀，则以ifcfg开始加上网卡名称共同组成了网卡配置文件的名字，例如 ifcfg-eno16777736   </p>
+<p>第一步： 首先切换到网卡配置文件地址   /etc/sysconfig/network-scripts<br>第二步： 使用vim编辑器修改网卡文件  ifcfg-eno16777736  逐项写入配置参数保存退出。<br>第三步： 重启网络服务并测试网络是否联通  </p>
+<p>执行重启网卡设备的命令（在正常情况下不会有提示信息）然后通过ping命令测试网络能否联通<br>Linux系统中ping命令不会自动终止，因此需要手动按下ctrl+c 来强行结束进程    </p>
+<h2 id="配置Yum软件仓库"><a href="#配置Yum软件仓库" class="headerlink" title="配置Yum软件仓库"></a>配置Yum软件仓库</h2><p>Yum软件仓库的作用是为了进一步简化RPM管理软件的难度以及自动分析所需要软件包以及其依赖关系的技术，可以想象成一个硕大的软件仓库，里面保存了几乎所有常用的工具，而且只需要说出所需的软件包名称，系统就会自动为您搞定一切。   </p>
+<ol>
+<li>进入/etc/ym.repos.d/目录中，这个目录存放着Yum软件仓库的配置文件  </li>
+<li>使用Vim编辑器创建一个名为rhel7.repo的新配置文件（后缀必须是repo文件名随意） 逐项写入配置参数并保存</li>
+</ol>
+<ul>
+<li>[rhel-media]</li>
+<li>name=hostname</li>
+<li>baseurl=file:///media/cdrom</li>
+<li>enabled=1</li>
+<li>gpgcheck=1</li>
+<li>gpgky</li>
+</ul>
+<ol start="3">
+<li>按照配置参数路径挂载光盘，并把光在挂载信息写入到/etc/fstab文件中</li>
+<li>使用 yum install httpd -y  命令检查Yum软件仓库是否可用了  </li>
+<li>创建挂载点后进行挂载操作，尝试使用Yum软件仓库来安装软件。  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;etc&#x2F;yum.respos.d&#x2F;</span><br><span class="line">vim rehl7.zepo</span><br><span class="line">[rhel7]</span><br><span class="line">name&#x3D;rhel7</span><br><span class="line">baseurl&#x3D;file:&#x2F;&#x2F;&#x2F;media&#x2F;cdrom</span><br><span class="line">enable&#x3D;1</span><br><span class="line">gpgcheck&#x3D;0</span><br></pre></td></tr></table></figure>
+
+<h2 id="编写Shell脚本"><a href="#编写Shell脚本" class="headerlink" title="编写Shell脚本"></a>编写Shell脚本</h2><p>shell终端是人和计算机硬件之间的翻译官，shell脚本命令的工作方式通常有两种：一种是交互式，用户没输入一条就执行一条；一种是批处理，有用户事先编写好一个完整的shell脚本，shell会一次性执行完诸多命令。<br>系统默认Bash作为命令行的解释器<br>shell 脚本文件的名称可以任意名单为了避免误以为是普通文件，建议将.sh后缀加上 以表示一个脚本文件。  #！/bin/bash 声明系统使用那种shell解释器来执行脚本。同时可以用 # 作为注释  。可以直接用</p>
+<pre><code>bash 文件名
+</code></pre>
+<p>来运行shell脚本文件，也可以输入完整路径来执行，但默认会因为权限不足而报错  只需要为文本文件增加执行权限即可。   </p>
+<pre><code>vim test.sh
+#!/bin/bash
+#for example:this is a note
+pwd
+ls =al
+</code></pre>
+<h3 id="shell脚本接受用户输入的参数"><a href="#shell脚本接受用户输入的参数" class="headerlink" title="shell脚本接受用户输入的参数"></a>shell脚本接受用户输入的参数</h3><p>shell已经内设了用于接受参数的变量，变量之间可以用空格隔开。例如，$0 对应当前shell脚本程序的名称，$#对应是有几个参数  $*对应是所有参数 $?对应是显示上一个命令执行的返回值</p>
+<pre><code>#!/bin/bash
+echo &quot;this bash name is $0&quot;
+echo &quot;there are $# vars,they are $*&quot;
+echo &quot;the 1st var is $1,the fifth var is $5&quot;
+
+sh test.sh one two three four &quot;hello world&quot;
+</code></pre>
+<h3 id="判断用户的参数"><a href="#判断用户的参数" class="headerlink" title="判断用户的参数"></a>判断用户的参数</h3><p>shell脚本中的条件测试语法可以判断表达式是否成立，若条件成立，则返回数字0，否则便返回其他随机数值。<br>测试语法格式：</p>
+<pre><code>[ 条件表达式 ]   注意两边均要有个空格
+</code></pre>
+<p>条件测试语句常见的有四种：</p>
+<ol>
+<li>文件测试语句</li>
+<li>逻辑测试语句</li>
+<li>整数值比较语句</li>
+<li>字符串比较语句</li>
+</ol>
+<p>文件测试就是用来指定条件判断文件是否存在或权限是否满足情况的运算符。  </p>
+<p>-e 判断文件是否存在<br>-d 测试文件是否为目录类型<br>-r 测试当前用户是否有权限读取<br>-w 测试当前用户是否有权限写入<br>-x 测试当前用户是否有权限执行<br>-f 判断是否为一般文件  </p>
+<pre><code>[ - f /etc/fastab]
+</code></pre>
+<h2 id="shell逻辑判断符号"><a href="#shell逻辑判断符号" class="headerlink" title="shell逻辑判断符号"></a>shell逻辑判断符号</h2><p>与  &amp;&amp;<br>或  ||<br>否  !</p>
+<pre><code>[ -e /dev/cdrom ] &amp;&amp; echo &quot;Exist&quot;
+</code></pre>
+<p>可以利用与的特性 判断正确才执行后面的命令来判断显示一体化   </p>
+<pre><code>[ $USER = root ] || echo &quot;user&quot;
+</code></pre>
+<p>利用或的特性 判断失败后才会执行 or后面的语句  </p>
+<pre><code>[ ! $USER = root ]
+</code></pre>
+<p>可以用组合语句来实现判断什么输出什么 ：</p>
+<pre><code>[ ! $USER = root ] &amp;&amp; echo &quot;user&quot; || echo &quot;root&quot;
+</code></pre>
+<p>整数比较符只能对数字操作，不能将数字和文件、字符串等内容一起操作。因为等号与赋值命令符冲突，大小号和输入输出重定向冲突。   </p>
+<p>-eq 是否等于<br>-ne 是否不等<br>-gt 是否大于<br>-lt 是否小于<br>-le 是否等于或小于<br>-ge 是否大于或等于  </p>
+<pre><code>[ 10 -gt 10 ] 
+
+free -m | grep Mem:
+free -m | grep Mem | awk &#39;&#123;print $4&#125;&#39;
+FreeMem=`free -m | grep Mem: | awk &#39;&#123;print $4&#125;&#39;`
+
+[ $FreeMem -lt 1024 ] &amp;&amp; echo &quot;Insufficient Memory&quot;
+</code></pre>
+<p>字符串比较语句 用于判断测试字符串是否为空值  或两个字符串是否相同<br>=  字符串内容是否相同<br>！=  字符串内容不同<br>-z   判断字符串内容是否为空    </p>
+<pre><code>[ -z $string ]
+</code></pre>
+<p>变量不是英文时：</p>
+<pre><code>[ $LANG != &quot;en.US&quot;] &amp;&amp; echo &quot;Not en.US&quot;
+</code></pre>
+<h2 id="控制流程"><a href="#控制流程" class="headerlink" title="控制流程"></a>控制流程</h2><h3 id="if条件语句"><a href="#if条件语句" class="headerlink" title="if条件语句"></a>if条件语句</h3><p>句型：   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if 条件语句</span><br><span class="line">then 命令语句</span><br><span class="line">elif 条件语句  </span><br><span class="line">then 命令语句  </span><br><span class="line">else</span><br><span class="line">命令语句 </span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<pre><code>#! /bin/bash
+DIR=&#39;/media/cdrom&#39;
+if [ ! -e $DIR ]
+then
+mkdir -p $DIR
+fi
+</code></pre>
+<p>Linux系统里的ping命令不像Windows一样尝试四次就结束，因此为了避免用户等待市场过长，需要通过 -c 参数来规定尝试次数， 并使用 -i参数定义每个数据报发送间隔 ，以及用 -W参数定义等待超时时间   </p>
+<pre><code>#! /bin/bash
+ping -c 3-i 0.2 -W 3 $1 &amp;&gt; /dev/null
+if [ $? -eq 0 ]
+then
+echo &quot;Host $1 is ON-line&quot;
+else
+echo &quot;Host $1 is OFF-line&quot;
+fi
+
+
+
+#! /bin/bash
+read -p &quot;Input your score(0-100):&quot; GRADE
+if [ $GRADE -ge 85 ] &amp;&amp; [ $GRADE -le 100 ]
+then  
+echo &quot;$GRADE is excellent&quot;  
+elif [ $GRADE -ge 70 ] &amp;&amp; [ $GRADE -le 84 ]
+then
+echo &quot;$GRADE is pass&quot;
+else
+echo &quot;$GRADE is fail!&quot;
+fi
+</code></pre>
+<h3 id="for条件循环"><a href="#for条件循环" class="headerlink" title="for条件循环"></a>for条件循环</h3><p>for循环允许脚本一次性读取多个信息，然后逐个对信息进行操作处理，党要处理的数据有范围时候，使用for循环语句在适合不过了。    </p>
+<pre><code>for 变量名这里注意不要加$ in 取值列表
+do
+命令序列
+done
+</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#! &#x2F;bin&#x2F;bash</span><br><span class="line">read -p &quot;Enter password:&quot; PASSWD</span><br><span class="line">for UNAME in &#96;cat users.txt&#96;</span><br><span class="line">do</span><br><span class="line">id $UNAME &amp;&gt; &#x2F;dev&#x2F;null</span><br><span class="line">if [ $? -eq 0 ]</span><br><span class="line">then </span><br><span class="line">echo &quot;Already exists&quot;</span><br><span class="line">else</span><br><span class="line">useradd $UNAME &amp;&gt; &#x2F;dev&#x2F;null</span><br><span class="line">echo &quot;$PASSWD&quot; | passwd --stdin $UNAME &amp;&gt; &#x2F;dev&#x2F;null</span><br><span class="line">if [ $? -eq 0 ]</span><br><span class="line">then </span><br><span class="line">echo &quot;$UNAME, Create success&quot;</span><br><span class="line">else</span><br><span class="line">echo &quot;$UNAME, Create failure&quot;</span><br><span class="line">fi</span><br><span class="line">fi</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<p>告诉用户正在输入的内容即将作为账户密码，在执行改脚本后，会自动使用从列表文件users.txt中获取所有用户名称。然后逐一使用 id用户名命令查看用户信息，并使用 $?来判断这条命令是否执行成功，也就是判断该用户是否存在。<br>/dev/null 是一个特殊的设备文件，它丢弃一切写入其中的数据 可以将它 视为一个黑洞, 它等效于只写文件, 写入其中的所有内容都会消失, 尝试从中读取或输出不会有任何结果，同样，/dev/null 在命令行和脚本中都非常有用</p>
+<p>在Linux系统中 /etc/passwd是用来保存用户信息的文件。   </p>
+<p>$(cat ~/ipadds.txt) 等价于 <code>cat ~/ipadds.txt</code></p>
+<h2 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h2><p>while条件循环语句是一种让脚本根据某种条件来来重复执行命令的语句，它的循环结构往往可以执行不知道最终执行次数的循环，通过判断条件真假来决定是否执行命令。</p>
+<pre><code>while 条件测试语句
+do
+命令序列
+done
+</code></pre>
+<p>exit 0 可以命令 终止脚本执行exit命令用于退出当前shell，在shell脚本中可以终止当前脚本执行。  </p>
+<pre><code>#!/bin/bash
+PRICE=$(expr $RANDOM % 1000)
+TIMES=0
+echo &quot;The price is between 0-999,guess&quot;
+while true
+do
+read -p &quot;guess a num between 0-999&quot; INT
+let TIMES++
+if [ $INT -eq $PRICE ]
+then
+echo &quot;niubi! correct~the price is $PRICE&quot;
+echo &quot;you have guessed $TIMES times&quot;
+exit 0
+elif [ $INT -gt $PRICE ]
+then
+echo &quot;too high&quot;
+else
+echo &quot;too low&quot;
+fi
+done
+</code></pre>
+<h2 id="case条件测试语句"><a href="#case条件测试语句" class="headerlink" title="case条件测试语句"></a>case条件测试语句</h2><p>case语句是多个范围内匹配数据，若匹配成功，则执行相关命令，并结束整个条件测试。如果数据不再列出的范围内，则会去执行星号（*）中所定义的默认命令。    </p>
+<pre><code>#!/bin/bash
+read -p &quot;print anything you like:&quot; KEY
+case $KEY in
+[0-9])
+echo &quot;this is digits&quot;
+;;
+[a-z] | [A-Z])
+echo &quot;this is alpha&quot;
+;;
+*)
+echo &quot;sha dou bu shi&quot;
+esac
+</code></pre>
+<h2 id="计划任务服务程序"><a href="#计划任务服务程序" class="headerlink" title="计划任务服务程序"></a>计划任务服务程序</h2><p>Linux可以实现无需人为介入的情况下，未指定的时间段自动启动或停止某些服务或者命令，从而实现运维自动化。<br>设置服务器的计划任务服务，把周期性，规律性的工作交给系统自动完成。<br>一次性计划任务只执行一次，可以用at命令实现。只需要写成at时间即可。如果要查看已经设置好但还没有执行的一次性计划任务，可以使用at -l命令。如果要删除可以用atrm 任务序号删除。at命令来设置一次性任务时，默认是采用交互式的方法。</p>
+<pre><code>at 23:30
+at &gt; systemct1 restart httpd
+at &gt; 同时按下ctrl + d实现结束编写计划任务  
+</code></pre>
+<p>删除其中一个任务可以用</p>
+<pre><code>atrm 2
+</code></pre>
+<p>删除第序列号为2的一次性任务<br>    at -l<br>展示还未执行的一次性任务<br>如果希望Linux系统能周期性的，有规律的执行某些具体的任务，那么Linux系统中默认启动的crond服务在适合不过了。创建和编辑计划任务的命令为 </p>
+<pre><code>crontab -e
+</code></pre>
+<p>查看当前计划任务的命令为：</p>
+<pre><code>crontab -l 
+</code></pre>
+<p>删除某条计划任务为：</p>
+<pre><code>crontab -r
+</code></pre>
+<p>还可以在crontab命令中加上 -u参数来编辑他人的计划任务<br>分、时、日、月、星期几命令。如果那个没有设置需要用 * 号占位   </p>
+<p>可以用逗号来表示多个时间段， 比如8,9,12 如果是在月份那一位置，就可以标识8,9，12月。 可以用减号 - 来表示一段连续的时间周期。以及用除号表示 执行任务的间隔时间  “*/2” 在分钟的位置就表示每两分钟执行一次任务    </p>
+<p>crond服务中如果要包含多个计划任务的命令语句，则需要每行只写一个。<br>在crond服务里参数所有命令，一定要用绝对路径来写。</p>
+<h2 id="用户身份与文件权限"><a href="#用户身份与文件权限" class="headerlink" title="用户身份与文件权限"></a>用户身份与文件权限</h2><p>root管理员是存在于所有类UNIX系统中的超级用户，他拥有最高的系统所有权，可以管理系统的各种功能，比如添加删除用户，启动和关闭服务进程，开启和禁用硬件设备。<br>Linux系统的管理员之所以是root，是因为他的UID user Identification的数值是0，在Linux系统中，UID就相当于身份证号码一样具有唯一性，可以通过用户UID来判断用户身份。<br>系统用户UID 为1-999，Linux系统为了避免某个服务程序出现漏洞而被黑客提权到整台服务器，默认服务程序会有独立的系统用户负责运行，从而有效控制被破坏范围。<br>普通用户UID从1000开始，是由管理员创建的用于日常工作的用户。<br>为了方便管理同一组的用户，使用用户组号码GUD group Identification,把多个用户加入到一个组中，从而方便为组中的用户同一个规划权限或指派任务。<br>Linux系统中创建每个用户时，将创建一个与其同名的基本用户组，而且这个基本用户组，只有该用户一个人。<br>如果这个用户以后被归纳为其他用户组，则被称为拓展用户组。一个用户只有个一个基本用户组，但是可以有多个拓展用户组。    </p>
+<h2 id="增加一个用户"><a href="#增加一个用户" class="headerlink" title="增加一个用户"></a>增加一个用户</h2><pre><code>useradd [选项] 用户名
+</code></pre>
+<p>创建用户，创建用户的默认目录是放在/home下面的看，默认Shell解释器是/bin/bash,而且默认创建一个与该用户同名的基本用户组。<br>-d 指定用户的家目录<br>-e 账户的到期时间 格式是 YYY-MM-DD<br>-u 指定该用户的默认UID<br>-g 指定一个初始的用户基本组<br>-G 指定一个或多个拓展基本组<br>-N 不创建同名的基本用户组<br>-s 指定用户的默认shell管理器   </p>
+<p>/sbin/nologin是解释终端器的一员，和bash解释其不同，一旦用户的解释器是nlogin，则代表这个用户是不能登录到系统中的。   </p>
+<h2 id="增加组"><a href="#增加组" class="headerlink" title="增加组"></a>增加组</h2><p>groupadd增加一个用户组 </p>
+<pre><code>groupadd [选项] 群组名 
+</code></pre>
+<h2 id="修改用户属性"><a href="#修改用户属性" class="headerlink" title="修改用户属性"></a>修改用户属性</h2><pre><code>usermod [选项] 用户名
+</code></pre>
+<p>用户的信息保存在/etc/passwd<br>可以直接通过文本编辑器来修改用户参数选项。也可以通过usermod来改。<br>-e 账户的到期时间<br>-g 变更所属用户组<br>-G 变更拓展用户组<br>-L 锁定用户禁止其登录系统<br>-U 解锁用户 允许其登录系统<br>-s 变更默认终端<br>-u 修改用户的UID</p>
+<pre><code>usermod -G root qhwno1
+id qhwno1
+
+usermod -u 8888 qhwno1
+id qhwno1
+</code></pre>
+<h2 id="修改用户密码、过期时间、认证信息"><a href="#修改用户密码、过期时间、认证信息" class="headerlink" title="修改用户密码、过期时间、认证信息"></a>修改用户密码、过期时间、认证信息</h2><p>passwd命令来修改这些</p>
+<pre><code>password [选项] 用户名
+</code></pre>
+<p>普通用户只能通过passwd来修改自身的系统密码， 而root管理员可以有权修改其他所有人的密码  root管理员在linux系统中修改自己或他人的密码不需要验证旧密码<br>-l 锁定用户禁止其登录<br>-u 解除锁定，允许用户登录<br>–stdin 允许通过标准输入修改用户密码<br>-d 使用户可以用空密码登录系统</p>
+<pre><code>echo “andreiguo”|passwd --stdin Username
+
+
+passwd qhwno1
+</code></pre>
+<h2 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h2><p>userdel </p>
+<pre><code>userdel [选项] 用户名
+</code></pre>
+<p>在执行删除操作的时候，用户的家目录会默认保留下来，此时可以用 -r参数删除用户家目录<br>-f 强制删除用户<br>-r 删除用户和其家目录   </p>
+<pre><code>userdel -r qhwno1  
+</code></pre>
+<h2 id="文件权限与归属"><a href="#文件权限与归属" class="headerlink" title="文件权限与归属"></a>文件权限与归属</h2><p>每个文件的类型不尽相同，因此Linux系统使用了不同的字符来加以区分，这个用ls命令展示全部的时候可以 第一个字符就是文件类型  </p>
+<p>-：普通文件<br>d:目录文件<br>l：链接文件<br>b：块设备文件<br>c:字符设备文件<br>p：管道文件  </p>
+<p>每个文件都有所属的所有者和所属组 ，并规定文件的所有者、所有组以及其他人对文件所拥有的可读（r）、可写（w）、可执行（x）等权限。<br>对于一般文件而言，可写表示能够编辑、新增、修改、删除文件的实际内容<br>可执行 表示能够运行一个脚本程序<br>对于目录文件而言，可读表示能够读取目录中的文件列表；可写表示能够在目录中新增、删除、重命名文件，而可执行则表示能够进入该目录。<br>读写执行的权限可以简写为 rwx，也可以用数字4、2、1来表示，文件权限的数字法表示基于字符表示rwx的权限计算而得来的数字。<br>比如一个文件权限是 7 意思是 4+2+1也就是有rwx权限  6 –&gt;  4+2 。一个文件的权限是764的意思就是文件所属者、文件所属组、其他用户的权限。也就是其他用户只有r的权力。6：的表示就是 rw-,4的表示： r–<br>，2的表示 -w-</p>
+<h2 id="文件的特殊权限"><a href="#文件的特殊权限" class="headerlink" title="文件的特殊权限"></a>文件的特殊权限</h2><p>SUID、SGID、SBIT 特殊权限位 这是一种对文件权限进行设置的特殊功能。</p>
+<h2 id="SUID"><a href="#SUID" class="headerlink" title="SUID"></a>SUID</h2><p>对二进制程序进行设置的特殊权限，可以让二进制程序的执行者临时拥有属主的权限。passwd命令就加入了默认的SUID的特殊权限为，因为所有用户都可以执行passwd来修改自己的密码，而密码保存在/etc/shadow文件里，查看这个文件的权限是 000，也就是只有root，这是一种，有条件的、零时的特殊权限授权方法。rwx变成了rws，x改变成s就意味这个文件被赋予了SUID权限。</p>
+<h2 id="SGID"><a href="#SGID" class="headerlink" title="SGID"></a>SGID</h2><p>SGID两个主要功能：   </p>
+<ol>
+<li>让执行者临时拥有所属组的权限 </li>
+<li>在某个目录上创建的文件自动继承该目录的用户组（只可以对目录操作）也就是不管什么用户在里面创建的文件自动继承该目录的用户组<br>ps命令里就含有SGID特殊权限位<br>主要是用chmod 和 chown<br>chmod命令是一个非常实用的命令，能够设置文件或者目录的权限 </li>
+</ol>
+<pre><code>chmod [参数] 权限 文件名或目录
+</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 760 test.txt</span><br></pre></td></tr></table></figure>
+<p>chown设置文件或目录的所有者和所属组</p>
+<pre><code>chown [参数] 所有者：所属组 文件或目录名称 
+</code></pre>
+<p>chmod和chown在修改目录的时候，如果要递归实现所有目录内的所有文件和嵌套目录的修改，需要使用参数 -R</p>
+<pre><code>chown root：bin test.txt
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://andrekuu.github.io/2021/04/22/Linux/" data-id="cknscjo0p0003egve104fgidx" data-title="Linux" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Mysql基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/04/22/Mysql%E5%9F%BA%E7%A1%80/" class="article-date">
@@ -810,7 +1418,7 @@ alter user user_name@host_name identified with mysql_native_password by &#39;new
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://andrekuu.github.io/2021/04/22/Mysql%E5%9F%BA%E7%A1%80/" data-id="cknrvohks0003o0ve9nz8e8w0" data-title="Mysql基础" class="article-share-link">Share</a>
+      <a data-url="https://andrekuu.github.io/2021/04/22/Mysql%E5%9F%BA%E7%A1%80/" data-id="cknscjo0q0004egveaa8aa7vr" data-title="Mysql基础" class="article-share-link">Share</a>
       
       
       
@@ -1159,7 +1767,7 @@ alter user user_name@host_name identified with mysql_native_password by &#39;new
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://andrekuu.github.io/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%BB%86%E8%8A%82/" data-id="cknrvohkv0006o0ve4o6adn8g" data-title="计算机网络细节" class="article-share-link">Share</a>
+      <a data-url="https://andrekuu.github.io/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%BB%86%E8%8A%82/" data-id="cknscjo0t0007egve3q6311s5" data-title="计算机网络细节" class="article-share-link">Share</a>
       
       
       
@@ -1437,7 +2045,7 @@ alter user user_name@host_name identified with mysql_native_password by &#39;new
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://andrekuu.github.io/2021/04/22/LeetCode-%E5%91%A8%E8%B5%9B%E6%80%BB%E7%BB%93/" data-id="cknrvohkt0004o0ve5bsa038h" data-title="LeetCode 周赛总结" class="article-share-link">Share</a>
+      <a data-url="https://andrekuu.github.io/2021/04/22/LeetCode-%E5%91%A8%E8%B5%9B%E6%80%BB%E7%BB%93/" data-id="cknscjo0q0005egvedc87f7li" data-title="LeetCode 周赛总结" class="article-share-link">Share</a>
       
       
       
@@ -1697,7 +2305,7 @@ alter user user_name@host_name identified with mysql_native_password by &#39;new
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://andrekuu.github.io/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" data-id="cknrvohkq0002o0ve565mfjsv" data-title="计算机基础" class="article-share-link">Share</a>
+      <a data-url="https://andrekuu.github.io/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" data-id="cknscjo0m0002egve6uwi94sf" data-title="计算机基础" class="article-share-link">Share</a>
       
       
       
@@ -2033,7 +2641,7 @@ for 选择 in 未探索区域当前可能的选择:
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://andrekuu.github.io/2021/04/22/%E7%AE%97%E6%B3%95%E7%BB%8F%E9%AA%8C/" data-id="cknrvohku0005o0ve60c38qz5" data-title="算法经验" class="article-share-link">Share</a>
+      <a data-url="https://andrekuu.github.io/2021/04/22/%E7%AE%97%E6%B3%95%E7%BB%8F%E9%AA%8C/" data-id="cknscjo0s0006egveeilmclwh" data-title="算法经验" class="article-share-link">Share</a>
       
       
       
@@ -2319,7 +2927,7 @@ response[&#39;Content-Disposition&#39;] = &#39;attatchment;filenae=&quot;pylogo.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://andrekuu.github.io/2021/04/22/Django%E6%A1%86%E6%9E%B6%E7%BB%86%E8%8A%82%E7%BA%AA%E5%AE%9E/" data-id="cknrvohkp0001o0veh1x146zz" data-title="Django框架细节纪实" class="article-share-link">Share</a>
+      <a data-url="https://andrekuu.github.io/2021/04/22/Django%E6%A1%86%E6%9E%B6%E7%BB%86%E8%8A%82%E7%BA%AA%E5%AE%9E/" data-id="cknscjo0l0001egveelvt8ebl" data-title="Django框架细节纪实" class="article-share-link">Share</a>
       
       
       
@@ -2398,7 +3006,7 @@ response[&#39;Content-Disposition&#39;] = &#39;attatchment;filenae=&quot;pylogo.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://andrekuu.github.io/2021/04/22/Python%E8%AF%AD%E8%A8%80%E5%BA%95%E5%B1%82%E7%BB%86%E8%8A%82/" data-id="cknrvohkh0000o0ve47yt8wdl" data-title="Python语言底层细节" class="article-share-link">Share</a>
+      <a data-url="https://andrekuu.github.io/2021/04/22/Python%E8%AF%AD%E8%A8%80%E5%BA%95%E5%B1%82%E7%BB%86%E8%8A%82/" data-id="cknscjo0e0000egvee6ggbtyd" data-title="Python语言底层细节" class="article-share-link">Share</a>
       
       
       
@@ -2410,9 +3018,9 @@ response[&#39;Content-Disposition&#39;] = &#39;attatchment;filenae=&quot;pylogo.
 
 
   
-    <article id="post-C-学无止境" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-C++学无止境" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/04/22/C-%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/" class="article-date">
+    <a href="/2021/04/22/C++%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/" class="article-date">
   <time class="dt-published" datetime="2021-04-21T18:47:14.000Z" itemprop="datePublished">2021-04-22</time>
 </a>
     
@@ -2424,7 +3032,7 @@ response[&#39;Content-Disposition&#39;] = &#39;attatchment;filenae=&quot;pylogo.
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/04/22/C-%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/">C++学无止境</a>
+      <a class="p-name article-title" href="/2021/04/22/C++%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/">C++学无止境</a>
     </h1>
   
 
@@ -4998,7 +5606,7 @@ while (1) &#123;
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://andrekuu.github.io/2021/04/22/C-%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/" data-id="cknrvohkx0007o0vehbeag6jq" data-title="C++学无止境" class="article-share-link">Share</a>
+      <a data-url="https://andrekuu.github.io/2021/04/22/C++%E5%AD%A6%E6%97%A0%E6%AD%A2%E5%A2%83/" data-id="cknscjo0v0008egve03lweq9g" data-title="C++学无止境" class="article-share-link">Share</a>
       
       
       
@@ -5041,6 +5649,10 @@ while (1) &#123;
       <ul>
         
           <li>
+            <a href="/2021/04/22/Linux/">Linux</a>
+          </li>
+        
+          <li>
             <a href="/2021/04/22/Mysql%E5%9F%BA%E7%A1%80/">Mysql基础</a>
           </li>
         
@@ -5054,10 +5666,6 @@ while (1) &#123;
         
           <li>
             <a href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a>
-          </li>
-        
-          <li>
-            <a href="/2021/04/22/%E7%AE%97%E6%B3%95%E7%BB%8F%E9%AA%8C/">算法经验</a>
           </li>
         
       </ul>
